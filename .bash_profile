@@ -1,2 +1,3 @@
 source ~/dotfiles/.bashrc
-cd
+# copies gitconfig to home
+cp ~/dotfiles/.gitconfig ~/.gitconfig

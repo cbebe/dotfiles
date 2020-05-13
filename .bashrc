@@ -1,11 +1,8 @@
 bind "set bell-style none"
-export PS1="\\w:\$(git branch 2>/dev/null | grep '^*' | colrm 1 2)\$ "
 # -------
 # Aliases
 # -------
 
-# reflect gitconfig changes to the dotfiles one
-alias gc="cp ~/.gitconfig ~/dotfiles/.gitconfig"
 alias ls="ls -al"
 alias py="winpty py"
 alias q="exit"
@@ -15,3 +12,11 @@ alias es="vi ~/dotfiles/.bashrc"
 alias vrc="vi ~/dotfiles/.vimrc"
 
 alias phil="cd ~/WD/codingwbb/phil265/markdown"
+# open current directory in explorer
+alias exp="explorer ."
+
+# because i keep forgetting how to do this
+alias gen-ssh="ssh-keygen -t rsa -b 4096 -C \"cancheta@ualberta.ca\""
+alias gen-add="eval $(ssh-agent -s) && ssh-add ~/.ssh/id_rsa"
+alias gen-test="ssh -T git@github.com"
+
