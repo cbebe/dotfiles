@@ -1,6 +1,7 @@
 [user]
-    username = charlesancheta
     name = Charles Ancheta
+    username = charlesancheta
     email = cancheta@ualberta.ca
 [core]
     editor = "vim"
+    autocrlf = true
