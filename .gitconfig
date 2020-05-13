@@ -1,0 +1,6 @@
+[user]
+    username = charlesancheta
+    name = Charles Ancheta
+    email = cancheta@ualberta.ca
+[core]
+    editor = "vim"

@@ -2,7 +2,8 @@ set encoding=utf-8
 scriptencoding utf-8
 packloadall
 syntax on
-"general stuff"
+
+" general stuff
 set list
 set listchars=eol:⤦
 set linebreak
@@ -16,13 +17,14 @@ set autoindent smartindent
 
 nmap <Space> :
 inoremap kj <Esc>
-"folding stuff"
+
+" folding stuff
 set foldmethod=indent
 set foldlevel=1
 set foldnestmax=10
 set foldenable
 
-"brackets"
+" brackets
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
