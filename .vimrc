@@ -1,3 +1,4 @@
+set belloff=all
 set nocompatible
 set clipboard=unnamed
 set wildmenu

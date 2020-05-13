@@ -1,1 +1,2 @@
 source ~/dotfiles/.bashrc
+cd
