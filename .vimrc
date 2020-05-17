@@ -1,24 +1,36 @@
-set belloff=all
+set noswapfile
+set nobackup nowritebackup
+set belloff=all " turn off annoying bell sound
 set nocompatible
+set incsearch
+set laststatus=2
 set clipboard=unnamed
-set wildmenu
+set ruler
+set wildmenu " command auotocompletion
+set showcmd
+set showcmd
 set encoding=utf-8
 scriptencoding utf-8
 packloadall
 syntax on
 
 " general stuff
+set backspace=2
 set list
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set linebreak
 set tabstop=4
-set softtabstop=0 
-set expandtab
 set shiftwidth=4
+set autoindent
+set shiftround " rounds the indentation to shiftwidth when shifting
+set smarttab
+set expandtab
 set backspace=indent,eol,start
 set number relativenumber
+set textwidth=80
+set numberwidth=5
 set autoindent smartindent
-set cursorline
+set nojoinspaces " no more pressing spacebar over and over!!
 " syntax stuff
 syntax on
 
@@ -27,7 +39,7 @@ inoremap kj <Esc>
 
 " folding stuff
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=0
 set foldnestmax=10
 set foldenable
 
@@ -41,4 +53,10 @@ inoremap \$ $$<left>
 inoremap <% <%%><left><left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" lmao
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
