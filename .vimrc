@@ -1,8 +1,13 @@
+set nocompatible
 set noswapfile
+
+set background=dark
+colorscheme distinguished
+
 set nobackup nowritebackup
 set belloff=all " turn off annoying bell sound
-set nocompatible
 set incsearch
+set ignorecase
 set laststatus=2
 set clipboard=unnamed
 set ruler
@@ -36,10 +41,10 @@ syntax on
 
 nmap <Space> :
 inoremap kj <Esc>
+inoremap KJ <Esc>
 
 " folding stuff
 set foldmethod=indent
-set foldlevel=0
 set foldnestmax=10
 set foldenable
 
@@ -51,6 +56,8 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap \$ $$<left>
 inoremap <% <%%><left><left>
+" prevents the lagging thing
+inoremap << <<
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
@@ -60,3 +67,6 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
+" running python scripts
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!py' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!py' shellescape(@%, 1)<CR>
