@@ -4,6 +4,7 @@ if [ -z "$1" ]; then
 else
     MESSAGE="$1"
 fi
+echo "Pushing to github with message: $MESSAGE"
 DOTGITDIR=$(find . -name .git -type d -print)
 while [ -z "$DOTGITDIR" ]; do
     cd ..
