@@ -4,6 +4,7 @@ bind "set bell-style none"
 # -------
 
 alias ls="ls -al"
+alias vi="vim"
 alias py="winpty py"
 alias q="exit"
 alias c="code ./"
