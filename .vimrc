@@ -38,15 +38,18 @@ set shiftround " rounds the indentation to shiftwidth when shifting
 set smarttab
 set expandtab
 set backspace=indent,eol,start
-set number relativenumber
-set textwidth=80
+set number
 set numberwidth=5
 set autoindent smartindent
 set nojoinspaces " no more pressing spacebar over and over!!
 " syntax stuff
 syntax on
 
-nmap <Space> :
+" for easier navigation
+nnoremap H 0
+nnoremap L $
+
+nnoremap <Space> :
 inoremap kj <Esc>
 inoremap KJ <Esc>
 
@@ -55,22 +58,31 @@ set foldmethod=indent
 set foldnestmax=10
 set foldenable
 
-" brackets
+" quotes
 inoremap " ""<left>
+inoremap ' ''<left>
 " makes writing vim comments less annoying
 inoremap "<space> "<space>
+" surrounding a visual block in quotes
+vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>
+vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>
 
-inoremap ' ''<left>
+
+
+" brackets
 inoremap ( ()<left>
 inoremap [ []<left>
+" for functions
 inoremap { {}<left>
-inoremap \$ $$<left>
-inoremap <% <%%><left><left>
-" prevents the lagging thing
-inoremap << <<
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-
+inoremap \$ $$<left>
+inoremap <% <%%><left><left>
+" surround stuff
+vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>`>
+vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>`>
+" prevents the lagging thing
+inoremap << <<
 
 " lmao
 nnoremap <Left> :echoe "Use h"<CR>
@@ -85,3 +97,13 @@ nnoremap <leader>vs :source $MYVIMRC<cr>
 " running python scripts
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!py' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!py' shellescape(@%, 1)<CR>
+
+" style guidelines lmao
+autocmd FileType javascript set textwidth=80
+
+" for repeating chars
+function! RepeatChar(char, count)
+  return repeat(a:char, a:count)
+endfunction
+nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
