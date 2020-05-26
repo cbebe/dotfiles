@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-if [ -z "$1" ]; then
+
+# get commit message from first argument
+ARGS="${@}"
+if [ -z "$ARGS" ]; then
     MESSAGE="Autopushed"
 else
-    MESSAGE="$1"
+    MESSAGE="$ARGS"
 fi
-DOTGITDIR=$(find . -name .git -type d -print)
-while [ -z "$DOTGITDIR" ]; do
+echo "Pushing to github with message: $MESSAGE"
+# look for .git directory before staging changes
+while [ -z "$(find . -name .git -type d -print)" ]; do
     cd ..
-    DOTGITDIR=$(find . -name .git -type d -print)
 done
-git add .
-git commit -m "$MESSAGE"
-git push
+# now push
+git add . && git commit -m "$MESSAGE" && git push
