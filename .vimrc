@@ -1,3 +1,9 @@
+"
+" ~/dotfiles/.vimrc
+"
+let &runtimepath.=",~/dotfiles/.vim"
+let $MYVIMRC="~/dotfiles/.vimrc"
+
 set nocompatible
 set noswapfile
 
@@ -19,6 +25,7 @@ packloadall
 syntax on
 
 " general stuff
+let mapleader=","
 set backspace=2
 set list
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -49,6 +56,9 @@ set foldenable
 
 " brackets
 inoremap " ""<left>
+" makes writing vim comments less annoying
+inoremap "<space> "<space>
+
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
@@ -60,11 +70,16 @@ inoremap << <<
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+
 " lmao
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
+" make vimrc editing easier
+nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 
 " running python scripts
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!py' shellescape(@%, 1)<CR>
