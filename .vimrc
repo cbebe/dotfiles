@@ -8,6 +8,7 @@ set nocompatible
 set noswapfile
 
 set background=dark
+colorscheme distinguished
 
 set nobackup nowritebackup
 set belloff=all " turn off annoying bell sound
