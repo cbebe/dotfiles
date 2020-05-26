@@ -9,10 +9,8 @@ else
 fi
 echo "Pushing to github with message: $MESSAGE"
 # look for .git directory before staging changes
-DOTGITDIR=$(find . -name .git -type d -print)
-while [ -z "$DOTGITDIR" ]; do
+while [ -z "$(find . -name .git -type d -print)" ]; do
     cd ..
-    DOTGITDIR=$(find . -name .git -type d -print)
 done
 # now push
 git add .
