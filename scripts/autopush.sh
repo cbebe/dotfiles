@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# get commit message from arguments
-if [ -z "$@" ]; then
+# get commit message from first argument
+if [ -z $@ ]; then
     MESSAGE="Autopushed"
 else
     MESSAGE="$@"
