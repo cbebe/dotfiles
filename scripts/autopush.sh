@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # get commit message from arguments
-if [ -z "$1" ]; then
+if [ -z "$@" ]; then
     MESSAGE="Autopushed"
 else
-    MESSAGE="$1"
+    MESSAGE="$@"
 fi
 echo "Pushing to github with message: $MESSAGE"
 # look for .git directory before staging changes
