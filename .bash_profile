@@ -4,4 +4,4 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # copies gitconfig to home
-cp ~/dotfiles/.gitconfig ~/.gitconfig
+\cp ~/dotfiles/.gitconfig ~/.gitconfig
