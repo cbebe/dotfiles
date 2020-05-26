@@ -4,7 +4,7 @@
     email = cancheta@ualberta.ca
 [core]
     editor = "vim"
-    autocrlf = true
+    autocrlf = input
 [alias]
     a = add --all
     ai = add -i
