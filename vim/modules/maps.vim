@@ -42,4 +42,3 @@ nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>vme :vsplit modules/maps.vim<cr>
 nnoremap <leader>vpe :vsplit modules/plugins.vim<cr>
 
-

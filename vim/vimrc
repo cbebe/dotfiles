@@ -19,9 +19,10 @@ set clipboard=unnamed
 set ruler
 set wildmenu " command auotocompletion
 set showcmd
+
 set encoding=utf-8
 scriptencoding utf-8
-packloadall
+
 syntax on
 filetype on
 
@@ -30,8 +31,6 @@ set foldmethod=syntax
 set foldnestmax=10
 set foldenable
 
-" general stuff
-
 " sorry f/F and t/T :(
 let mapleader=','
 let maplocalleader=';'
@@ -39,19 +38,23 @@ let maplocalleader=';'
 set backspace=2
 set list
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set wrap
 set linebreak
-set tabstop=4
+
 set shiftwidth=4
-set autoindent
 set shiftround " rounds the indentation to shiftwidth when shifting
+
+set tabstop=4
 set smarttab
 set expandtab
+
 set backspace=indent,eol,start
 set number
 set numberwidth=5
+
 set autoindent smartindent
 set nojoinspaces " no more pressing spacebar over and over!!
-syntax on " syntax stuff
+
 " running python scripts
 augroup run_python
     autocmd!
@@ -67,7 +70,7 @@ augroup style
     autocmd FileType vim setlocal formatoptions=cr
 augroup END
 
-" to recognize filetyp
+" to recognize filetype
 augroup file_type
     autocmd!
     autocmd BufNewFile,BufRead bash* set syntax=bash
