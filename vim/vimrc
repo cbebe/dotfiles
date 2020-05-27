@@ -1,0 +1,84 @@
+"
+" ~/dotfiles/vimrc
+"
+let &runtimepath.=",~/dotfiles/vim"
+let $MYVIMRC="~/dotfiles/vim/vimrc"
+
+set nocompatible
+set noswapfile
+
+set background=dark
+colorscheme distinguished
+
+set nobackup nowritebackup
+set belloff=all " turn off annoying bell sound
+set incsearch
+set ignorecase
+set laststatus=2
+set clipboard=unnamed
+set ruler
+set wildmenu " command auotocompletion
+set showcmd
+set encoding=utf-8
+scriptencoding utf-8
+packloadall
+syntax on
+filetype on
+
+" folding stuff
+set foldmethod=syntax
+set foldnestmax=10
+set foldenable
+
+" general stuff
+
+" sorry f/F and t/T :(
+let mapleader=','
+let maplocalleader=';'
+
+set backspace=2
+set list
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set linebreak
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set shiftround " rounds the indentation to shiftwidth when shifting
+set smarttab
+set expandtab
+set backspace=indent,eol,start
+set number
+set numberwidth=5
+set autoindent smartindent
+set nojoinspaces " no more pressing spacebar over and over!!
+syntax on " syntax stuff
+" running python scripts
+augroup run_python
+    autocmd!
+    autocmd FileType python map <buffer> <F9> :w<CR>:exec '!py' shellescape(@%, 1)<CR>
+    autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!py' shellescape(@%, 1)<CR>
+augroup END
+
+" style guidelines lmao
+
+augroup style
+    autocmd!
+    autocmd FileType javascript setlocal textwidth=80
+    autocmd FileType vim setlocal formatoptions=cr
+augroup END
+
+" to recognize filetyp
+augroup file_type
+    autocmd!
+    autocmd BufNewFile,BufRead bash* set syntax=bash
+    autocmd BufNewFile,BufRead *gitconfig set syntax=gitconfig
+augroup END
+
+" for repeating chars
+function! RepeatChar(char, count)
+  return repeat(a:char, a:count)
+endfunction
+nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+
+runtime! modules/*.vim

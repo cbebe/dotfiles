@@ -8,7 +8,5 @@
 [alias]
     a = add --all
     ai = add -i
-    #####
     cm = commit -m
-    #####
     pm = push -u origin master
