@@ -1,14 +1,15 @@
 "
-" ~/dotfiles/vimrc
+" ~/dotfiles/vim/vimrc
 "
 let &runtimepath.=",~/dotfiles/vim"
 let $MYVIMRC="~/dotfiles/vim/vimrc"
+let $MODULEPATH="~/dotfiles/vim/modules"
 
 set nocompatible
 set noswapfile
 
 set background=dark
-colorscheme distinguished
+colorscheme gruvbox
 
 set nobackup nowritebackup
 set belloff=all " turn off annoying bell sound
@@ -30,6 +31,7 @@ filetype on
 set foldmethod=syntax
 set foldnestmax=10
 set foldenable
+
 
 " sorry f/F and t/T :(
 let mapleader=','

@@ -1,3 +1,6 @@
+"
+" ~/dotfiles/vim/modules/plugins.vim
+"
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -7,7 +10,6 @@ Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdcommenter'
 
 call plug#end()
