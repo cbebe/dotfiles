@@ -1,17 +1,18 @@
 "
 " ~/dotfiles/vim/vimrc
 "
-let &runtimepath.=",~/dotfiles/vim"
-let $MYVIMRC="~/dotfiles/vim/vimrc"
-let $MODULEPATH="~/dotfiles/vim/modules"
+let &runtimepath .= ",~/dotfiles/vim"
+let $MYVIMRC = "~/dotfiles/vim/vimrc"
+let $MODULEPATH = "~/dotfiles/vim/modules"
+let $BASH_ENV = "~/dotfiles/bash_aliases"
 
 set nocompatible
 set noswapfile
 
 set background=dark
-colorscheme gruvbox
-
 set nobackup nowritebackup
+set mouse=a
+
 set belloff=all " turn off annoying bell sound
 set incsearch
 set ignorecase
@@ -31,7 +32,6 @@ filetype on
 set foldmethod=syntax
 set foldnestmax=10
 set foldenable
-
 
 " sorry f/F and t/T :(
 let mapleader=','
@@ -73,6 +73,7 @@ augroup style
 augroup END
 
 " to recognize filetype
+
 augroup file_type
     autocmd!
     autocmd BufNewFile,BufRead bash* set syntax=bash
@@ -87,3 +88,4 @@ nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 runtime! modules/*.vim
+colorscheme gruvbox

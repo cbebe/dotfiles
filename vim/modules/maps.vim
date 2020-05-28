@@ -2,7 +2,11 @@
 nnoremap H 0
 nnoremap L $
 
-nnoremap <space><space> :" Using CocList
+nnoremap <space><space> :
+
+
+" Using CocList
+
 " Show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
