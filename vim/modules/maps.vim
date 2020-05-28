@@ -50,12 +50,6 @@ vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>`>
 " prevents the lagging thing
 inoremap << <<
 
-" lmao
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
 " make vimrc editing easier
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
