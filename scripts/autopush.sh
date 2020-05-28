@@ -13,4 +13,4 @@ while [ -z "$(find . -name .git -type d -print)" ]; do
     cd ..
 done
 # now push
-git add . && git commit -m "$MESSAGE" && git push
+git add &> /dev/null . && git commit -m "$MESSAGE" && git push
