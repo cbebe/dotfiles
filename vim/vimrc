@@ -10,17 +10,6 @@ let $MODULEPATH = "~/dotfiles/vim/modules"
 " Expand my bash aliases in vim command line
 let $BASH_ENV = "~/dotfiles/bash_aliases"
 
-" Import other vim configs
-runtime! modules/*.vim
-colorscheme gruvbox
-
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-	set undodir=~/.vim/undo
-endif
-
 " Make vim more useful
 set nocompatible
 " Optimize for fast terminal connections
@@ -107,3 +96,7 @@ endfunction
 nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
+" Import other vim configs
+runtime! modules/*.vim
+set background=dark
+colorscheme gruvbox
