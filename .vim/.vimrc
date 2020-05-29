@@ -1,14 +1,16 @@
 "
-" ~/dotfiles/vim/vimrc
+" ~/dotfiles/.vim/.vimrc
 "
 
 " Set paths
-let &runtimepath .= ",~/dotfiles/vim"
-let $MYVIMRC = "~/dotfiles/vim/vimrc"
-let $MODULEPATH = "~/dotfiles/vim/modules"
+" reset runtimepath to default to prevent adding ~/dotfiles/.vim over and over
+set runtimepath&
+let &runtimepath.=",~/dotfiles/.vim"
+let $MYVIMRC = "~/dotfiles/.vim/.vimrc"
+let $MODULEPATH = "~/dotfiles/.vim/modules"
 
 " Expand my bash aliases in vim command line
-let $BASH_ENV = "~/dotfiles/bash_aliases"
+let $BASH_ENV = "~/dotfiles/.bash_aliases"
 
 " Make vim more useful
 set nocompatible
@@ -98,5 +100,12 @@ nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 " Import other vim configs
 runtime! modules/*.vim
+
+" Automatically install plugins
+autocmd! VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
 set background=dark
 colorscheme gruvbox

@@ -1,4 +1,4 @@
 #
-# ~/dotfiles/profile.bash
+# ~/dotfiles/.bash_profile
 #
 [[ -f ~/.bashrc ]] && . ~/.bashrc

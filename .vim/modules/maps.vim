@@ -1,7 +1,7 @@
+
 " for easier navigation
 nnoremap H 0
 nnoremap L $
-
 
 " Using CocList
 " Show all diagnostics
@@ -57,3 +57,7 @@ nnoremap <leader>vpce :vsplit $MODULEPATH/plugin_config.vim<cr>
 " j/k will move virtual lines (lines that wrap)
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Spellchecker
+nnoremap <leader>ct :setlocal spell! spelllang=en_us<cr>
+
