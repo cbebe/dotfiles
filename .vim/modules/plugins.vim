@@ -18,4 +18,8 @@ Plug 'airblade/vim-gitgutter'
 " File formatting
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
+" GLSL syntax highlighting
+Plug 'tikhomirov/vim-glsl'
+
+
 call plug#end()
