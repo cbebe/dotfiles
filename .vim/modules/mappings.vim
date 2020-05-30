@@ -12,15 +12,15 @@ vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>
 " brackets
 inoremap ( ()<left>
 inoremap [ []<left>
-" for functions
+
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+" LaTeX math brackets
 inoremap \$ $$<left>
+" ejs brackets
 inoremap <% <%%><left><left>
-" surround stuff
-vnoremap <leader>( <esc>`>a)<esc>`<i(<esc>`>
-vnoremap <leader>{ <esc>`>a}<esc>`<i{<esc>`>
 " prevents the lagging thing
 inoremap << <<
 

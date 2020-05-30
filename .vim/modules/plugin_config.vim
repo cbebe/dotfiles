@@ -18,6 +18,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+" Open NERDTree on current directory
 nmap <C-n> :NERDTreeToggle<CR>
+" Toggle line(s) as comments
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
