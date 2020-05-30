@@ -9,6 +9,12 @@ let &runtimepath.=",~/dotfiles/.vim"
 let $MYVIMRC = "~/dotfiles/.vim/.vimrc"
 let $MODULEPATH = "~/dotfiles/.vim/modules"
 
+" Centralize backups, swapfiles and undo history
+set backupdir=~/dotfiles/.vim/backups
+set directory=~/dotfiles/.vim/swaps
+if exists("&undodir")
+	set undodir=~/dotfiles/.vim/undo
+endif
 " Expand my bash aliases in vim command line
 let $BASH_ENV = "~/dotfiles/.bash_aliases"
 
@@ -35,9 +41,6 @@ set wildmenu showcmd
 set encoding=utf-8
 scriptencoding utf-8
 
-" Allow syntax higlighting
-syntax on
-filetype on
 
 " folding stuff
 set foldmethod=syntax
@@ -55,8 +58,8 @@ set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
 " Make line wrapping
 set wrap linebreak
 
-" Shifts lines by this much
-set shiftwidth=4
+" Shiftwidth takes tabstop's value
+set shiftwidth=0
 " Rounds the indentation to shiftwidth when shifting
 set shiftround 
 " Fix tabs
@@ -82,6 +85,7 @@ augroup style
     autocmd!
     autocmd FileType javascript setlocal textwidth=80
     autocmd FileType vim setlocal formatoptions=cr
+    autocmd FileType markdown setlocal tabstop=2
 augroup END
 
 " To recognize filetype
@@ -107,5 +111,12 @@ autocmd! VimEnter *
   \|   PlugInstall --sync | q
   \| endif
 
+hi clear SpellBad
+hi SpellBad cterm=underline
+
 set background=dark
 colorscheme gruvbox
+
+" Allow syntax higlighting
+syntax on
+filetype on

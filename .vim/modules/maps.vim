@@ -23,11 +23,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 inoremap kj <Esc>
 inoremap KJ <Esc>
 
-" quotes
-inoremap " ""<left>
-inoremap ' ''<left>
-" makes writing vim comments less annoying
-inoremap "<space> "<space>
+
 " surrounding a visual block in quotes
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>`>
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>`>
