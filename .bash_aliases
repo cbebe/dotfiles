@@ -15,3 +15,9 @@ alias ec="echo $?" # check for errors
 
 # auto push on github
 alias gp="~/dotfiles/scripts/autopush.sh"
+# real home is too messy when viewed on wsl ewww
+alias chome="cd /mnt/c/Users/maple/home"
+# change permissions in case it gets messed up
+alias cperm="~/dotfiles/scripts/changeperm.sh"
+
+#find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;

@@ -1,12 +1,13 @@
 [user]
-    name = Charles Ancheta
-    username = charlesancheta
-    email = cancheta@ualberta.ca
+  name = Charles Ancheta
+  username = charlesancheta
+  email = cancheta@ualberta.ca
 [core]
-    editor = "nvim"
-    autocrlf = input
+  editor = "nvim"
+  autocrlf = input
+	fileMode = false
 [alias]
-    a = add --all
-    ai = add -i
-    cm = commit -m
-    pm = push -u origin master
+  a = add --all
+  ai = add -i
+  cm = commit -m
+  pm = push -u origin master
