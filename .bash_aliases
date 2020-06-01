@@ -3,7 +3,7 @@
 # -------
 
 # enables alias expansion
-shopt -s expand_aliases
+# shopt -s expand_aliases
 
 alias vi="vim"
 alias py="winpty py"
