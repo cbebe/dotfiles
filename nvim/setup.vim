@@ -11,6 +11,8 @@ set expandtab smarttab
 " make whitespace visible
 set list
 set listchars=tab:▸\ ,trail:·,eol:¬,nbsp:_
+" for text search
+set ignorecase
 
 " wider gutter
 set numberwidth=5

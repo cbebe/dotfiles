@@ -63,6 +63,7 @@ vnoremap L $
 " make vimrc editing easier
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
+nnoremap <leader>se :vsplit ~/dotfiles/nvim/setup.vim<cr>
 
 " Spellchecker
 nnoremap <leader>ct :setlocal spell! spelllang=en_us<cr>
