@@ -3,7 +3,7 @@
     username = charlesancheta
     email = cancheta@ualberta.ca
 [core]
-    editor = "vim"
+    editor = "nvim"
     autocrlf = input
 [alias]
     a = add --all
