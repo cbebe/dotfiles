@@ -1,9 +1,11 @@
+#!/usr/bin/env bash
 # -------
 # Aliases
 # -------
 
+
 # enables alias expansion
-# shopt -s expand_aliases
+shopt -s expand_aliases
 
 alias vi="vim"
 alias q="exit"
@@ -13,4 +15,3 @@ alias ec="echo $?" # check for errors
 
 # auto push on github
 alias gp="~/dotfiles/scripts/autopush.sh"
-# create symlinks

@@ -9,6 +9,9 @@ let &runtimepath.=",~/dotfiles/nvim"
 let $MYVIMRC = "~/dotfiles/nvim/init.vim"
 let $MODULEPATH = "~/dotfiles/nvim/modules"
 
+set shell=/bin/bash
+let $BASH_ENV = "~/dotfiles/.bash_aliases"
+
 runtime! setup.vim
 runtime! modules/*.vim
 
