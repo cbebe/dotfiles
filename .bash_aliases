@@ -20,4 +20,3 @@ alias chome="cd /mnt/c/Users/maple/home"
 # change permissions in case it gets messed up
 alias cperm="~/dotfiles/scripts/changeperm.sh"
 
-#find . -type d -exec chmod 755 {} \; && find . -type f -exec chmod 644 {} \;
