@@ -15,7 +15,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # Pure Prompt
-if ! [[ -d $HOME/.zsh/pure ]]; then
+if ! [ -d $HOME/.zsh/pure ]; then
   echo "No pure prompt? What peasantry is this??"
   mkdir -p "$HOME/.zsh"
   git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
@@ -25,10 +25,13 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
 
-source ~/dotfiles/.bash_aliases
-# uncomment to use windows clipboard
-# needs x server on windows
+source ~/dotfiles/.aliases
+# uncomment to use windows clipboard - needs x server on windows
 export DISPLAY=localhost:0.0
 
 # soy devvv
+if ! [ -d $HOME/.config/neofetch ]; then
+  echo "soy devvv"
+  sudo apt install -y neofetch
+fi
 neofetch

@@ -1,11 +1,10 @@
-#!/usr/bin/env bash
 # -------
 # Aliases
 # -------
 
 
 # enables alias expansion
-shopt -s expand_aliases
+setopt aliases
 
 alias vi="vim"
 alias q="exit"
