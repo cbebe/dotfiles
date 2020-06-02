@@ -25,7 +25,9 @@ fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
 
-source ~/dotfiles/.aliases
+# get aliases
+source ~/dotfiles/.zsh_aliases
+
 # uncomment to use windows clipboard - needs x server on windows
 export DISPLAY=localhost:0.0
 
