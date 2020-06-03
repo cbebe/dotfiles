@@ -13,10 +13,15 @@ if ! [[ -d ~/.config/nvim ]]; then
   sudo apt install -y neovim nodejs npm
   mkdir -p ~/.config/nvim
 fi
-
+# install tmux
+if ! [[ -e ~/.tmux.conf ]]; then
+  echo "No tmux boo"
+  sudo apt install -y tmux
+fi
 # Create symlinks from dotfiles to home dir
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.zshrc ~/.zshrc
+ln -fs ~/dotfiles/.tmux.conf ~/.tmux.conf
 # hacky way of using nvim bc symlinks don't automatically update
 echo "source ~/dotfiles/nvim/init.vim" > ~/.config/nvim/init.vim
 # getting zsh aliases for nvim
