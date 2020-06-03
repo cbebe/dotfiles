@@ -1,5 +1,6 @@
 #! /usr/bin/env bash
 
+# install zsh
 if ! [[ -e ~/.zshrc ]]; then
   echo "No zsh boo"
   sudo apt install -y zsh curl
@@ -8,9 +9,9 @@ if ! [[ -e ~/.zshrc ]]; then
 fi
 # install neovim
 if ! [[ -d ~/.config/nvim ]]; then
-echo "No neovim boo"
-sudo apt install -y neovim nodejs npm
-mkdir -p ~/.config/nvim
+  echo "No neovim boo"
+  sudo apt install -y neovim nodejs npm
+  mkdir -p ~/.config/nvim
 fi
 
 # Create symlinks from dotfiles to home dir

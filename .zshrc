@@ -21,6 +21,7 @@ if ! [ -d $HOME/.zsh/pure ]; then
   git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
 fi
 
+# initialize Pure Prompt
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
@@ -31,9 +32,10 @@ source ~/dotfiles/.zsh_aliases
 # uncomment to use windows clipboard - needs x server on windows
 export DISPLAY=localhost:0.0
 
-# soy devvv
+# Install neofetch
 if ! [ -d $HOME/.config/neofetch ]; then
   echo "soy devvv"
   sudo apt install -y neofetch
 fi
+# soy devvv
 neofetch
