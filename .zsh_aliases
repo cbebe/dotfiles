@@ -2,13 +2,13 @@
 # Aliases
 # -------
 
-
 # enables alias expansion
 setopt aliases
 
 alias vi="vim"
 alias q="exit"
 alias es="vi ~/dotfiles/.bash_aliases"
+alias \@="cd /mnt/c/Users/maple/home/"
 
 alias ec="echo $?" # check for errors
 
