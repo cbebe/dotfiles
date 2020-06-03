@@ -32,14 +32,17 @@ nnoremap L $
 vnoremap H 0
 vnoremap L $
 
-
 " make vimrc editing easier
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>se :vsplit ~/dotfiles/nvim/setup.vim<cr>
 
 " Spellchecker
-nnoremap <leader>ct :setlocal spell! spelllang=en_us<cr>
+nnoremap <leader>ss :setlocal spell! spelllang=en_us<cr>
+" Clipboard mappings
+vnoremap <leader>xc "*y
+nnoremap <leader>xa ggVG"*y
+nnoremap <leader>xv "*p
 
 colorscheme gruvbox
 

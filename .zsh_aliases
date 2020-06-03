@@ -11,7 +11,7 @@ alias s="source ~/dotfiles/.zsh_aliases"
 # C drive home
 alias \@="/mnt/c/Users/maple/home/"
 # philosophy breh
-alias ph="\@ && codingwbb/phil/"
+alias ph="@ && codingwbb/phil265/"
 
 alias ec="echo $?" # check for errors
 
