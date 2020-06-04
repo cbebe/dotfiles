@@ -1,6 +1,8 @@
 " Typical Setup
 
 set number
+" words don't break when wrapping
+set wrap linebreak
 " c-style indent
 set cindent smartindent
 " Shiftwidth takes tabstop's value
@@ -27,6 +29,19 @@ function! RepeatChar(char, count)
 endfunction
 nnoremap s :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
 nnoremap S :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+
+" For visually jumping lines
+function! JumpVisualLine()
+  noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+  noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+endfunction
+function! JumpNormalLine()
+  unmap j
+  unmap k
+endfunction
+
+nnoremap <leader>ll :<C-U>exec "normal".JumpVisualLine()<CR>
+nnoremap <leader>lk :<C-U>exec "normal".JumpNormalLine()<CR>
 
 " Automatically install plugins
 autocmd! VimEnter *

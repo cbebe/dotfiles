@@ -41,10 +41,11 @@ nnoremap <leader>se :vsplit ~/dotfiles/nvim/setup.vim<cr>
 nnoremap <leader>ss :setlocal spell! spelllang=en_us<cr>
 " Clipboard mappings
 vnoremap <leader>xc "*y
-nnoremap <leader>xa ggVG"*y
+nnoremap <leader>xa ggVG"*y''zz
 nnoremap <leader>xv "*p
 
 colorscheme gruvbox
+
 
 " Finding the current file
 nnoremap <C-m> :NERDTreeFind<CR>

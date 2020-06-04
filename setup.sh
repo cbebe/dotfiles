@@ -18,6 +18,14 @@ if ! [[ -e ~/.tmux.conf ]]; then
   echo "No tmux boo"
   sudo apt install -y tmux
 fi
+
+# install deno
+if ! [[ -d ~/.deno ]]; then
+  echo "No Deno boo"
+  sudo apt install -y unzip
+  curl -fsSL https://deno.land/x/install/install.sh | sh
+fi
+
 # Create symlinks from dotfiles to home dir
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.zshrc ~/.zshrc
