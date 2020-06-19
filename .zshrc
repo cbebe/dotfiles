@@ -42,4 +42,4 @@ if ! [ -d $HOME/.config/neofetch ]; then
   sudo apt install -y neofetch
 fi
 # soy devvv
-neofetch
+#neofetch
