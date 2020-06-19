@@ -8,6 +8,7 @@ setopt aliases
 alias q="exit"
 alias es="vi ~/dotfiles/.zsh_aliases"
 alias s="source ~/dotfiles/.zsh_aliases"
+alias fucking="sudo"
 # C drive home
 alias \@="/mnt/c/Users/maple/home/"
 # philosophy breh
