@@ -11,5 +11,6 @@ echo "Pushing to github with message: $MESSAGE"
 # move to git top level before staging changes
 cd $(git rev-parse --show-toplevel)
 # now push
-git add . &> /dev/null && git commit -m "$MESSAGE" && git push
+git add . &> /dev/null && git commit -m "$MESSAGE"
+git push
 
