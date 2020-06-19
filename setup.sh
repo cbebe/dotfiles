@@ -5,7 +5,7 @@ if ! [[ -e ~/.zshrc ]]; then
   echo "No zsh boo"
   sudo apt install -y zsh curl
   chsh -s /bin/zsh ${USER}
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 # install neovim
 if ! [[ -d ~/.config/nvim ]]; then
