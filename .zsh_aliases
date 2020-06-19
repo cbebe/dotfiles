@@ -20,4 +20,5 @@ alias ec="echo $?" # check for errors
 alias gp="~/dotfiles/scripts/autopush.sh"
 # change permissions in case it gets messed up
 alias cperm="~/dotfiles/scripts/changeperm.sh"
-
+# checking temperature duh
+alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
