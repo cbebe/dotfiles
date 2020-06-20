@@ -43,3 +43,7 @@ if ! [ -d $HOME/.config/neofetch ]; then
 fi
 # soy devvv
 #neofetch
+
+if [ -f ~/backups/.bash_aliases_server ]; then
+  source ~/backups/.bash_aliases_server
+fi

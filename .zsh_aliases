@@ -4,21 +4,18 @@
 
 # enables alias expansion
 setopt aliases
+alias vi="nvim"
 
 alias q="exit"
 alias es="vi ~/dotfiles/.zsh_aliases"
 alias s="source ~/dotfiles/.zsh_aliases"
 alias fucking="sudo"
 # C drive home
-alias \@="/mnt/c/Users/maple/home/"
-# philosophy breh
-alias ph="@ && codingwbb/phil265/"
-
 alias ec="echo $?" # check for errors
 
 # auto push on github
 alias gp="~/dotfiles/scripts/autopush.sh"
 # change permissions in case it gets messed up
 alias cperm="~/dotfiles/scripts/changeperm.sh"
-# checking temperature duh
+# checking temperature
 alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
