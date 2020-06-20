@@ -47,3 +47,7 @@ fi
 if [ -f ~/backups/.bash_aliases_server ]; then
   source ~/backups/.bash_aliases_server
 fi
+
+if [ -f ~/backups/loadssh ]; then
+  source ~/backups/loadssh
+fi
