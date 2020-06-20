@@ -9,8 +9,7 @@ else
 fi
 echo "Pushing to github with message: $MESSAGE"
 # move to git top level before staging changes
-cd $(git rev-parse --show-toplevel)
+cd $(git rev-parse --show-toplevel || echo .)
 # now push
 git add . &> /dev/null && git commit -m "$MESSAGE"
 git push
-
