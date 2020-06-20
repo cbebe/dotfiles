@@ -7,12 +7,14 @@ if ! [[ -e ~/.zshrc ]]; then
   chsh -s /bin/zsh ${USER}
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
+
 # install neovim
-if ! [[ -d ~/.config/nvim ]]; then
-  echo "No neovim boo"
-  sudo apt install -y neovim nodejs npm
-  mkdir -p ~/.config/nvim
-fi
+#if ! [[ -d ~/.config/nvim ]]; then
+#  echo "No neovim boo"
+#  sudo apt install -y neovim nodejs npm
+#  mkdir -p ~/.config/nvim
+#fi
+
 # install tmux
 if ! [[ -e ~/.tmux.conf ]]; then
   echo "No tmux boo"
@@ -30,8 +32,8 @@ fi
 ln -fs ~/dotfiles/.gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/.zshrc ~/.zshrc
 ln -fs ~/dotfiles/.tmux.conf ~/.tmux.conf
-# hacky way of using nvim bc symlinks don't automatically update
-echo "source ~/dotfiles/nvim/init.vim" > ~/.config/nvim/init.vim
+# hacky way of using vim bc symlinks don't automatically update
+echo "source ~/dotfiles/vim/.vimrc" > ~/.vimrc
 # getting zsh aliases for nvim
 echo "source ~/dotfiles/.zsh_aliases" > ~/.zshenv
 

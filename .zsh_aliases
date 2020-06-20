@@ -4,7 +4,6 @@
 
 # enables alias expansion
 setopt aliases
-alias vi="nvim"
 
 alias q="exit"
 alias es="vi ~/dotfiles/.zsh_aliases"
