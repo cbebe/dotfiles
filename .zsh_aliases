@@ -10,7 +10,8 @@ alias es="vi ~/dotfiles/.zsh_aliases"
 alias s="source ~/dotfiles/.zsh_aliases"
 alias fucking="sudo"
 # C drive home
-alias ec="echo $?" # check for errors
+alias ch="/mnt/c/Users/maple/home"
+#alias ec="echo $?" # check for errors
 
 # auto push on github
 alias gp="~/dotfiles/scripts/autopush.sh"
@@ -18,3 +19,6 @@ alias gp="~/dotfiles/scripts/autopush.sh"
 alias cperm="~/dotfiles/scripts/changeperm.sh"
 # checking temperature
 alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
+
+# auto options
+alias mkdir="mkdir -p"
