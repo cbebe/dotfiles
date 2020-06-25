@@ -3,9 +3,9 @@
   username = charlesancheta
   email = cancheta@ualberta.ca
 [core]
-  editor = "nvim"
+  editor = "vim"
   autocrlf = input
-	fileMode = false
+  fileMode = false
 [alias]
   a = add --all
   ai = add -i
