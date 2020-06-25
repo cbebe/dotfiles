@@ -1,29 +1,45 @@
-"          _                    
-"   __   _(_)_ __ ___  _ __ ___ 
-"   \ \ / / | '_ ` _ \| '__/ __|
-"  _ \ V /| | | | | | | | | (__ 
-" (_) \_/ |_|_| |_| |_|_|  \___|
+"                   __ _             _           
+"   ___ ___  _ __  / _(_) __ ___   _(_)_ __ ___  
+"  / __/ _ \| '_ \| |_| |/ _` \ \ / / | '_ ` _ \ 
+" | (_| (_) | | | |  _| | (_| |\ V /| | | | | | |
+"  \___\___/|_| |_|_| |_|\__, (_)_/ |_|_| |_| |_|
+"                        |___/                   
 "
-" Charles Ancheta's vimrc (WORK IN PROGRESS)
+" Charles Ancheta's vim configuration
 
-
-set termguicolors background=dark
-" enable syntax highlighting
-syntax on
-" backspace does what it's supposed to do
-set backspace=indent,eol,start
-" open horizontal splits on the right and vertical splits on the bottom
-set splitbelow splitright
 " make vim kewl
 set nocompatible
+" Dark background
+set background=dark
+
+" Enable true color
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors 
+endif
+
+" enable syntax highlighting
+syntax on
+
+" backspace does what it's supposed to do
+set backspace=indent,eol,start
+
+" open horizontal splits on the right and vertical splits on the bottom
+set splitbelow splitright
+
 " lines don't break in between words
 set nowrap breakindent linebreak nolist
+
 " display column number in status line
 set ruler
+
 " always show status line
 set laststatus=2
+
 " get a single mode line from a file
 set modelines=1
+
 " turn off annoying visual bell
 set visualbell
 set t_vb=
