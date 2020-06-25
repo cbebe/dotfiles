@@ -3,5 +3,6 @@ My dotfiles
 
 ## What's included
 
-- vimrc for Vim
+- vimrc (config.vim) for Vim
 - zsh and Oh My Zsh!
+- tmux
