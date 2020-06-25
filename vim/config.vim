@@ -61,5 +61,8 @@ set tabstop=2 softtabstop=2
 set expandtab
 set smartindent autoindent
 
+" set syntax highlighting for gitconfig
+autocmd! BufReadPost gitconfig set syntax=gitconfig
+
 inoremap kj <Esc>
                                 
