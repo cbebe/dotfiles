@@ -9,6 +9,16 @@
 
 " make vim kewl
 set nocompatible
+
+" get plugins
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/seoul256.vim'
+
+call plug#end()
+
+let g:seoul256_background = 233
+colorscheme seoul256
 " Dark background
 set background=dark
 
@@ -43,6 +53,9 @@ set modelines=1
 " turn off annoying visual bell
 set visualbell
 set t_vb=
+
+" show line numbers
+set number
 
 set scrolloff=10 sidescrolloff=10
 set mouse=i
