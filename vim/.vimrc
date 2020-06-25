@@ -14,13 +14,17 @@ syntax on
 set backspace=indent,eol,start
 " open horizontal splits on the right and vertical splits on the bottom
 set splitbelow splitright
-" Make vim kewl
+" make vim kewl
 set nocompatible
-" Lines don't break in between words
+" lines don't break in between words
 set nowrap breakindent linebreak nolist
+" display column number in status line
 set ruler
+" always show status line
 set laststatus=2
+" get a single mode line from a file
 set modelines=1
+" turn off annoying visual bell
 set visualbell
 set t_vb=
 
@@ -30,6 +34,7 @@ set ttyfast
 
 set wildmenu wildmode=list:full
 
+" find words as you type
 set incsearch smartcase hlsearch
 set gdefault
 
