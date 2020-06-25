@@ -18,6 +18,11 @@ fi
 ln -fs ~/dotfiles/gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/zshrc ~/.zshrc
 ln -fs ~/dotfiles/tmux.conf ~/.tmux.conf
+if ! [ -e ~/.vim/autoload/plug.vim ]; then
+  echo "No vim-plug boo"
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 # hacky way of using vim bc symlinks don't automatically update
 echo "source ~/dotfiles/vim/config.vim" > ~/.vimrc
 # getting zsh aliases for nvim
