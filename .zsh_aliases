@@ -21,4 +21,10 @@ alias cperm="~/dotfiles/scripts/changeperm.sh"
 alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
 
 # auto options
-alias mkdir="mkdir -p"
+alias mkdir="mkdir -pv"
+alias ping="ping -c 5"
+alias fastping="ping -c 100 -s.2"
+alias wget="wget -c"
+alias lt="ls --human-readable --size -1 -S --classify"
+alias left="ls -t -1"
+alias gh="history|grep"
