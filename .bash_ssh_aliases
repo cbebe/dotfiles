@@ -1,4 +1,0 @@
-# because i keep forgetting how to do this
-alias gen-ssh="ssh-keygen -t rsa -b 4096 -C \"cancheta@ualberta.ca\""
-alias gen-add="eval $(ssh-agent -s) && ssh-add ~/.ssh/id_rsa"
-alias gen-test="ssh -T git@github.com"
