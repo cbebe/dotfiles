@@ -14,6 +14,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# vi keybinding
+bindkey -v
+
 # Pure Prompt
 if ! [ -d $HOME/.zsh/pure ]; then
   echo "No pure prompt? What peasantry is this??"
@@ -38,6 +41,6 @@ if ! [ -d $HOME/.config/neofetch ]; then
   sudo apt install -y neofetch
 fi
 
-if [ -f ~/backups/loadssh ]; then
-  source ~/backups/loadssh
+if [ -d $HOME/backups ]; then
+  source ~/backups/.bash_server_aliases
 fi
