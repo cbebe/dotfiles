@@ -42,5 +42,5 @@ if ! [ -d $HOME/.config/neofetch ]; then
 fi
 
 if [ -d $HOME/backups ]; then
-  source ~/backups/.bash_server_aliases
+  source ~/backups/.bash_aliases_server
 fi
