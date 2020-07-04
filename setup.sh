@@ -14,6 +14,11 @@ if ! [ -e ~/.tmux.conf ]; then
   sudo apt install -y tmux
 fi
 
+if ! [ -e ~/.npm ]; then
+  sudo apt install -y npm
+  npm install --global gitmoji-cli
+fi
+
 # Create symlinks from dotfiles to home dir
 ln -fs ~/dotfiles/gitconfig ~/.gitconfig
 ln -fs ~/dotfiles/zshrc ~/.zshrc
