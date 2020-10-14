@@ -2,16 +2,11 @@
 # Aliases
 # -------
 
-# enables alias expansion
-setopt aliases
-
 alias q="exit"
-alias es="vi ~/dotfiles/.zsh_aliases"
-alias s="source ~/dotfiles/.zsh_aliases"
+alias es="vi ~/dotfiles/bash_aliases"
+alias s="source ~/dotfiles/bash_aliases"
 alias fucking="sudo"
-# C drive home
-alias ch="/mnt/c/Users/maple/home"
-#alias ec="echo $?" # check for errors
+alias ec="echo $?" # check for errors
 
 # auto push on github
 alias gp="~/dotfiles/scripts/autopush.sh"
