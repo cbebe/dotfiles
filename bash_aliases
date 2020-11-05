@@ -23,3 +23,8 @@ alias wget="wget -c"
 alias lt="ls --human-readable --size -1 -S --classify"
 alias left="ls -t -1"
 alias gh="history|grep"
+
+# tar
+alias tarx="tar -xzvf"
+alias tarc="tar -czvf"
+
