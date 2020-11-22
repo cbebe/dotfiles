@@ -77,5 +77,3 @@ set smartindent autoindent
 " set syntax highlighting for gitconfig
 autocmd! BufReadPost gitconfig set syntax=gitconfig
 
-inoremap kj <Esc>
-                                
