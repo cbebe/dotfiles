@@ -1,9 +1,9 @@
 [user]
   name = Charles Ancheta
   username = charlesancheta
-  email = cancheta@ualberta.ca
+  email = 55412395+cbebe@users.noreply.github.com
 [core]
-  editor = "vim"
+  editor = "nvim"
   autocrlf = input
   fileMode = false
 [alias]
