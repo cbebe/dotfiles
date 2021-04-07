@@ -11,3 +11,5 @@
   ai = add -i
   cm = commit -m
   pm = push -u origin master
+[pull]
+	ff = only

@@ -2,7 +2,7 @@
 # Aliases
 # -------
 
-alias vi="nvim"
+# alias vi="nvim"
 alias emacs="emacs -nw"
 alias ls="ls --color=auto"
 alias ll="ls -al"
@@ -13,8 +13,6 @@ alias s="source ~/dotfiles/zsh_aliases"
 alias fucking="sudo"
 alias ec="echo $?" # check for errors
 
-# auto push on github
-alias gp="~/dotfiles/scripts/autopush.sh"
 # checking temperature
 alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
 
@@ -31,16 +29,11 @@ alias gh="history | grep"
 alias tarx="tar -xzvf"
 alias tarc="tar -czvf"
 
-# sync stuff
-alias rsync-wapi="rsync -rP ~/Projects/wapp/server/ chrlz@cktel:nodeservers/wapp/"
-alias h2h-s="rsync -rP ~/Projects/h2h/server/ chrlz@cktel:nodeservers/h2h/"
-alias c-s="rsync -rP ~/wec/server chrlz@cktel:nodeservers/chess/"
-alias pull-vm="sh ~/scripts/pull-vm-on-demand.sh"
-alias push-vm="sh ~/scripts/push-vm-on-demand.sh"
-alias sync-isaic="sh ~/scripts/sync-isaic.sh"
-alias php-srv="sh ~/scripts/php-local-server.sh"
 alias ipadd="cat /etc/hosts | grep"
 alias tmuxs="tmux attach-session -t"
 
 # engg vpn
 alias vpn="sh ~/scripts/enggvpn.sh"
+
+# screenshot crop script
+alias crop="sh ~/scripts/crop-dual-monitor.sh"
