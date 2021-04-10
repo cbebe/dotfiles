@@ -104,8 +104,8 @@ Place your private configuration here! Remember, you do not need to run 'doom sy
 
 #+BEGIN_SRC emacs-lisp
 (after! org
-  (setq org-agenda-files (file-expand-wildcards "~/org/*.org"))
-    (require 'org-bullets)
+  (setq org-agenda-files '("~/org"))
+  (require 'org-bullets)
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
   )
 
