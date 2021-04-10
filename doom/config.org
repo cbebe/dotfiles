@@ -51,20 +51,23 @@ Place your private configuration here! Remember, you do not need to run 'doom sy
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/"
-      org-todo-keywords
-      '((sequence
-         "TODO(T)"
-         "CODE(c)"
-         "DOCS(d)"
-         "TEST(t)"
-         "|"
-         "DONE(D)"
-         "CANCELLED(C)"
-         "DEFERRED(f)"))
+(after! org
+  (setq org-directory "~/org/"
 
-      org-log-done 'time
-      org-hide-emphasis-markers t)
+        org-todo-keywords
+        '((sequence
+           "TODO(T)"
+           "CODE(c)"
+           "DOCS(d)"
+           "TEST(t)"
+           "|"
+           "DONE(D)"
+           "CANCELLED(C)"
+           "DEFERRED(f)"))
+
+        org-log-done 'time
+        org-hide-emphasis-markers t)
+  )
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -129,7 +132,7 @@ Place your private configuration here! Remember, you do not need to run 'doom sy
 * Me me big boy
 
 #+BEGIN_SRC emacs-lisp
-(doom-big-font-mode)
+;; (doom-big-font-mode)
 #+END_SRC
 
 #+RESULTS:
