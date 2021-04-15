@@ -137,3 +137,9 @@ Place your private configuration here! Remember, you do not need to run 'doom sy
 
 #+RESULTS:
 : t
+* Rust config
+
+#+BEGIN_SRC emacs-lisp
+(after! rustic
+  (setq rustic-lsp-server 'rust-analyzer))
+#+END_SRC
