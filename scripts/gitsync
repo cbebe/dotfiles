@@ -1,0 +1,8 @@
+#!/bin/sh
+
+[ "$1" = "" ] && echo "Usage: $0 COMMIT_MSG" && exit
+
+git add .
+git commit -m "$1"
+git push
+
