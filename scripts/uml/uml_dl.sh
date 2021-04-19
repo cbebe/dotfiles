@@ -16,3 +16,5 @@ mkdir -p $JAR_DIR && cd $JAR_DIR
 
 # download plantuml jar
 [ ! -f ${JAR_DIR}/${jar_file} ] && curl https://managedway.dl.sourceforge.net/project/plantuml/plantuml.jar -o $jar_file || echo "$jar_file already present"
+
+cd - >/dev/null
