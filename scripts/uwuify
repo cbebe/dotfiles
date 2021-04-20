@@ -1,0 +1,5 @@
+#!/bin/sh
+[ "$1" = "" ] && echo "usage: $0 TEXT" && exit
+
+text=$1
+echo $text | sed 's/[r|l]/w/g'
