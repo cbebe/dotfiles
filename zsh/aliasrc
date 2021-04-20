@@ -2,16 +2,14 @@
 # Aliases
 # -------
 
-# alias vi="nvim"
 alias emacs="emacs -nw"
 alias ls="ls --color=auto"
 alias ll="ls -al"
 
 alias q="exit"
-alias es="vi ~/dotfiles/zsh_aliases"
-alias s="source ~/dotfiles/zsh_aliases"
+alias es="vi ~/dotfiles/zsh/aliasrc"
+alias s="source ~/dotfiles/zsh/zshrc"
 alias fucking="sudo"
-alias ec="echo $?" # check for errors
 
 # checking temperature
 alias tempcheck="paste <(cat /sys/class/thermal/thermal_zone*/type) <(cat /sys/class/thermal/thermal_zone*/temp) | column -s $'	' -t | sed 's/\(.\)..$/.\1°C/'"
@@ -37,3 +35,15 @@ alias vpn="sh ~/scripts/enggvpn.sh"
 
 # screenshot crop script
 alias crop="sh ~/scripts/crop-dual-monitor.sh"
+
+# get public key
+alias pk="cat ~/.ssh/id_ed25519.pub"
+
+alias e="emacs"
+
+# edit org
+alias o="cd ~/org"
+alias oe="o && e && cd - >/dev/null"
+
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
