@@ -40,6 +40,7 @@ alias crop="sh ~/scripts/crop-dual-monitor.sh"
 alias pk="cat ~/.ssh/id_ed25519.pub"
 
 alias e="emacs"
+alias c="cargo run"
 
 # edit org
 alias o="cd ~/org"
