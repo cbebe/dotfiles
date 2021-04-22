@@ -46,5 +46,9 @@ alias c="cargo run"
 alias o="cd ~/org"
 alias oe="o && e && cd - >/dev/null"
 
+alias gits="gitsync"
+# delete local charles branches
+alias gd="git branch -d \$(git branch | grep charles-)"
+
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
