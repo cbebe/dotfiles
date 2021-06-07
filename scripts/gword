@@ -1,0 +1,9 @@
+#!/bin/sh
+
+regegegexp='s/a/aga/g;s/e/ege/g;s/i/igi/g;s/o/ogo/g;s/u/ugu/g' 
+[ "$1" != "" ] && {
+  echo "$1" | sed $regegegexp
+} || {
+  sed $regegegexp < /dev/stdin 
+}
+
