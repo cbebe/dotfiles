@@ -16,3 +16,7 @@
 	ff = only
 [init]
 	defaultBranch = master
+[commit]
+	gpgSign = true
+[tag]
+	forceSignAnnotated = true
