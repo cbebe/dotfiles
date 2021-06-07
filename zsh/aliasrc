@@ -48,7 +48,9 @@ alias oe="o && e && cd - >/dev/null"
 
 alias gits="gitsync"
 # delete local charles branches
-alias gd="git branch -d \$(git branch | grep charles-)"
+alias gd="git branch -d \$(git branch | grep -e 'charles[-/]')"
 
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
+
+alias ll="ls -alh"
