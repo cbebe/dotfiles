@@ -1,15 +1,18 @@
 [user]
-  name = Charles Ancheta
-  username = charlesancheta
-  email = 55412395+cbebe@users.noreply.github.com
+	name = Charles Ancheta
+	username = charlesancheta
+	email = 55412395+cbebe@users.noreply.github.com
+	signingkey = 44C60440509D1BB089AD56E05253E1DBCB5543F0
 [core]
-  editor = "nvim"
-  autocrlf = input
-  fileMode = false
+	editor = "nvim"
+	autocrlf = input
+	fileMode = false
 [alias]
-  a = add --all
-  ai = add -i
-  cm = commit -m
-  pm = push -u origin master
+	a = add --all
+	ai = add -i
+	cm = commit -m
+	pm = push -u origin master
 [pull]
 	ff = only
+[init]
+	defaultBranch = master
