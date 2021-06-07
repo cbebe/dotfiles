@@ -53,4 +53,7 @@ alias gd="git branch -d \$(git branch | grep -e 'charles[-/]')"
 alias setclip="xclip -selection c"
 alias getclip="xclip -selection c -o"
 
+# getting tired of typing this every time
+alias p="git pull"
+
 alias ll="ls -alh"
