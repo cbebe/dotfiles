@@ -7,8 +7,8 @@ alias ls="ls --color=auto"
 alias ll="ls -al"
 
 alias q="exit"
-alias es="vi ~/dotfiles/zsh/aliasrc"
-alias s="source ~/dotfiles/zsh/zshrc"
+alias es="vi $DOTFILE_DIR/zsh/aliasrc"
+alias s="source $DOTFILE_DIR/zsh/zshrc"
 alias fucking="sudo"
 
 # checking temperature
@@ -21,7 +21,7 @@ alias fastping="ping -c 100 -s.2"
 alias wget="wget -c"
 alias lt="ls --human-readable --size -1 -S --classify"
 alias left="ls -t -1"
-alias gh="history | grep"
+alias g="goto"
 
 # tar
 alias tarx="tar -xzvf"
@@ -42,10 +42,6 @@ alias pk="cat ~/.ssh/id_ed25519.pub"
 alias e="emacs"
 alias c="cargo run"
 
-# edit org
-alias o="cd ~/org"
-alias oe="o && e && cd - >/dev/null"
-
 alias gits="gitsync"
 # delete local charles branches
 alias gd="git branch -d \$(git branch | grep -e 'charles[-/]')"
@@ -57,3 +53,10 @@ alias getclip="xclip -selection c -o"
 alias p="git pull"
 
 alias ll="ls -alh"
+
+# safe options for mv, cp, and rm
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+
+alias o="xdg-open"

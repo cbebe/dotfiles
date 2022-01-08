@@ -1,0 +1,11 @@
+TODO:
+
+Customize bar
+- Add battery
+- Wifi
+
+Make FN keys work
+
+Customize Vim
+- File explorer, quick file switch
+- Git, with git lens

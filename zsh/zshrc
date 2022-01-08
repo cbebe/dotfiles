@@ -10,8 +10,8 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 # PS1="%B%{$fg[cyan]%}%M%{$reset_color%}:%{$fg[red]%}[%{$fg[blue]%}%n%{$fg[red]%}]%{$reset_color%}:%{$fg[magenta]%}%~%{$fg[yellow]%}$%{$reset_color%}%b "
 
 # History in cache directory:
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=999999999
+SAVEHIST=999999999
 HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
@@ -69,9 +69,13 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# Use vim as editor
+export EDITOR=vim
+
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/dotfiles/zsh/shortcutrc" ] && source "$HOME/dotfiles/zsh/shortcutrc"
-[ -f "$HOME/dotfiles/zsh/aliasrc" ] && source "$HOME/dotfiles/zsh/aliasrc"
+DOTFILE_DIR="$HOME/github/dotfiles"
+[ -f "$DOTFILE_DIR/zsh/shortcutrc" ] && source "$DOTFILE_DIR/zsh/shortcutrc"
+[ -f "$DOTFILE_DIR/zsh/aliasrc" ] && source "$DOTFILE_DIR/zsh/aliasrc"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

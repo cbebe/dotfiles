@@ -46,7 +46,6 @@ set ruler
 
 " always show status line
 set laststatus=2
-
 " get a single mode line from a file
 set modelines=1
 
