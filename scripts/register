@@ -1,0 +1,4 @@
+#!/bin/sh
+[ "$#" -ne 1 ] && echo "usage: $0 ALIAS"
+type goto || . /usr/local/bin/goto.sh
+goto -r $1 $PWD
