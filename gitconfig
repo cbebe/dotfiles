@@ -12,6 +12,8 @@
 	ai = add -i
 	cm = commit -m
 	pm = push -u origin master
+	pp = remote prune origin
+	sign = rebase --exec 'git commit --amend --no-edit -n -S'
 [pull]
 	ff = only
 [init]

@@ -60,3 +60,4 @@ alias cp="cp -i"
 alias mv="mv -i"
 
 alias o="xdg-open"
+alias j="joplin"
