@@ -2,6 +2,7 @@
 # Aliases
 # -------
 
+alias vi="nvim"
 alias ls="ls --color=auto"
 alias ll="ls -alh"
 
