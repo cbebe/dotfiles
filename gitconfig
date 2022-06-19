@@ -2,7 +2,6 @@
 	name = Charles Ancheta
 	username = charlesancheta
 	email = 55412395+cbebe@users.noreply.github.com
-	signingkey = 44C60440509D1BB089AD56E05253E1DBCB5543F0
 [core]
 	editor = "nvim"
 	autocrlf = input
