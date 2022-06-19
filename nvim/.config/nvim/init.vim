@@ -1,4 +1,7 @@
-lua require('plugins')
+lua require('setup')
+
+let mapleader = " "
+let localleader = "\\"
 
 colorscheme nord
 
@@ -51,7 +54,31 @@ au FileType c,cpp vnoremap <buffer><leader>lf :JbzClangFormat<CR>
 
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
+
 set nocompatible
 if has("autocmd")
   filetype plugin indent on
 endif
+
+
+nnoremap Y yg$
+nnoremap <leader>x :silent !chmod +x %<CR>
+
+" greatest remap ever
+xnoremap <leader>p "_dP
+
+" next greatest remap ever : asbjornHaland
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nmap <leader>Y "+Y
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+
+autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+
