@@ -9,3 +9,5 @@ Make FN keys work
 Customize Vim
 - File explorer, quick file switch
 - Git, with git lens
+
+Configure with Nix
