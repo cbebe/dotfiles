@@ -20,6 +20,10 @@ PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[cya
 HISTSIZE=999999999
 SAVEHIST=999999999
 HISTFILE=~/.cache/zsh/history
+[ -f "$HISTFILE" ] || {
+	mkdir -p $(dirname $HISTFILE)
+	touch $HISTFILE
+}
 
 # Basic auto/tab complete:
 autoload -U compinit
