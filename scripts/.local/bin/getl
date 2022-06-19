@@ -1,0 +1,13 @@
+#!/bin/sh
+# Find files which exceed a certain number of lines
+# Usage: getl [LINES]
+
+lines=${1:-100}
+
+for file in $(find .)
+do
+	[ -f $file ] && {
+		file_lines=$(wc -l $file | cut -f1 -d' ')
+		[ "$file_lines" -ge $lines ] && echo $file $file_lines
+	}
+done
