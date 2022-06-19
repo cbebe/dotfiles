@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 let
+  machine = import ./machine.nix;
+  isLinux = machine.operatingSystem == "Linux";
+  isDarwin = machine.operatingSystem == "Darwin";
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-basic
       # Just the necessary packages to compile my Resume
@@ -15,7 +18,11 @@ in
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "chrlz";
-  home.homeDirectory = "/Users/chrlz";
+  home.homeDirectory = (
+    if isLinux then "/home/chrlz"
+    else if isDarwin then "/Users/chrlz"
+    else throw "Unknown operating system"
+  );
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
