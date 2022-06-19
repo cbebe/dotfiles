@@ -78,8 +78,10 @@ bindkey '^e' edit-command-line
 
 # Load aliases and shortcuts if existent.
 # Make sure to set $DOTFILE_DIR
-[ -f "$DOTFILE_DIR/zsh/shortcutrc" ] && source "$DOTFILE_DIR/zsh/shortcutrc"
-[ -f "$DOTFILE_DIR/zsh/aliasrc" ] && source "$DOTFILE_DIR/zsh/aliasrc"
+shortcut_file="$HOME/.config/zsh/.shortcutrc"
+alias_file="$HOME/.config/zsh/.aliasrc"
+[ -f "$shortcut_file" ] && source "$shortcut_file"
+[ -f "$alias_file" ] && source "$alias_file"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
