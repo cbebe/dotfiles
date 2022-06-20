@@ -42,6 +42,7 @@ in
     tex
     gnupg
     stow
+    gh
   ];
 
   programs.bat = {
