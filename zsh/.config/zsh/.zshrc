@@ -84,11 +84,10 @@ bindkey '^e' edit-command-line
 # Make sure to set $DOTFILE_DIR
 shortcut_file="$HOME/.config/zsh/.shortcutrc"
 alias_file="$HOME/.config/zsh/.aliasrc"
+env_file="$HOME/.config/zsh/.envrc"
 [ -f "$shortcut_file" ] && source "$shortcut_file"
 [ -f "$alias_file" ] && source "$alias_file"
+[ -f "$env_file" ] && source "$env_file"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-# Source goto
-[[ -s "/usr/local/share/goto.sh" ]] && source /usr/local/share/goto.sh
