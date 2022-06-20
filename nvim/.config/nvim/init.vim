@@ -76,6 +76,9 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nmap <leader>Y "+Y
 
+nnoremap <leader>cc gg"+yG
+nnoremap <leader>cv ggVG"+p
+
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
