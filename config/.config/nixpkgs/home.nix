@@ -42,8 +42,14 @@ in
     tex
     gnupg
     stow
-    gh
   ];
+
+  programs.gh = {
+    enable = true;
+    settings = {
+      editor = "nvim";
+    };
+  };
 
   programs.bat = {
     enable = true;
