@@ -86,3 +86,8 @@ vnoremap <leader>d "_d
 
 
 autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+
+set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
+set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
+set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
+
