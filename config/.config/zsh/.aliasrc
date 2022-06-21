@@ -7,6 +7,8 @@ alias ls="ls --color=auto"
 alias ll="ls -alh"
 alias l="ls -alh"
 
+alias hs="home-manager switch"
+
 alias es="vi $HOME/.config/zsh/.aliasrc"
 alias s="source $HOME/.config/zsh/.zshrc"
 

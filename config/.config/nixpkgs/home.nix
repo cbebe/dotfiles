@@ -51,4 +51,31 @@ in
       italic-text = "always";
     };
   };
+
+  programs.git = {
+    enable = true;
+    userName = "Charles Ancheta";
+    userEmail = "55412395+cbebe@users.noreply.github.com";
+    extraConfig = {
+      core = {
+        editor = "nvim";
+      };
+      color = {
+        ui = true;
+      };
+      init = {
+        defaultBranch = "master";
+      };
+      commit = {
+        gpgSign = true;
+      };
+    };
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+      };
+    };
+  };
 }
