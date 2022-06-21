@@ -80,14 +80,9 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# Load aliases and shortcuts if existent.
-# Make sure to set $DOTFILE_DIR
-shortcut_file="$HOME/.config/zsh/.shortcutrc"
-alias_file="$HOME/.config/zsh/.aliasrc"
-env_file="$HOME/.config/zsh/.envrc"
-[ -f "$shortcut_file" ] && source "$shortcut_file"
-[ -f "$alias_file" ] && source "$alias_file"
-[ -f "$env_file" ] && source "$env_file"
+for file in $ZDOTDIR/{.shortcutrc,.aliasrc,.envrc}; do
+    [ -f "$file" ] && source "$file"
+done
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null

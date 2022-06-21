@@ -5,6 +5,7 @@
 alias vi="nvim"
 alias ls="ls --color=auto"
 alias ll="ls -alh"
+alias l="ls -alh"
 
 alias es="vi $HOME/.config/zsh/.aliasrc"
 alias s="source $HOME/.config/zsh/.zshrc"
