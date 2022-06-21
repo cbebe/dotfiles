@@ -1,3 +1,5 @@
+set nocompatible
+
 lua require('setup')
 
 let mapleader = " "
@@ -59,7 +61,7 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
 augroup END
 
-set nocompatible
+
 if has("autocmd")
   filetype plugin indent on
 endif
@@ -84,4 +86,3 @@ vnoremap <leader>d "_d
 
 
 autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
-
