@@ -38,11 +38,14 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    tex    # resume compilation
-    gnupg  # Git GPG signing
-    stow   # creating symlinks to .config and .local
-    fzf    # tmux-sessionizer
-    fd     # telescope.nvim
+    tex     # resume compilation
+    gnupg   # Git GPG signing
+    stow    # creating symlinks to .config and .local
+    fzf     # tmux-sessionizer
+    fd      # telescope.nvim
+    go_1_18 # go uses 1.17 by default as of 06/22/22
+    gopls
+    rustup
   ];
 
   programs.gh = {
@@ -72,6 +75,9 @@ in
       };
       init = {
         defaultBranch = "master";
+      };
+      pull = {
+        ff = "only";
       };
       commit = {
         gpgSign = true;
