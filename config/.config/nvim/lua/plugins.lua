@@ -18,4 +18,5 @@ return require('packer').startup(function(use)
   use 'prabirshrestha/vim-lsp'
   use 'derekwyatt/vim-fswitch'
   use 'ray-x/go.nvim'         -- Go plugin
+  use 'lambdalisue/suda.vim'
 end)

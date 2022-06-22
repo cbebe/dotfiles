@@ -5,9 +5,9 @@ lua require('setup')
 let mapleader = " "
 let localleader = "\\"
 
-colorscheme nord
+let g:suda_smart_edit = 1
 
-command W w !sudo tee %
+colorscheme nord
 
 " Remove trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
