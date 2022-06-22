@@ -38,11 +38,11 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    neovim
-    tex
-    gnupg
-    stow
-    fzf
+    tex    # resume compilation
+    gnupg  # Git GPG signing
+    stow   # creating symlinks to .config and .local
+    fzf    # tmux-sessionizer
+    fd     # telescope.nvim
   ];
 
   programs.gh = {

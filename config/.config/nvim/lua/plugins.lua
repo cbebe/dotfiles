@@ -8,7 +8,9 @@ vim.cmd([[
 ]])
 
 return require('packer').startup(function(use)
-  use 'nvim-treesitter/nvim-treesitter'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'  }
+  use 'theHamsta/nvim-dap-virtual-text'
   use 'masukomi/vim-markdown-folding'
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-sensible'
@@ -19,4 +21,10 @@ return require('packer').startup(function(use)
   use 'derekwyatt/vim-fswitch'
   use 'ray-x/go.nvim'         -- Go plugin
   use 'lambdalisue/suda.vim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+  }
+  use 'LnL7/vim-nix'
+  use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
 end)

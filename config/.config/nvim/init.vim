@@ -39,9 +39,10 @@ nnoremap <silent> <localleader>oj :FSSplitBelow<cr>
 nnoremap <silent> <localleader>ok :FSSplitAbove<cr>
 nnoremap <silent> <localleader>ol :FSSplitRight<cr>
 
-
-nnoremap <silent> <leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <silent> <leader>vs :source $MYVIMRC<cr>
+nnoremap <silent> <leader>ve <cmd>vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>vp <cmd>vsplit $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>vn <cmd>vsplit $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
+nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
 
 function! s:JbzClangFormat(first, last)
   let l:winview = winsaveview()
