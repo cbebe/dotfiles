@@ -1,0 +1,10 @@
+#!/bin/sh
+
+try_checkout() {
+  git branch -a | grep $1 >/dev/null && git checkout $1
+}
+
+git fetch
+try_checkout master || try_checkout main
+git pull
+gitclear
