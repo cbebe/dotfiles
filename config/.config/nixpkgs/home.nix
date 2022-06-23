@@ -46,6 +46,8 @@ in
     go_1_18 # go uses 1.17 by default as of 06/22/22
     gopls
     rustup
+    zoxide
+    tmux
   ];
 
   programs.gh = {
