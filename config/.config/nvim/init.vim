@@ -45,11 +45,13 @@ nnoremap <silent> <localleader>ol :FSSplitRight<cr>
 nnoremap <silent> <leader>ve <cmd>e $MYVIMRC<cr>
 nnoremap <silent> <leader>vp <cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>
 nnoremap <silent> <leader>vl <cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>
-nnoremap <silent> <leader>vn <cmd>e $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
+nnoremap <silent> <leader>vn <cmd>e +40 $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
 nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
 
+nnoremap <silent> <leader>o %O
+
 " telescope
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -104,6 +106,21 @@ vnoremap <leader>d "_d
 " Automatically center search results
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
+
+" Harpoon
+nnoremap <silent><leader>e :lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
+nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+
+nnoremap <silent><C-h> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <silent><C-j> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><C-k> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <silent><C-l> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+
+nnoremap <silent><leader>s <cmd>lua require("harpoon.tmux").gotoTerminal(1)<cr>
+nnoremap <silent><leader>gg <cmd>lua require("harpoon.tmux").sendCommand(2, "lazygit\n")<cr>
+
+nnoremap <silent><leader><C-l> <cmd>mode<cr>
 
 
 autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()

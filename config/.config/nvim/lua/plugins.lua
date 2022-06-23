@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
   use 'derekwyatt/vim-fswitch'
   use 'ray-x/go.nvim'         -- Go plugin
   use 'lambdalisue/suda.vim'
+  use 'ThePrimeagen/harpoon'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }

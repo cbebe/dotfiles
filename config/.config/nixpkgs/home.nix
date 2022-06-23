@@ -51,6 +51,7 @@ in
     tmux
     neofetch
     lf
+    lazygit
   ];
 
   programs.exa = {
