@@ -45,6 +45,12 @@ nnoremap <silent> <leader>vl <cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>
 nnoremap <silent> <leader>vn <cmd>e $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
 nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
 
+" telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " close all buffers except current one
 nnoremap <leader>bd :%bd\|e#\|bd#<cr>\|'"
 
