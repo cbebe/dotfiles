@@ -50,6 +50,7 @@ in
     zoxide
     tmux
     neofetch
+    lf
   ];
 
   programs.exa = {
