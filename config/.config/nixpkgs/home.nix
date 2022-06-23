@@ -49,6 +49,7 @@ in
     ripgrep
     zoxide
     tmux
+    neofetch
   ];
 
   programs.exa = {
