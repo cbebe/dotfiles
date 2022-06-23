@@ -6,6 +6,7 @@ let mapleader = " "
 let localleader = "\\"
 
 let g:suda_smart_edit = 1
+let g:neoformat_try_node_exe = 1
 
 colorscheme base16-default-dark
 
@@ -16,6 +17,8 @@ au BufWinEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
+
+au BufWritePre *.{ts,tsx,js,jsx} Neoformat prettier
 
 " Single command to remove all trailing whitespaces
 nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -50,6 +53,9 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" code action
+nnoremap <leader>. <cmd>lua vim.lsp.buf.code_action()<cr>
 
 " close all buffers except current one
 nnoremap <leader>bd :%bd\|e#\|bd#<cr>\|'"

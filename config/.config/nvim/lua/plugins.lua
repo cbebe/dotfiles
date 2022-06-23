@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   use 'masukomi/vim-markdown-folding'
   use 'wbthomason/packer.nvim'
   use 'tpope/vim-sensible'
+  use 'sbdchd/neoformat'
   use 'chriskempson/base16-vim'
   use 'tyru/open-browser.vim'
   use 'neovim/nvim-lspconfig'
