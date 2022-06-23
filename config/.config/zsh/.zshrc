@@ -86,5 +86,9 @@ for file in $ZDOTDIR/{.shortcutrc,.aliasrc,.envrc}; do
     [ -f "$file" ] && source "$file"
 done
 
+if type zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
