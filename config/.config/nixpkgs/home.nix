@@ -50,6 +50,10 @@ in
     tmux
   ];
 
+  programs.exa = {
+    enable = true;
+  };
+
   programs.gh = {
     enable = true;
     settings = {

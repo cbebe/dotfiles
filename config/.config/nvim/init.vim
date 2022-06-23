@@ -7,7 +7,7 @@ let localleader = "\\"
 
 let g:suda_smart_edit = 1
 
-colorscheme nord
+colorscheme base16-default-dark
 
 " Remove trailing whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -39,10 +39,14 @@ nnoremap <silent> <localleader>oj :FSSplitBelow<cr>
 nnoremap <silent> <localleader>ok :FSSplitAbove<cr>
 nnoremap <silent> <localleader>ol :FSSplitRight<cr>
 
-nnoremap <silent> <leader>ve <cmd>vsplit $MYVIMRC<cr>
-nnoremap <silent> <leader>vp <cmd>vsplit $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>
-nnoremap <silent> <leader>vn <cmd>vsplit $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
+nnoremap <silent> <leader>ve <cmd>e $MYVIMRC<cr>
+nnoremap <silent> <leader>vp <cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>vl <cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>
+nnoremap <silent> <leader>vn <cmd>e $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
 nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
+
+" close all buffers except current one
+nnoremap <leader>bd :%bd\|e#\|bd#<cr>\|'"
 
 function! s:JbzClangFormat(first, last)
   let l:winview = winsaveview()
@@ -84,6 +88,10 @@ nnoremap <leader>cv ggVG"+p
 
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
+
+" Automatically center search results
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
 
 
 autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
