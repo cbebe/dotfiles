@@ -29,4 +29,12 @@ return require('packer').startup(function(use)
   }
   use 'LnL7/vim-nix'
   use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
+  -- NVIM completion
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'L3MON4D3/LuaSnip'
+  use 'saadparwaiz1/cmp_luasnip'
 end)

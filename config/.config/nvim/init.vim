@@ -5,6 +5,11 @@ lua require('setup')
 let mapleader = " "
 let localleader = "\\"
 
+" Disable provider warnings
+let g:loaded_perl_provider = 0
+let g:loaded_python3_provider = 0
+let g:loaded_ruby_provider = 0
+
 let g:suda_smart_edit = 1
 let g:neoformat_try_node_exe = 1
 
@@ -51,7 +56,7 @@ nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
 nnoremap <silent> <leader>o %O
 
 " telescope
-nnoremap <leader>ff <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
+nnoremap <leader>F <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -118,7 +123,7 @@ nnoremap <silent><C-k> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
 nnoremap <silent><C-l> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 
 nnoremap <silent><leader>s <cmd>lua require("harpoon.tmux").gotoTerminal(1)<cr>
-nnoremap <silent><leader>gg <cmd>lua require("harpoon.tmux").sendCommand(2, "lazygit\n")<cr>
+nnoremap <silent><leader>G <cmd>lua require("harpoon.tmux").sendCommand(2, "lazygit\n")<cr>
 
 nnoremap <silent><leader><C-l> <cmd>mode<cr>
 

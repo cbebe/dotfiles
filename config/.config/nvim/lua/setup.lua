@@ -35,12 +35,6 @@ end
 
 require'go'.setup{}
 
-require'lspconfig'.tsserver.setup{
-  on_attach = on_attach,
-}
-require'lspconfig'.gopls.setup{
-  on_attach = on_attach,
-}
 
 require'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
@@ -48,3 +42,47 @@ require'nvim-treesitter.configs'.setup {
   textobjects = { enable = true }
 }
 require'nvim-dap-virtual-text'.setup{}
+
+local cmp = require'cmp'
+
+vim.api.nvim_command('set completeopt=menu,menuone,noselect')
+
+
+-- NVIM-CMP Setup
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      require'luasnip'.lsp_expand(args.body)
+    end,
+  },
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  }, {
+    { name = 'buffer' },
+  }),
+})
+
+local lspconfig = require'lspconfig'
+ --Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+lspconfig.tsserver.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+lspconfig.gopls.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
