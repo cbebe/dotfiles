@@ -23,7 +23,11 @@ au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 
-au BufWritePre *.{ts,tsx,js,jsx} Neoformat prettier
+
+augroup TSFormat
+  autocmd!
+  autocmd BufWritePre *.{ts,tsx,js,jsx} Neoformat prettier
+augroup END
 
 " Single command to remove all trailing whitespaces
 nnoremap <silent> <leader>rs :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -53,11 +57,15 @@ nnoremap <silent> <leader>vl <cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>
 nnoremap <silent> <leader>vn <cmd>e +40 $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>
 nnoremap <silent> <leader>vs <cmd>source $MYVIMRC<cr>
 
+nnoremap <silent> <leader>z <cmd>bd<cr>
+
 nnoremap <silent> <leader>o %O
 
 " telescope
 nnoremap <leader>F <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fg <cmd>lua require'telescope.builtin'.live_grep{ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--ignore-case' } }<cr>
+" Also look in hidden files but slower
+nnoremap <leader>fG <cmd>lua require'telescope.builtin'.live_grep{ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '-u' } }<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
