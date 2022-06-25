@@ -213,6 +213,7 @@ bar {
 # CUSTOM KEYS START
 # ------------------------------------------
 exec --no-startup-id nm-applet
+exec --no-startup-id /usr/bin/feh --bg-scale /home/chrlz/.dotfiles/config/.config/i3/linoos.jpg
 
 bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
