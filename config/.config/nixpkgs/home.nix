@@ -53,6 +53,7 @@ in
     lf
     lazygit
     du-dust
+    ani-cli
   ];
 
   programs.exa = {

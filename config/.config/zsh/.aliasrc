@@ -50,5 +50,7 @@ alias mv="mv -i"
 
 alias o="xdg-open"
 alias sshx='ssh -o SetEnv="TERM=xterm-256color"'
-alias sus='sudo systemctl suspend'
+alias sus='doas systemctl suspend'
 
+alias nixc='vi /etc/nixos/configuration.nix'
+alias nixb='doas nixos-rebuild switch'
