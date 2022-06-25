@@ -52,6 +52,7 @@ in
     neofetch
     lf
     lazygit
+    du-dust
   ];
 
   programs.exa = {
