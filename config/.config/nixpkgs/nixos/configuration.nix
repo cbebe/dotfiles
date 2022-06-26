@@ -1,11 +1,17 @@
 { config, pkgs, ... }:
 
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-config = import ../home.nix;
+in
 {
   imports =
     [
       ./hardware-configuration.nix
-      # <home-manager/nixos>
+      (import "${home-manager}/nixos")
     ];
+
+  home-manager.users.chrlz = home-config;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
