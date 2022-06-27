@@ -4,7 +4,7 @@
 let theme = import ./colors.nix;
 in
 {
-
+  imports = [ ./xresources.nix ];
   services = {
     greetd = {
       enable = true;
@@ -12,10 +12,10 @@ in
         default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
         };
-        initial_session = {
-          command = "sway";
-          user = "chrlz";
-        };
+       # initial_session = {
+       #   command = "sway";
+       #   user = "chrlz";
+       # };
       };
     };
     tlp.enable = true;
@@ -281,7 +281,7 @@ in
               "Pictures/Screenshots/$(date +'%Y-%m-%d+%H:%M:%S').png";
           in
           {
-            "${modifier}+Shift+Return" = "exec kitty -1";
+            "${modifier}+Return" = "exec kitty -1";
             "${modifier}+Shift+c" = "kill";
             "${modifier}+Shift+r" = "reload";
 

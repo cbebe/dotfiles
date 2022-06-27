@@ -45,6 +45,7 @@ bindkey -v '^?' backward-delete-char
 
 bindkey -s ^f "tmux-sessionizer\n"
 bindkey -s ^g "lazygit\n"
+bindkey -s ^t "vi ~/.dotfiles/personal/todo.md\n"
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
@@ -83,7 +84,7 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-for file in $ZDOTDIR/{.shortcutrc,.aliasrc,.envrc}; do
+for file in $ZDOTDIR/{.shortcutrc,.envrc,.aliasrc}; do
     [ -f "$file" ] && source "$file"
 done
 
