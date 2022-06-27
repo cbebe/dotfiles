@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2034
+# Defined variables, modify anything in quotes to your prefered software
+bg=$(cat ~/.Xresources | grep '*.background' | awk '{print $NF}')
+fg=$(cat ~/.Xresources | grep '*.foreground' | awk '{print $NF}')
+
+DMENU="bemenu -c -M 600 --fn Rec Mono Casual --tb ${bg} --tf ${fg} --fb ${bg} --ff ${fg} --nb ${bg} --nf ${fg} --sf ${bg} --sb ${fg} --hb ${fg} --hf ${bg}"#
+DMBROWSER="firefox"
+DMTERM="kitty -e"
+DMEDITOR="emacsclient -c -a emacs"
+
+# wallpaper
+setbg_dir="${HOME}/Pictures/Wallpapers"
+
+# Search engine config
+websearch_browser="$DMBROWSER"
+declare -A websearch
+
+# Search Engines
+websearch[duckduckgo]="https://duckduckgo.com/?q="
+websearch[google]="https://www.google.com/search?q="
+websearch[hoogle]="https://www.haskell.org/hoogle/?hoogle="
+websearch[wikipedia]="https://en.wikipedia.org/w/index.php?search="
+websearch[reddit]="https://www.reddit.com/search/?q="
+websearch[youtube]="https://www.youtube.com/results?search_query="
+websearch[nixpkgs]="https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query="
+websearch[github]="https://github.com/search?q="
+websearch[gitlab]="https://gitlab.com/search?search="

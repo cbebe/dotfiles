@@ -8,6 +8,7 @@ in
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
+    ./sway.nix
   ];
 
   home-manager.users.chrlz = home-config;
@@ -39,42 +40,12 @@ in
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      startx.enable = true;
-    };
-    windowManager.i3 = {
-      enable = true;
-      extraPackages = with pkgs; [
-        feh
-        dmenu
-        i3status
-        i3lock
-        i3blocks
-        xss-lock
-        xorg.xinit
-      ];
-    };
-
-    # Configure keymap in X11
-    layout = "us";
-    xkbOptions = "ctrl:swapcaps";
-    # Touchpad
-    libinput.enable = true;
-
-    # Keyboard repeat
-    autoRepeatDelay = 300;
-    autoRepeatInterval = 25;
-  };
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
@@ -82,10 +53,8 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.chrlz = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
-      xclip
-      firefox
       kitty
     ];
   };
@@ -95,8 +64,22 @@ in
   environment.systemPackages = with pkgs; [
     gcc
     wget
-    neofetch
   ];
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+
+  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+  # known as portals under a well-known name
+  # (org.freedesktop.portal.Desktop) and object path
+  # (/org/freedesktop/portal/desktop).
+  # The portal interfaces include APIs for file access, opening URIs,
+  # printing and others.
+  services.dbus.enable = true;
 
   # Backlight adjustment
   services.illum.enable = true;
@@ -161,6 +144,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
 }
 

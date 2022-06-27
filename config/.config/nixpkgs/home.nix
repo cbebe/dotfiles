@@ -57,6 +57,7 @@ in
     htop
     btop
     python
+    signal-desktop
   ];
 
   programs.exa = {
