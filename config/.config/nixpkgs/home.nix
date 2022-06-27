@@ -55,6 +55,8 @@ in
     du-dust
     ani-cli
     htop
+    btop
+    python
   ];
 
   programs.exa = {
