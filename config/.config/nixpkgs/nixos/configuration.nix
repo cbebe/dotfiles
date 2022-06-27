@@ -20,6 +20,10 @@ in
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  programs.nm-applet.enable = true;
+
+  # Transparency
+  services.picom.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Edmonton";
@@ -38,19 +42,19 @@ in
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    desktopManager = {
-      xterm.enable = true;
-    };
     displayManager = {
-      defaultSession = "none+i3";
+      startx.enable = true;
     };
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
+        feh
         dmenu
         i3status
         i3lock
         i3blocks
+        xss-lock
+        xorg.xinit
       ];
     };
 
@@ -61,8 +65,8 @@ in
     libinput.enable = true;
 
     # Keyboard repeat
-    autoRepeatDelay = 400;
-    autoRepeatInterval = 50;
+    autoRepeatDelay = 300;
+    autoRepeatInterval = 25;
   };
 
   # Enable CUPS to print documents.
@@ -82,7 +86,6 @@ in
     packages = with pkgs; [
       xclip
       firefox
-      thunderbird
       kitty
     ];
   };
@@ -90,7 +93,6 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    clang
     gcc
     wget
     neofetch

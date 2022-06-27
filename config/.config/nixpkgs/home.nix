@@ -54,6 +54,7 @@ in
     lazygit
     du-dust
     ani-cli
+    htop
   ];
 
   programs.exa = {
