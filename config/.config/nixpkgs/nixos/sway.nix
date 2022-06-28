@@ -5,21 +5,7 @@ let theme = import ./colors.nix;
 in
 {
   imports = [ ./xresources.nix ];
-  services = {
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        };
-       # initial_session = {
-       #   command = "sway";
-       #   user = "chrlz";
-       # };
-      };
-    };
-    tlp.enable = true;
-  };
+  services.tlp.enable = true;
 
   programs.sway = {
     enable = true;
@@ -43,6 +29,10 @@ in
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-wlr xdg-desktop-portal-gtk ];
     gtkUsePortal = true;
+  };
+
+  services.xserver = {
+    xkbOptions = "ctrl:swapcaps";
   };
 
   home-manager.users.chrlz.wayland.windowManager.sway =
