@@ -86,3 +86,5 @@ lspconfig.gopls.setup{
   on_attach = on_attach,
   capabilities = capabilities,
 }
+
+require'nvim_comment'.setup{}
