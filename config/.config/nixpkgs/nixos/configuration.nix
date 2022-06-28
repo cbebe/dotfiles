@@ -56,6 +56,7 @@ in
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       kitty
+      signal-desktop
     ];
   };
 
