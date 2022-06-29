@@ -75,5 +75,6 @@ return require('packer').startup(function(use)
   use 'godlygeek/tabular'
   -- JSON front matter highlight plugin
   use 'elzr/vim-json'
+  use 'takac/vim-hardtime'
 end)
 

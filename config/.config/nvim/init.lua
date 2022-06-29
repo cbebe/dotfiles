@@ -102,6 +102,9 @@ bindOpenFile('vp', '$XDG_CONFIG_HOME/nvim/lua/plugins.lua')
 bindOpenFile('vl', '$XDG_CONFIG_HOME/nvim/lua/setup.lua')
 bindOpenFile('vn', '+40 $XDG_CONFIG_HOME/nixpkgs/home.nix')
 
+-- Hard time to break bad vim habits
+set('n', '<leader>h', '<cmd>HardTimeToggle<cr>', opts)
+
 -- Reload config
 set('n', '<leader>vs', '<cmd>source $MYVIMRC<cr>', opts)
 

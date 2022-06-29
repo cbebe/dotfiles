@@ -319,8 +319,8 @@ in
             "${modifier}+Shift+Tab" = "workspace prev";
             "${modifier}+Tab" = "workspace next";
 
-            "${modifier}+b" = "split v";
-            "${modifier}+v" = "split h";
+            "${modifier}+Alt+b" = "split v";
+            "${modifier}+Alt+v" = "split h";
 
             "${modifier}+Shift+f" = "fullscreen toggle";
 
@@ -369,7 +369,7 @@ in
 
             "${modifier}+Alt+a" = "exec emacs";
             "${modifier}+Control+a" = "exec emacsclient -a '' -c";
-            "${modifier}+Alt+b" = "exec firefox";
+            "${modifier}++b" = "exec firefox";
 
             "${modifier}+Shift+q" = "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/exit";
             "${modifier}+Control+q" =
