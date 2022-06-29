@@ -58,4 +58,10 @@ return require('packer').startup(function(use)
   }
   use 'jose-elias-alvarez/nvim-lsp-ts-utils' -- Organize imports
   use 'terrortylor/nvim-comment'
+
+  -- tabular plugin is used to format tables
+  use 'godlygeek/tabular'
+  -- JSON front matter highlight plugin
+  use 'elzr/vim-json'
+  use 'plasticboy/vim-markdown'
 end)
