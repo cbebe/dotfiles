@@ -17,10 +17,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use {
-    'theHamsta/nvim-dap-virtual-text',
-    run = function() require'nvim-dap-virtual-text'.setup{} end
-  }
+  use 'theHamsta/nvim-dap-virtual-text'
   use 'masukomi/vim-markdown-folding'
   use 'tpope/vim-sensible'
   use 'sbdchd/neoformat'
@@ -30,7 +27,7 @@ return require('packer').startup(function(use)
   use 'prabirshrestha/vim-lsp'
   use 'derekwyatt/vim-fswitch'
   -- Go plugin
-  use { 'ray-x/go.nvim', run = function() require'go'.setup{} end }
+  use 'ray-x/go.nvim'
   use 'lambdalisue/suda.vim'
   use 'ThePrimeagen/harpoon'
   use {
@@ -72,10 +69,7 @@ return require('packer').startup(function(use)
     end
   }
   use 'jose-elias-alvarez/nvim-lsp-ts-utils' -- Organize imports
-  use {
-    'terrortylor/nvim-comment',
-    run = function() require'nvim_comment'.setup{} end
-  }
+  use 'terrortylor/nvim-comment'
 
   -- tabular plugin is used to format tables
   use 'godlygeek/tabular'

@@ -82,3 +82,6 @@ local capabilities = require('cmp_nvim_lsp')
 lspconfig.tsserver.setup{ on_attach = on_attach, capabilities = capabilities }
 lspconfig.gopls.setup{ on_attach = on_attach, capabilities = capabilities }
 
+require'nvim-dap-virtual-text'.setup{}
+require'go'.setup{}
+require'nvim_comment'.setup{}
