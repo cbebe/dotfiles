@@ -2,6 +2,11 @@
 # TODO: Fix keybindings for qwerty
 { pkgs, ... }:
 let theme = import ./colors.nix;
+    xkbConfig = {
+      layout = "us,us";
+      variant = ",dvp";
+      options = "grp:win_space_toggle,ctrl:swapcaps";
+    };
 in
 {
   imports = [ ./xresources.nix ];
@@ -32,7 +37,9 @@ in
   };
 
   services.xserver = {
-    xkbOptions = "ctrl:swapcaps";
+    layout = xkbConfig.layout;
+    xkbVariant = xkbConfig.variant;
+    xkbOptions = xkbConfig.options;
   };
 
   home-manager.users.chrlz.wayland.windowManager.sway =
@@ -76,7 +83,9 @@ in
             natural_scroll = "enabled";
           };
           "type:keyboard" = {
-            xkb_options = "ctrl:swapcaps";
+            xkb_layout = xkbConfig.layout;
+            xkb_variant = xkbConfig.variant;
+            xkb_options = xkbConfig.options;
           };
         };
 
