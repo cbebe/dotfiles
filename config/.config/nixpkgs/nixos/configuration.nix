@@ -99,7 +99,9 @@ in
     viAlias = true;
     package = pkgs.neovim-nightly;
     configure = {
-      customRC = (builtins.readFile ../../nvim/init.vim);
+      customRC = ''
+        luafile /home/chrlz/.config/nvim/init.lua
+        '';
     };
   };
 
