@@ -1,4 +1,4 @@
-local opt, g, api, set = vim.opt, vim.g, vim.api, vim.keymap.set
+local opt, g, set = vim.opt, vim.g, vim.keymap.set
 
 opt.compatible = false
 
@@ -20,33 +20,43 @@ opt.hidden = true
 
 vim.cmd("colorscheme base16-default-dark")
 
-local function setTab(num, expand)
+function SetTab(num, expand)
   opt.tabstop = num
   opt.softtabstop = num
   opt.shiftwidth = num
   opt.expandtab = expand
 end
 
-setTab(2, expand)
+SetTab(2, true)
 
-local grp = function(name) api.nvim_create_augroup(name, { clear = true }) end
-local au = api.nvim_create_autocmd
+local function grp(name)
+  vim.api.nvim_create_augroup(name, { clear = true })
+end
+local au = vim.api.nvim_create_autocmd
 
 -- Render extra whitespace
 vim.cmd([[
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
+  highlight ExtraWhitespace ctermbg=red guibg=red
+  match ExtraWhitespace /\s\+$/
 ]])
-local whiteSpaceGrp = grp("RenderWhiteSpace")
-au("BufWinEnter", { command=[[match ExtraWhitespace /\s\+$/]],        group=whiteSpaceGrp })
-au("InsertEnter", { command=[[match ExtraWhitespace /\s\+\%#\@<!$/]], group=whiteSpaceGrp })
-au("InsertLeave", { command=[[match ExtraWhitespace /\s\+$/]],        group=whiteSpaceGrp })
-au("BufWinLeave", { command=[[call clearmatches()]],                  group=whiteSpaceGrp })
+local w = grp("RenderWhiteSpace")
+au("BufWinEnter", {
+  command = [[match ExtraWhitespace /\s\+$/]], group = w
+})
+au("InsertEnter", {
+  command = [[match ExtraWhitespace /\s\+\%#\@<!$/]], group = w
+})
+au("InsertLeave", {
+  command = [[match ExtraWhitespace /\s\+$/]], group = w
+})
+au("BufWinLeave", {
+  command = [[call clearmatches()]], group = w
+})
 
 -- Highlight on Yank
 local yankGrp = grp("YankHighlight")
 au("TextYankPost", {
-  command = "silent! lua require'vim.highlight'.on_yank({timeout = 40})",
+  command = "lua require'vim.highlight'.on_yank({timeout = 40})",
   group   = yankGrp
 })
 
@@ -65,126 +75,157 @@ au("BufWritePre", {
 
 local opts = { noremap=true, silent=true }
 
-set('n', '<leader>rs', [[:let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>]], {
-  desc = "Remove all trailing whitespace",
-  unpack(opts)
-})
+function removeTrailingWhiteSpace()
+  vim.cmd([[
+    let _s=@/
+    %s/\s\+$//e
+    let @/=_s
+    nohl
+    unlet _s
+  ]])
+end
+
+local function desc(str)
+  return { desc = str, unpack(opts) }
+end
+
+set('n', '<leader>rs',removeTrailingWhiteSpace,
+  desc ("Remove all trailing whitespace"))
+
+local function bindOpenFile(bind, file)
+  set('n', '<leader>' .. bind, '<cmd>e ' .. file .. '<cr>', opts)
+end
 
 -- Keybinds for commonly edited config files
-set('n', '<leader>ve', '<cmd>e $XDG_CONFIG_HOME/nvim/init.lua<cr>',                              opts)
-set('n', '<leader>vp', '<cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>', opts)
-set('n', '<leader>vl', '<cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>',   opts)
-set('n', '<leader>vn', '<cmd>e +40 $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>', opts)
+bindOpenFile('ve', '$MYVIMRC')
+bindOpenFile('vp', '$XDG_CONFIG_HOME/nvim/lua/plugins.lua')
+bindOpenFile('vl', '$XDG_CONFIG_HOME/nvim/lua/setup.lua')
+bindOpenFile('vn', '+40 $XDG_CONFIG_HOME/nixpkgs/home.nix')
 
 -- Reload config
-set('n', '<leader>vs', '<cmd>source $XDG_CONFIG_HOME/nvim/init.lua<cr>', opts)
+set('n', '<leader>vs', '<cmd>source $MYVIMRC<cr>', opts)
 
-set('n', '<leader>z', '<cmd>bd<cr>', {
-  desc = "Close current buffer",
-  unpack(opts)
-})
+set('n', '<leader>z', '<cmd>bd<cr>', desc("Close current buffer"))
 
-set('n', '<leader>o', '%O', {
-  desc = "Insert after the last line in the enclosing brackets",
-  unpack(opts)
-})
+set('n', '<leader>o', '%O',
+  desc("Insert after the last line in the enclosing brackets"))
 
-local function liveGrep(ignoreCase)
-  args = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column' }
-  if ignoreCase then table.insert(args, '--ignore-case') end
+local function liveGrep(noHidden)
+  args = { 'rg',
+    '--color=never',
+    '--no-heading',
+    '--with-filename',
+    '--line-number',
+    '--column'
+  }
+  if noHidden then
+    table.insert(args, '--ignore-case')
+  else
+    table.insert(args, '--smart-case')
+    table.insert(args, '-u')
+  end
   require'telescope.builtin'.live_grep{ vimgrep_arguments = args }
 end
 
 local function findFiles()
-  require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})
+  require'telescope.builtin'.find_files({
+    find_command = {'rg', '--files', '--hidden', '-g', '!.git' }
+  })
 end
 
+set('n', '<leader>F', findFiles, desc("Find files with ripgrep"))
+set('n', '<leader>fg', function() liveGrep(true) end, desc("Live grep"))
+set('n', '<leader>fG', function() liveGrep(false) end,
+  desc("Live grep but also look for hidden files"))
+set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
+set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
 
-vim.cmd([[
-" telescope
-nnoremap <leader>F <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
-nnoremap <leader>fg <cmd>lua require'telescope.builtin'.live_grep{ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--ignore-case' } }<cr>
-" Also look in hidden files but slower
-nnoremap <leader>fG <cmd>lua require'telescope.builtin'.live_grep{ vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '-u' } }<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+set('n', '<leader>.', vim.lsp.buf.code_action, desc("LSP Code action"))
+set('n', '<leader>bd', [[:%bd\|e#\|bd#<cr>\|'"]],
+  desc ("Close all buffers except current one"))
 
-" code action
-nnoremap <leader>. <cmd>lua vim.lsp.buf.code_action()<cr>
+set('n', 'Y', 'yg$', desc("Yank analogue of D"))
+set('n', '<leader>x', '<cmd>silent !chmod +x %<cr>',
+  desc("Make current file executable"))
 
-" close all buffers except current one
-nnoremap <leader>bd :%bd\|e#\|bd#<cr>\|'"
+set({'n', 'v'}, '<leader>y', '"+y', desc("Yank to clipboard register"))
+set('n', '<leader>Y', '"+Y')
 
-" autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+set('n', '<leader>cc', 'gg"+yG',
+  desc("Yank the entire buffer into the clipboard"))
+set('n', '<leader>p', '"+p',
+  desc("Paste clipboard contents"))
+set('n', '<leader>cv', 'ggVG"+p',
+  desc("Replace the buffer with clipboard contents"))
 
-if has("autocmd")
-filetype plugin indent on
-endif
+if vim.fn.has("autocmd") then
+  vim.cmd("filetype plugin indent on")
+end
 
-nnoremap Y yg$
-nnoremap <leader>x :silent !chmod +x %<CR>
+set({'n', 'v'}, '<leader>d', '"_d', desc('Delete to black hole register'))
 
-" greatest remap ever
-xnoremap <leader>p "_dP
+set('n', 'n', 'nzz', opts)
+set('n', 'N', 'Nzz', opts)
 
-" next greatest remap ever : asbjornHaland
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-nmap <leader>Y "+Y
+set('x', '<leader>p', '"_dP', desc('The greatest remap ever'))
 
-nnoremap <leader>cc gg"+yG
-nnoremap <leader>cv ggVG"+p
+set('n', '<leader>e', function()
+  require'harpoon.ui'.toggle_quick_menu()
+end, desc('Open Harpoon quick menu'))
 
-nnoremap <leader>d "_d
-vnoremap <leader>d "_d
+set('n', '<leader>tc', function()
+  require'harpoon.cmd-ui'.toggle_quick_menu()
+end, desc('Open Harpoon cmd quick menu'))
 
-" Automatically center search results
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
+set('n', '<leader>a', function()
+  require'harpoon.mark'.add_file()
+end, desc('Mark file in harpoon'))
 
-" Harpoon
-nnoremap <silent><leader>e :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
-nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
+local navKeys = {'h','j','k','l'}
+for i = 1, table.getn(navKeys) do
+  set('n', '<C-' ..navKeys[i] .. '>', function()
+    require('harpoon.ui').nav_file(i)
+  end, opts)
+end
 
-nnoremap <silent><C-h> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <silent><C-j> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <silent><C-k> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <silent><C-l> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+au("BufWritePre", {
+  pattern = "*.go",
+  command = "silent! lua require('go.format').gofmt()"
+})
 
-nnoremap <silent><leader>s <cmd>lua require("harpoon.tmux").gotoTerminal(1)<cr>
-nnoremap <silent><leader>G <cmd>lua require("harpoon.tmux").sendCommand(1, "lazygit\n")<cr>
+-- au("FileType", {
+--  pattern = "markdown",
+--  command = "set foldexpr=NestedMarkdownFolds()"
+-- })
 
-nnoremap <silent><leader><C-l> <cmd>mode<cr>
+set('n', '<leader>s', function()
+  require("harpoon.tmux").gotoTerminal(1)
+end, desc("Go to terminal 1 inside tmux"))
+set('n', '<leader>G', function()
+  require("harpoon.tmux").sendCommand(1, "lazygit\n")
+end, desc("Open lazygit inside tmux"))
 
+local vimDir= os.getenv("XDG_CACHE_HOME") .. "/vim"
+opt.directory = vimDir .. "/swap,~/,/tmp"
+opt.backupdir = vimDir .. "/backup,~/,/tmp"
+opt.undodir = vimDir .. "/undo,~/,/tmp"
 
-autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+opt.errorbells = false
+opt.smartindent = true
+opt.incsearch = true
+opt.termguicolors = true
+opt.scrolloff = 8
+-- opt.showmode = false
+opt.signcolumn = 'yes'
+opt.isfname = opt.isfname + '@-@'
+-- opt.ls = 0
 
-set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
-set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
-set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
-
-set noerrorbells
-set smartindent
-set incsearch
-set termguicolors
-set scrolloff=8
-" set noshowmode
-set signcolumn=yes
-set isfname+=@-@
-" set ls=0
-
-" Give more space for displaying messages.
-set cmdheight=1
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=50
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-set colorcolumn=72,80,100,120
-]])
-
+-- Give more space for displaying messages.
+opt.cmdheight = 1
+-- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+-- delays and poor user experience.
+opt.updatetime = 50
+-- Don't pass messages to |ins-completion-menu|.
+opt.shortmess = opt.shortmess + 'c'
+opt.colorcolumn = {72, 80, 100, 120}
 opt.foldlevel=99

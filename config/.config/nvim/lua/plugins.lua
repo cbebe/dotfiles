@@ -15,9 +15,12 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'  }
-  use 'theHamsta/nvim-dap-virtual-text'
+  use { 'rcarriga/nvim-dap-ui', requires = {'mfussenegger/nvim-dap'} }
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use {
+    'theHamsta/nvim-dap-virtual-text',
+    run = function() require'nvim-dap-virtual-text'.setup{} end
+  }
   use 'masukomi/vim-markdown-folding'
   use 'tpope/vim-sensible'
   use 'sbdchd/neoformat'
@@ -26,17 +29,18 @@ return require('packer').startup(function(use)
   use 'neovim/nvim-lspconfig'
   use 'prabirshrestha/vim-lsp'
   use 'derekwyatt/vim-fswitch'
-  use 'ray-x/go.nvim'         -- Go plugin
+  -- Go plugin
+  use { 'ray-x/go.nvim', run = function() require'go'.setup{} end }
   use 'lambdalisue/suda.vim'
   use 'ThePrimeagen/harpoon'
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
-	use {
+  use {
     'jose-elias-alvarez/null-ls.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
-	}
+  }
   use 'LnL7/vim-nix'
   use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
   -- NVIM completion
@@ -48,30 +52,34 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use {
-    "folke/trouble.nvim",
+    'folke/trouble.nvim',
     config = function()
-      require("trouble").setup {
+      require('trouble').setup {
         icons = false,
-        fold_open = "v", -- icon used for open folds
-        fold_closed = ">", -- icon used for closed folds
+        fold_open = 'v', -- icon used for open folds
+        fold_closed = '>', -- icon used for closed folds
         indent_lines = false, -- add an indent guide below the fold icons
         signs = {
-            -- icons / text used for a diagnostic
-            error = "error",
-            warning = "warn",
-            hint = "hint",
-            information = "info"
+          -- icons / text used for a diagnostic
+          error = 'error',
+          warning = 'warn',
+          hint = 'hint',
+          information = 'info'
         },
-        use_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+        -- enabling this will use the signs defined in your lsp client
+        use_diagnostic_signs = false
       }
     end
   }
   use 'jose-elias-alvarez/nvim-lsp-ts-utils' -- Organize imports
-  use 'terrortylor/nvim-comment'
+  use {
+    'terrortylor/nvim-comment',
+    run = function() require'nvim_comment'.setup{} end
+  }
 
   -- tabular plugin is used to format tables
   use 'godlygeek/tabular'
   -- JSON front matter highlight plugin
   use 'elzr/vim-json'
-  use 'plasticboy/vim-markdown'
 end)
+

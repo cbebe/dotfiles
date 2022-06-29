@@ -24,25 +24,24 @@ local on_attach = function(client, bufnr)
   set('n', 'gd',        buf.definition, bufopts)
   set('n', 'K',         buf.hover, bufopts)
   set('n', 'gi',        buf.implementation, bufopts)
-  set('n', '<C-k>',     buf.signature_help, bufopts)
+-- set('n', '<C-k>',     buf.signature_help, bufopts)
   set('n', '<space>wa', buf.add_workspace_folder, bufopts)
   set('n', '<space>wr', buf.remove_workspace_folder, bufopts)
   set('n', '<space>D',  buf.type_definition, bufopts)
   set('n', '<space>rn', buf.rename, bufopts)
   set('n', '<space>ca', buf.code_action, bufopts)
   set('n', '<space>f',  buf.formatting, bufopts)
-  set('n', '<space>wl', function() print(vim.inspect(buf.list_workspace_folders())) end, bufopts)
+  set('n', '<space>wl', function()
+    print(vim.inspect(buf.list_workspace_folders()))
+  end, bufopts)
 end
-
-require'go'.setup{}
-
 
 require'nvim-treesitter.configs'.setup {
   highlight = { enable = true },
   incremental_selection = { enable = true },
   textobjects = { enable = true }
 }
-require'nvim-dap-virtual-text'.setup{}
+
 
 local cmp = require'cmp'
 
@@ -64,7 +63,8 @@ cmp.setup({
     ['<C-f>'] =     cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] =     cmp.mapping.abort(),
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    -- Accept currently selected item.
+    -- Set `select` to `false` to only confirm explicitly selected items.
     ['<Tab>'] =     cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
@@ -77,14 +77,8 @@ cmp.setup({
 
 local lspconfig = require'lspconfig'
  --Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-lspconfig.tsserver.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-lspconfig.gopls.setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
+local capabilities = require('cmp_nvim_lsp')
+  .update_capabilities(vim.lsp.protocol.make_client_capabilities())
+lspconfig.tsserver.setup{ on_attach = on_attach, capabilities = capabilities }
+lspconfig.gopls.setup{ on_attach = on_attach, capabilities = capabilities }
 
-require'nvim_comment'.setup{}
