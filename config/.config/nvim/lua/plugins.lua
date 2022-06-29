@@ -1,3 +1,9 @@
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
 vim.cmd  [[packadd packer.nvim]]
 
 vim.cmd([[
@@ -8,11 +14,11 @@ vim.cmd([[
 ]])
 
 return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'  }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'masukomi/vim-markdown-folding'
-  use 'wbthomason/packer.nvim'
   use 'tpope/vim-sensible'
   use 'sbdchd/neoformat'
   use 'chriskempson/base16-vim'
@@ -27,6 +33,10 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+	use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
+	}
   use 'LnL7/vim-nix'
   use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
   -- NVIM completion

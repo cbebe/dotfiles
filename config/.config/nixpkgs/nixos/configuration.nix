@@ -58,6 +58,7 @@ in
       sxiv
       kitty
       signal-desktop
+      neovim
     ];
   };
 
@@ -85,25 +86,6 @@ in
 
   # Backlight adjustment
   services.illum.enable = true;
-
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-  ];
-
-  # Neovim
-  environment.variables.EDITOR = "nvim";
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    package = pkgs.neovim-nightly;
-    configure = {
-      customRC = ''
-        luafile /home/chrlz/.config/nvim/init.lua
-        '';
-    };
-  };
 
   # Use doas
   security.doas = {

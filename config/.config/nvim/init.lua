@@ -65,20 +65,19 @@ au("BufWritePre", {
 
 local opts = { noremap=true, silent=true }
 
-
 set('n', '<leader>rs', [[:let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>]], {
   desc = "Remove all trailing whitespace",
   unpack(opts)
 })
 
 -- Keybinds for commonly edited config files
-set('n', '<leader>ve', '<cmd>e $MYVIMRC<cr>',                              opts)
+set('n', '<leader>ve', '<cmd>e $XDG_CONFIG_HOME/nvim/init.lua<cr>',                              opts)
 set('n', '<leader>vp', '<cmd>e $XDG_CONFIG_HOME/nvim/lua/plugins.lua<cr>', opts)
 set('n', '<leader>vl', '<cmd>e $XDG_CONFIG_HOME/nvim/lua/setup.lua<cr>',   opts)
 set('n', '<leader>vn', '<cmd>e +40 $XDG_CONFIG_HOME/nixpkgs/home.nix<cr>', opts)
 
 -- Reload config
-set('n', '<leader>vs', '<cmd>source $MYVIMRC<cr>', opts)
+set('n', '<leader>vs', '<cmd>source $XDG_CONFIG_HOME/nvim/init.lua<cr>', opts)
 
 set('n', '<leader>z', '<cmd>bd<cr>', {
   desc = "Close current buffer",
@@ -100,6 +99,7 @@ local function findFiles()
   require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})
 end
 
+
 vim.cmd([[
 " telescope
 nnoremap <leader>F <cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>
@@ -115,7 +115,7 @@ nnoremap <leader>. <cmd>lua vim.lsp.buf.code_action()<cr>
 " close all buffers except current one
 nnoremap <leader>bd :%bd\|e#\|bd#<cr>\|'"
 
-autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+" autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
 
 if has("autocmd")
 filetype plugin indent on
@@ -185,6 +185,6 @@ set updatetime=50
 set shortmess+=c
 
 set colorcolumn=72,80,100,120
-
-set foldlevel=99
 ]])
+
+opt.foldlevel=99

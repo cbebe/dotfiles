@@ -13,16 +13,17 @@ let
       fancyhdr
       titlesec;
   });
+  directory = (
+    if isLinux then "/home/chrlz"
+    else if isDarwin then "/Users/chrlz"
+    else throw "Unknown operating system"
+  );
 in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "chrlz";
-  home.homeDirectory = (
-    if isLinux then "/home/chrlz"
-    else if isDarwin then "/Users/chrlz"
-    else throw "Unknown operating system"
-  );
+  home.homeDirectory = directory;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -36,6 +37,14 @@ in
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
+
+
 
   home.packages = with pkgs; [
     tex     # resume compilation
