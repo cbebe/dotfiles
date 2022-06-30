@@ -335,7 +335,7 @@ in
 
             "${modifier}+t" = "floating toggle";
             "${modifier}+Shift+t" = "sticky toggle";
-            "${modifier}+space" = "focus mode_toggle";
+            "${modifier}+Alt+space" = "focus mode_toggle";
 
             "${modifier}+Shift+b" = "bar mode toggle";
 
@@ -369,7 +369,7 @@ in
 
             "${modifier}+Alt+a" = "exec emacs";
             "${modifier}+Control+a" = "exec emacsclient -a '' -c";
-            "${modifier}++b" = "exec firefox";
+            "${modifier}+b" = "exec firefox";
 
             "${modifier}+Shift+q" = "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/exit";
             "${modifier}+Control+q" =
