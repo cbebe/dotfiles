@@ -34,6 +34,7 @@ local function grp(name)
 end
 local au = vim.api.nvim_create_autocmd
 
+
 -- Render extra whitespace
 vim.cmd([[
   highlight ExtraWhitespace ctermbg=red guibg=red
@@ -195,6 +196,20 @@ au("BufWritePre", {
   pattern = "*.go",
   command = "silent! lua require('go.format').gofmt()"
 })
+
+function mapLoveRun()
+  set('n', '<localleader>r', function()
+    require('harpoon.tmux').sendCommand(1, 'love .\n')
+  end, desc('Run love in current directory'))
+end
+local loveGrp = grp("Love2DDev")
+au("BufWinEnter", {
+  command = 'lua mapLoveRun()',
+  pattern = '*.lua',
+  group = loveGrp
+})
+
+au("VimEnter", { command = 'HardTimeOn' })
 
 -- au("FileType", {
 --  pattern = "markdown",
