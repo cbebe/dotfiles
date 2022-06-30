@@ -493,4 +493,12 @@ in
       package = pkgs.firefox-wayland;
     };
   };
+
+  # Deliver ACPI events (e.g. power off, laptop lid close, etc.)
+  services.acpid.enable = true;
+  # Lock on suspend
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.swaylock}/bin/swaylock -i /home/chrlz/.cache/current.png";
+  };
 }
