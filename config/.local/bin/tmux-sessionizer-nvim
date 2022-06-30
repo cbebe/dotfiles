@@ -17,6 +17,7 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]] || ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
+    tmux send-keys -t $selected_name 'vi' Enter
 fi
 
 if [[ -z $TMUX ]]; then

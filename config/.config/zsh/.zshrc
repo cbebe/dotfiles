@@ -44,6 +44,7 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^r "tmux-sessionizer-nvim\n"
 bindkey -s ^g "lazygit\n"
 bindkey -s ^t "vi ~/.dotfiles/personal/todo.md\n"
 

@@ -15,3 +15,7 @@ TODO:
 - Clean up nix-config
 
   Follow a more standard directory structure for your nix configuration
+
+- Setup ESLint for neovim
+
+  https://github.com/MunifTanjim/eslint.nvim

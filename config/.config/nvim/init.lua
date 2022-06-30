@@ -145,7 +145,7 @@ set('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
 set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
 
 set('n', '<leader>.', vim.lsp.buf.code_action, desc("LSP Code action"))
-set('n', '<leader>bd', [[:%bd\|e#\|bd#<cr>\|'"]],
+set('n', '<leader>bd', [[<cmd>%bd<bar>e#<bar>bd#<cr><bar>'"]],
   desc ("Close all buffers except current one"))
 
 set('n', 'Y', 'yg$', desc("Yank analogue of D"))
