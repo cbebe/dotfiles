@@ -40,6 +40,9 @@ in
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  fonts.fonts = with pkgs; [
+    ibm-plex
+  ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
