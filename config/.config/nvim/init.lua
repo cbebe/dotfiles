@@ -170,6 +170,7 @@ set('n', '<leader>bd', [[<cmd>%bd<bar>e#<bar>bd#<cr><bar>'"]],
 set('n', 'Y', 'yg$', desc("Yank analogue of D"))
 set('n', '<leader>x', '<cmd>silent !chmod +x %<cr>',
   desc("Make current file executable"))
+set('n', '<leader>X', '<cmd>!./%<cr>', desc("Execute current file"))
 
 set({'n', 'v'}, '<leader>y', '"+y', desc("Yank to clipboard register"))
 set('n', '<leader>Y', '"+Y')
