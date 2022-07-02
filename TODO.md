@@ -1,11 +1,5 @@
 TODO:
 
-- Get Lua working
-
-  Nice example:
-
-  https://github.com/softinio/nix-config
-
 - Get markdown working
 
   Good article:

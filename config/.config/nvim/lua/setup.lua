@@ -11,7 +11,7 @@ require'plugins'
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local set = vim.keymap.set
   local buf = vim.lsp.buf
   -- Enable completion triggered by <c-x><c-o>
@@ -85,3 +85,49 @@ lspconfig.gopls.setup{ on_attach = on_attach, capabilities = capabilities }
 require'nvim-dap-virtual-text'.setup{}
 require'go'.setup{}
 require'nvim_comment'.setup{}
+
+-- lua language server
+local sumneko_binary = vim.fn.getenv 'HOME' .. '/.nix-profile/bin/lua-language-server'
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
+
+local luadev = require('lua-dev').setup{
+  lspconfig = {
+    cmd = { sumneko_binary },
+    commands = {
+      Format = {
+        function()
+          require('stylua-nvim').format_file()
+        end,
+      },
+    },
+    on_attach = on_attach,
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = runtime_path,
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { 'vim' },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = {
+            vim.api.nvim_get_runtime_file('', true),
+          },
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+  },
+}
+
+lspconfig.sumneko_lua.setup(luadev)

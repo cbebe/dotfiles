@@ -49,6 +49,7 @@ in
     htop
     btop
     python
+    sumneko-lua-language-server
   ];
 
   programs.exa.enable = true;

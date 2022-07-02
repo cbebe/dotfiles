@@ -19,6 +19,8 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'theHamsta/nvim-dap-virtual-text'
   use 'masukomi/vim-markdown-folding'
+  use 'folke/lua-dev.nvim'
+  use 'ckipp01/stylua-nvim'
   use 'tpope/vim-sensible'
   use 'sbdchd/neoformat'
   use 'chriskempson/base16-vim'
