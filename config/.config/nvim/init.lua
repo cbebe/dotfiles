@@ -109,6 +109,10 @@ local function desc(str)
   return data
 end
 
+
+set('n', '<leader>cd', '<cmd>cd %:p:h<cr>',
+  desc('change current directory to the file in the buffer'))
+
 set('n', '<leader>rs',removeTrailingWhiteSpace,
   desc ("Remove all trailing whitespace"))
 
