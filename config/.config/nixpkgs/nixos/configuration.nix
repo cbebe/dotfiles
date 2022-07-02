@@ -58,6 +58,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      obs-studio
       sxiv
       kitty
       signal-desktop

@@ -45,6 +45,7 @@ in
     lazygit
     du-dust
     ani-cli
+    mpv
     htop
     btop
     python
