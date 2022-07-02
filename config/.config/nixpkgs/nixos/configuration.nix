@@ -3,6 +3,9 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
   home-config = import ../home.nix;
+  unstable = import (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/master)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
 in
 {
   imports = [
@@ -58,6 +61,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      unstable.pixelorama
       obs-studio
       sxiv
       kitty
