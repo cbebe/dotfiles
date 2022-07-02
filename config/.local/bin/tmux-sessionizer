@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     dox=$(find ~/dox -mindepth 1 -maxdepth 1 -type d)
-    selected=$(find ~/dox $dox ~/ ~/work ~/repos ~/.dotfiles/config/.config ~/.dotfiles/config/.local -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find . ~/dox $dox ~/ ~/work ~/repos ~/.dotfiles/config/.config ~/.dotfiles/config/.local -mindepth 1 -maxdepth 1 -type d | xargs readlink -f | sort | uniq | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -17,6 +17,9 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]] || ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
+    if [[ $(type -t tmux_sessionizer_onstart) == function ]]; then
+      tmux_sessionizer_onstart $selected_name
+    fi
 fi
 
 if [[ -z $TMUX ]]; then

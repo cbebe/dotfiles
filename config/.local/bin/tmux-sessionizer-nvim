@@ -1,27 +1,9 @@
 #!/usr/bin/env bash
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    dox=$(find ~/dox -mindepth 1 -maxdepth 1 -type d)
-    selected=$(find $dox ~/dox ~/ ~/work ~/repos ~/.dotfiles/config/.config ~/.dotfiles/config/.local -mindepth 1 -maxdepth 1 -type d | fzf)
-fi
+tmux_sessionizer_onstart() {
+  tmux send-keys -t $1 'vi' Enter
+}
 
-if [[ -z $selected ]]; then
-    exit 0
-fi
-
-selected_name=$(basename "$selected" | tr . _)
-tmux_running=$(pgrep tmux)
-
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]] || ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-    tmux send-keys -t $selected_name 'vi' Enter
-fi
-
-if [[ -z $TMUX ]]; then
-  tmux attach-session -t $selected_name
-else
-  tmux switch-client -t $selected_name
-fi
+export -f tmux_sessionizer_onstart
+tmux-sessionizer $@
