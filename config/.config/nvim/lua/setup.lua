@@ -79,8 +79,10 @@ local lspconfig = require'lspconfig'
  --Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp')
   .update_capabilities(vim.lsp.protocol.make_client_capabilities())
-lspconfig.tsserver.setup{ on_attach = on_attach, capabilities = capabilities }
-lspconfig.gopls.setup{ on_attach = on_attach, capabilities = capabilities }
+local opts = { on_attach = on_attach, capabilities = capabilities }
+
+lspconfig.tsserver.setup(opts)
+lspconfig.gopls.setup(opts)
 
 require'nvim-dap-virtual-text'.setup{}
 require'go'.setup{}
@@ -93,6 +95,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 local luadev = require('lua-dev').setup{
+  runtime_path = true,
   lspconfig = {
     cmd = { sumneko_binary },
     commands = {
@@ -105,14 +108,8 @@ local luadev = require('lua-dev').setup{
     on_attach = on_attach,
     settings = {
       Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-          -- Setup your lua path
-          path = runtime_path,
-        },
+        runtime = { version = 'LuaJIT', path = runtime_path },
         diagnostics = {
-          -- Get the language server to recognize the `vim` global
           globals = { 'vim' },
         },
         workspace = {
@@ -121,13 +118,34 @@ local luadev = require('lua-dev').setup{
             vim.api.nvim_get_runtime_file('', true),
           },
         },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = {
-          enable = false,
-        },
+        telemetry = { enable = false },
       },
     },
   },
 }
 
 lspconfig.sumneko_lua.setup(luadev)
+
+local null_ls = require('null-ls')
+local eslint = require('eslint')
+
+null_ls.setup()
+eslint.setup({
+  bin = 'eslint', -- or `eslint_d`
+  code_actions = {
+    enable = true,
+    apply_on_save = {
+      enable = true,
+      types = { "problem" }, -- "directive", "problem", "suggestion", "layout"
+    },
+    disable_rule_comment = {
+      enable = true,
+      location = "separate_line", -- or `same_line`
+    },
+  },
+  diagnostics = {
+    enable = true,
+    report_unused_disable_directives = false,
+    run_on = "type", -- or `save`
+  },
+})

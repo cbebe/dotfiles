@@ -1,17 +1,19 @@
 local fn = vim.fn
+local api = vim.api
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
 vim.cmd  [[packadd packer.nvim]]
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+local packerGrp = api.nvim_create_augroup('packer_user_config', { clear = true })
+api.nvim_create_autocmd('BufWritePost', {
+  pattern = 'plugins.lua',
+  command = 'source <afile> | PackerCompile',
+  group = packerGrp
+})
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
@@ -27,7 +29,6 @@ return require('packer').startup(function(use)
   use 'tyru/open-browser.vim'
   use 'neovim/nvim-lspconfig'
   use 'prabirshrestha/vim-lsp'
-  use 'derekwyatt/vim-fswitch'
   -- Go plugin
   use 'ray-x/go.nvim'
   use 'lambdalisue/suda.vim'
@@ -42,14 +43,7 @@ return require('packer').startup(function(use)
   }
   use 'LnL7/vim-nix'
   use {'ray-x/guihua.lua', run = 'cd lua/fzy && make'}
-  -- NVIM completion
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
+  require('completion')(use)
   use {
     'folke/trouble.nvim',
     config = function()
@@ -78,5 +72,7 @@ return require('packer').startup(function(use)
   -- JSON front matter highlight plugin
   use 'elzr/vim-json'
   use 'takac/vim-hardtime'
+
+  use 'MunifTanjim/eslint.nvim'
 end)
 
