@@ -89,7 +89,8 @@ require'go'.setup{}
 require'nvim_comment'.setup{}
 
 -- lua language server
-local sumneko_binary = vim.fn.getenv 'HOME' .. '/.nix-profile/bin/lua-language-server'
+local sumneko_binary_path = vim.fn.getenv 'HOME' .. '/.nix-profile/bin/lua-language-server'
+local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ':h:h:h')
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
@@ -97,7 +98,7 @@ table.insert(runtime_path, 'lua/?/init.lua')
 local luadev = require('lua-dev').setup{
   runtime_path = true,
   lspconfig = {
-    cmd = { sumneko_binary },
+    cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
     commands = {
       Format = {
         function()

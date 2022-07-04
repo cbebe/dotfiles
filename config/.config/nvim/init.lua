@@ -138,6 +138,7 @@ local function findFiles()
   })
 end
 
+set('n', '<leader>l', findFiles, desc("Find files with ripgrep"))
 set('n', '<leader>F', findFiles, desc("Find files with ripgrep"))
 set('n', '<leader>fg', function() liveGrep(true) end, desc("Live grep"))
 set('n', '<leader>fG', function() liveGrep(false) end,
