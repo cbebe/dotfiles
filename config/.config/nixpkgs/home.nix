@@ -10,6 +10,8 @@ let
     "/Users/${username}"
   else
     throw "Unknown operating system");
+  nodejs = pkgs.nodejs-16_x;
+  nodePackages = pkgs.nodePackages.override { inherit nodejs; };
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -51,6 +53,9 @@ in {
     python
     sumneko-lua-language-server
     nixfmt
+    shfmt
+    nodejs
+    nodePackages.pnpm
   ];
 
   programs.exa.enable = true;

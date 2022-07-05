@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 source "$SCRIPT_DIR/config"
 
 function main() {
   # shellcheck disable=SC2086
-  choice=$(man -k . | awk '{ print $1 " " $2 }' | ${DMENU} -i -l 10 -p 'Manpage:' | awk '{ print $2 " " $1 }' | tr -d '()' )
+  choice=$(man -k . | awk '{ print $1 " " $2 }' | ${DMENU} -i -l 10 -p 'Manpage:' | awk '{ print $2 " " $1 }' | tr -d '()')
 
   if [ "$choice" ]; then
-      $DMTERM man $choice
+    $DMTERM man $choice
   else
-      echo "Program terminated." && exit 0
+    echo "Program terminated." && exit 0
   fi
 }
 
 [[ "${BASH_SOURCE[0]}" == "${0}" ]] && main "$@"
-
