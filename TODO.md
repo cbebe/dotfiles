@@ -10,6 +10,4 @@ TODO:
 
   Follow a more standard directory structure for your nix configuration
 
-- Setup ESLint for neovim
-
-  https://github.com/MunifTanjim/eslint.nvim
+- Change the modal thing to be more readable
