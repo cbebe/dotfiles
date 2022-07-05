@@ -1,6 +1,5 @@
 let colors = import ./colors.nix;
-in
-{
+in {
   home-manager.users.chrlz.xresources.extraConfig = ''
      Xft.antialias: 1
      Xft.hinting: 1
@@ -53,4 +52,3 @@ in
      *.color15: ${colors.bright-white}
   '';
 }
-

@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
+  home-manager = builtins.fetchTarball
+    "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
   home-config = import ../home.nix;
-  unstable = import (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/master)
+  unstable = import
+    (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/master")
     # reuse the current configuration
     { config = config.nixpkgs.config; };
-in
-{
+in {
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
@@ -23,7 +24,8 @@ in
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
   programs.nm-applet.enable = true;
 
   # Transparency
@@ -43,9 +45,7 @@ in
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  fonts.fonts = with pkgs; [
-    ibm-plex
-  ];
+  fonts.fonts = with pkgs; [ ibm-plex ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -74,17 +74,13 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    gcc
-    wget
-  ];
+  environment.systemPackages = with pkgs; [ gcc wget ];
 
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
   };
-
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -116,7 +112,6 @@ in
     ];
   };
 
-
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -141,4 +136,3 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
 }
-

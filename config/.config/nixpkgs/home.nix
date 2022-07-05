@@ -4,13 +4,13 @@ let
   isLinux = machine.operatingSystem == "Linux";
   isDarwin = machine.operatingSystem == "Darwin";
   username = "chrlz";
-  directory = (
-    if isLinux then "/home/${username}"
-    else if isDarwin then "/Users/${username}"
-    else throw "Unknown operating system"
-  );
-in
-{
+  directory = (if isLinux then
+    "/home/${username}"
+  else if isDarwin then
+    "/Users/${username}"
+  else
+    throw "Unknown operating system");
+in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = username;
@@ -30,10 +30,10 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    gnupg   # Git GPG signing
-    stow    # creating symlinks to .config and .local
-    fzf     # tmux-sessionizer
-    fd      # telescope.nvim
+    gnupg # Git GPG signing
+    stow # creating symlinks to .config and .local
+    fzf # tmux-sessionizer
+    fd # telescope.nvim
     go_1_18 # go uses 1.17 by default as of 06/22/22
     gopls
     rustup
@@ -50,11 +50,18 @@ in
     btop
     python
     sumneko-lua-language-server
+    nixfmt
   ];
 
   programs.exa.enable = true;
-  programs.gh = { enable = true; settings = { editor = "nvim"; }; };
-  programs.bat = { enable = true; config = { italic-text = "always"; }; };
+  programs.gh = {
+    enable = true;
+    settings = { editor = "nvim"; };
+  };
+  programs.bat = {
+    enable = true;
+    config = { italic-text = "always"; };
+  };
   programs.git = {
     enable = true;
     userName = "Charles Ancheta";
@@ -66,8 +73,12 @@ in
       pull = { ff = "only"; };
       commit = { gpgSign = true; };
     };
-    delta = { enable = true;
-      options = { navigate = true; line-numbers = true; };
+    delta = {
+      enable = true;
+      options = {
+        navigate = true;
+        line-numbers = true;
+      };
     };
   };
 }

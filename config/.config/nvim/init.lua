@@ -7,6 +7,8 @@ require("setup")
 g.mapleader = " "
 g.localleader = "\\"
 
+g.shfmt_opt = "-ci"
+
 -- Disable provider warnings
 g.loaded_perl_provider = 0
 g.loaded_python3_provider = 0
@@ -55,10 +57,6 @@ g.suda_smart_edit = 1
 
 g.neoformat_try_node_exe = 1
 
--- Auto-format JS/TS files
-local tsFormatGrp = grp("TSFormat")
-au("BufWritePre", { command = "Neoformat prettier", pattern = "*.{ts,tsx,js,jsx}", group = tsFormatGrp })
-
 local opts = { noremap = true, silent = true }
 
 local function removeTrailingWhiteSpace()
@@ -82,8 +80,6 @@ end
 lset("cd", "<cmd>cd %:p:h<cr>", desc("change current directory to the file in the buffer"))
 lset("rs", removeTrailingWhiteSpace, desc("Remove all trailing whitespace"))
 
-lset("ff", "<cmd>Neoformat<cr>", desc("Format current file"))
-
 local function bindf(bind, file)
 	lset(bind, "<cmd>e " .. file .. "<cr>", opts)
 end
@@ -92,7 +88,7 @@ end
 bindf("ve", "$MYVIMRC")
 bindf("vp", "$XDG_CONFIG_HOME/nvim/lua/plugins.lua")
 bindf("vl", "$XDG_CONFIG_HOME/nvim/lua/setup.lua")
-bindf("vn", "+40 $XDG_CONFIG_HOME/nixpkgs/home.nix")
+bindf("vn", "+/home.packages $XDG_CONFIG_HOME/nixpkgs/home.nix")
 
 -- Hard time to break bad vim habits
 lset("h", "<cmd>HardTimeToggle<cr>", opts)
@@ -160,11 +156,6 @@ for i = 1, #navKeys do
 	end, opts)
 end
 
-au("BufWritePre", {
-	pattern = "*.go",
-	command = "silent! lua require('go.format').gofmt()",
-})
-
 function MapLoveRun()
 	set("n", "<localleader>r", function()
 		require("harpoon.tmux").sendCommand(1, "love .\n")
@@ -172,7 +163,7 @@ function MapLoveRun()
 end
 
 local fmtGrp = grp("fmt")
-au("BufWritePre", { command = "undojoin | Neoformat", pattern = "*", group = fmtGrp })
+au("BufWritePre", { command = "undojoin | silent Neoformat", pattern = "*", group = fmtGrp })
 
 local loveGrp = grp("Love2DDev")
 au("BufWinEnter", { command = "silent! lua MapLoveRun()", pattern = "main.lua", group = loveGrp })
