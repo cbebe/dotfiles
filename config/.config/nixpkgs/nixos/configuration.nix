@@ -61,6 +61,7 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      nodejs
       nodePackages.pnpm
       unstable.pixelorama
       obs-studio
