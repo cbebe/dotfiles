@@ -13,17 +13,18 @@ if [[ -z $selected ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
+selected_name_t=${selected_name:0:8}
 tmux_running=$(pgrep tmux)
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]] || ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]] || ! tmux has-session -t=$selected_name_t 2> /dev/null; then
+    tmux new-session -ds $selected_name_t -c $selected
     if [[ $(type -t tmux_sessionizer_onstart) == function ]]; then
-      tmux_sessionizer_onstart $selected_name
+      tmux_sessionizer_onstart $selected_name_t
     fi
 fi
 
 if [[ -z $TMUX ]]; then
-  tmux attach-session -t $selected_name
+  tmux attach-session -t $selected_name_t
 else
-  tmux switch-client -t $selected_name
+  tmux switch-client -t $selected_name_t
 fi

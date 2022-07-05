@@ -156,17 +156,34 @@ for i = 1, #navKeys do
 	end, opts)
 end
 
-function MapLoveRun()
+function MapLuaBindings()
 	set("n", "<localleader>r", function()
 		require("harpoon.tmux").sendCommand(1, "love .\n")
 	end, desc("Run love in current directory"))
+	set(
+		"n",
+		"<localleader>d",
+		[[ofunction dump(o)
+if type(o) == 'table' then
+local s = '{ '
+for k,v in pairs(o) do
+if type(k) ~= 'number' then k = '"'..k..'"' end
+s = s .. '['..k..'] = ' .. dump(v) .. ','
+end
+return s .. '} '
+else
+return tostring(o)
+end
+end]],
+		desc("Dump function")
+	)
 end
 
 local fmtGrp = grp("fmt")
-au("BufWritePre", { command = "undojoin | silent Neoformat", pattern = "*", group = fmtGrp })
+au("BufWritePre", { command = "silent Neoformat", pattern = "*", group = fmtGrp })
 
 local loveGrp = grp("Love2DDev")
-au("BufWinEnter", { command = "silent! lua MapLoveRun()", pattern = "main.lua", group = loveGrp })
+au("BufWinEnter", { command = "silent! lua MapLuaBindings()", pattern = "*.lua", group = loveGrp })
 au("BufWinEnter", { command = "HardTimeOn" })
 
 lset("s", function()
