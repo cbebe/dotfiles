@@ -3,7 +3,7 @@
 battery_dir=/sys/class/power_supply/BAT0
 notify=1
 
-while :; do
+__battery_check() {
   bat_status=$(cat $battery_dir/status)
   bat_capacity=$(cat $battery_dir/capacity)
   if [ $bat_status = "Discharging" ] && [ $bat_capacity -le 20 ] && [ $notify -eq 1 ]; then
@@ -12,5 +12,8 @@ while :; do
   elif [ $bat_status = "Charging" ] && [ $notify -eq 0 ]; then
     notify=1
   fi
-  sleep 60
+}
+
+while :; do
+  __battery_check && sleep 60
 done
