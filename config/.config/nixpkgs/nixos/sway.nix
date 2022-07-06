@@ -27,6 +27,7 @@ in {
       slurp
       sway-contrib.grimshot
       light
+      jq
     ];
   };
 
@@ -367,17 +368,15 @@ in {
         "${modifier}+b" = "exec firefox";
 
         "${modifier}+Shift+q" =
-          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/exit";
+          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/exit 2>&1 >> ~/.cache/sway.log";
         "${modifier}+Control+q" =
-          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/kill";
+          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/kill 2>&1 >> ~/.cache/sway.log";
         "${modifier}+Control+r" =
-          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/configurations";
-        "${modifier}+F1" =
-          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/man";
-        "${modifier}+F2" =
-          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/websearch";
-        "${modifier}+F3" =
-          "exec echo $(sxiv -t -o ~/Pictures/Wallpapers) | xargs -I {} cp {} ~/.cache/current.png && swaymsg output '*' bg ~/.cache/current.png fill";
+          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/config 2>&1 >> ~/.cache/sway.log";
+        "${modifier}+Shift+m" =
+          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/man 2>&1 >> ~/.cache/sway.log";
+        "${modifier}+Shift+w" =
+          "exec bash ~/.dotfiles/config/.config/nixpkgs/nixos/websearch 2>&1 >> ~/.cache/sway.log";
 
         "${modifier}+Insert" =
           "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify save screen ${screenshot_dir}";
