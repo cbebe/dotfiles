@@ -10,4 +10,6 @@ TODO:
 
   Follow a more standard directory structure for your nix configuration
 
-- Change the modal thing to be more readable
+- Add webp support for backgrounds
+
+  https://github.com/aruiz/webp-pixbuf-loader
