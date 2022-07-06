@@ -67,6 +67,7 @@ in {
       kitty
       signal-desktop
       neovim
+      libnotify
     ];
   };
 
