@@ -56,6 +56,7 @@ in {
     shfmt
     nodejs
     nodePackages.pnpm
+    deno
   ];
 
   programs.exa.enable = true;

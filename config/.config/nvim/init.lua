@@ -184,7 +184,7 @@ au("BufWritePre", { command = "silent Neoformat", pattern = "*", group = fmtGrp 
 
 local loveGrp = grp("Love2DDev")
 au("BufWinEnter", { command = "silent! lua MapLuaBindings()", pattern = "*.lua", group = loveGrp })
-au("BufWinEnter", { command = "HardTimeOn" })
+-- au("BufWinEnter", { command = "HardTimeOn" })
 
 lset("s", function()
 	require("harpoon.tmux").gotoTerminal(1)
