@@ -59,6 +59,7 @@ in {
     deno
   ];
 
+  programs.firefox.enable = true;
   programs.exa.enable = true;
   programs.gh = {
     enable = true;

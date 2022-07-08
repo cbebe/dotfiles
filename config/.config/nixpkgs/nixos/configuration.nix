@@ -8,11 +8,17 @@ let
     (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/master")
     # reuse the current configuration
     { config = config.nixpkgs.config; };
+  xkbConfig = {
+    layout = "us,us";
+    variant = ",dvp";
+    options = "grp:win_space_toggle,ctrl:swapcaps";
+  };
 in {
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
-    ./sway.nix
+    # ./sway.nix
+    (import ./awesome.nix xkbConfig)
   ];
 
   home-manager.users.chrlz = home-config;
