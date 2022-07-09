@@ -8,7 +8,9 @@ TODO:
 
 - Clean up nix-config
 
-  Follow a more standard directory structure for your nix configuration
+  - Follow a more standard directory structure for your nix configuration
+  - Remove home-config as a NixOS/darwin module
+  - Modularize nix config
 
 - Add webp support for backgrounds
 
