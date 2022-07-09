@@ -53,3 +53,4 @@ alias sshx='ssh -o SetEnv="TERM=xterm-256color"'
 alias sus='doas systemctl suspend'
 
 alias nsz='nix-shell --run zsh'
+alias nsp='nix-shell -p'

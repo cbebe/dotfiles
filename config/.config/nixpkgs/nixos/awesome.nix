@@ -11,5 +11,6 @@ xkbConfig:
       enable = true;
       luaModules = with pkgs.luaPackages; [ luarocks ];
     };
+    extraLayouts.real-prog-dvorak = xkbConfig.realProgDvorak;
   };
 }

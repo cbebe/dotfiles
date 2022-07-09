@@ -50,6 +50,7 @@ in {
     mpv
     htop
     btop
+    bitwarden-cli
     python
     sumneko-lua-language-server
     nixfmt
@@ -57,6 +58,7 @@ in {
     nodejs
     nodePackages.pnpm
     deno
+    alacritty
   ];
 
   programs.firefox.enable = true;

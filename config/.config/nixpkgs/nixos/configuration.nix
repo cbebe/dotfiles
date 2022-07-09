@@ -9,9 +9,14 @@ let
     # reuse the current configuration
     { config = config.nixpkgs.config; };
   xkbConfig = {
-    layout = "us,us";
-    variant = ",dvp";
+    layout = "us,us,real-prog-dvorak";
+    variant = ",dvp,";
     options = "grp:win_space_toggle,ctrl:swapcaps";
+    realProgDvorak = {
+      description = "Michael Paulson's Programmer's Dvorak";
+      languages = [ "eng" ];
+      symbolsFile = /home/chrlz/.dotfiles/symbols/real-prog-dvorak;
+    };
   };
 in {
   imports = [
@@ -67,6 +72,8 @@ in {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      qutebrowser
+      xclip
       unstable.pixelorama
       obs-studio
       sxiv
