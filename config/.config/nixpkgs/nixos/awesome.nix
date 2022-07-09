@@ -3,7 +3,6 @@ xkbConfig:
   services.xserver = {
     enable = true;
     layout = xkbConfig.layout;
-    xkbVariant = xkbConfig.variant;
     xkbOptions = xkbConfig.options;
     libinput.enable = true;
     displayManager.sddm.enable = true;

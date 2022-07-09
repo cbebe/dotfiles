@@ -9,8 +9,7 @@ let
     # reuse the current configuration
     { config = config.nixpkgs.config; };
   xkbConfig = {
-    layout = "us,us,real-prog-dvorak";
-    variant = ",dvp,";
+    layout = "us,real-prog-dvorak";
     options = "grp:win_space_toggle,ctrl:swapcaps";
     realProgDvorak = {
       description = "Michael Paulson's Programmer's Dvorak";
