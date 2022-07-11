@@ -14,6 +14,7 @@ alias hs="home-manager switch"
 alias nixc="vi $HOME/.config/nixpkgs/nixos/configuration.nix"
 alias nixs="vi $HOME/.config/nixpkgs/nixos/sway.nix"
 alias nixb='doas nixos-rebuild switch'
+alias nixgcb="doas nix-collect-garbage -d && doas nixos-rebuild switch"
 alias drs='darwin-rebuild switch'
 
 alias es="vi $HOME/.config/zsh/.aliasrc"

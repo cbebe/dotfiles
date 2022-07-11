@@ -59,6 +59,7 @@ in {
     nodePackages.pnpm
     deno
     alacritty
+    unzip
   ];
 
   programs.firefox.enable = true;

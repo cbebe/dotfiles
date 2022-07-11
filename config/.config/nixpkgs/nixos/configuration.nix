@@ -85,7 +85,12 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ gcc wget ];
+  environment.systemPackages = with pkgs; [
+    gcc
+    wget
+    (retroarch.override { cores = with libretro; [ snes9x ]; })
+    libretro.snes9x
+  ];
 
   services.pipewire = {
     enable = true;
@@ -105,10 +110,12 @@ in {
   services.illum.enable = true;
 
   # Use doas
+  security.sudo.enable = false;
   security.doas = {
     enable = true;
     extraRules = [{
       users = [ "chrlz" ];
+      persist = true;
       keepEnv = true;
     }];
   };

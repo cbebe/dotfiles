@@ -61,16 +61,16 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/zenburn/theme.lua")
 -- })
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nvim"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "alacritty"
+local editor = "nvim"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -95,7 +95,7 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
 	{
 		"hotkeys",
 		function()
@@ -113,25 +113,25 @@ myawesomemenu = {
 	},
 }
 
-mymainmenu = awful.menu({
+local mymainmenu = awful.menu({
 	items = {
 		{ "awesome", myawesomemenu, beautiful.awesome_icon },
 		{ "open terminal", terminal },
 	},
 })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -266,7 +266,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
@@ -362,46 +362,46 @@ globalkeys = gears.table.join(
 	end, { description = "show the menubar", group = "launcher" })
 )
 
-clientkeys = gears.table.join(
-	awful.key({ modkey }, "f", function(c)
-		c.fullscreen = not c.fullscreen
-		c:raise()
-	end, { description = "toggle fullscreen", group = "client" }),
-	awful.key({ modkey, "Shift" }, "c", function(c)
+local clientkeys = gears.table.join(
+	-- awful.key({ modkey }, "f", function(c)
+	-- 	c.fullscreen = not c.fullscreen
+	-- 	c:raise()
+	-- end, { description = "toggle fullscreen", group = "client" }),
+	awful.key({ modkey }, "q", function(c)
 		c:kill()
 	end, { description = "close", group = "client" }),
-	awful.key(
-		{ modkey, "Control" },
-		"space",
-		awful.client.floating.toggle,
-		{ description = "toggle floating", group = "client" }
-	),
-	awful.key({ modkey, "Control" }, "Return", function(c)
-		c:swap(awful.client.getmaster())
-	end, { description = "move to master", group = "client" }),
-	awful.key({ modkey }, "o", function(c)
-		c:move_to_screen()
-	end, { description = "move to screen", group = "client" }),
-	awful.key({ modkey }, "t", function(c)
-		c.ontop = not c.ontop
-	end, { description = "toggle keep on top", group = "client" }),
+	-- awful.key(
+	-- 	{ modkey, "Control" },
+	-- 	"space",
+	-- 	awful.client.floating.toggle,
+	-- 	{ description = "toggle floating", group = "client" }
+	-- ),
+	-- awful.key({ modkey, "Control" }, "Return", function(c)
+	-- 	c:swap(awful.client.getmaster())
+	-- end, { description = "move to master", group = "client" }),
+	-- awful.key({ modkey }, "o", function(c)
+	-- 	c:move_to_screen()
+	-- end, { description = "move to screen", group = "client" }),
+	-- awful.key({ modkey }, "t", function(c)
+	-- 	c.ontop = not c.ontop
+	-- end, { description = "toggle keep on top", group = "client" }),
 	awful.key({ modkey }, "n", function(c)
 		-- The client currently has the input focus, so it cannot be
 		-- minimized, since minimized clients can't have the focus.
 		c.minimized = true
-	end, { description = "minimize", group = "client" }),
-	awful.key({ modkey }, "m", function(c)
-		c.maximized = not c.maximized
-		c:raise()
-	end, { description = "(un)maximize", group = "client" }),
-	awful.key({ modkey, "Control" }, "m", function(c)
-		c.maximized_vertical = not c.maximized_vertical
-		c:raise()
-	end, { description = "(un)maximize vertically", group = "client" }),
-	awful.key({ modkey, "Shift" }, "m", function(c)
-		c.maximized_horizontal = not c.maximized_horizontal
-		c:raise()
-	end, { description = "(un)maximize horizontally", group = "client" })
+	end, { description = "minimize", group = "client" })
+	-- awful.key({ modkey }, "m", function(c)
+	-- 	c.maximized = not c.maximized
+	-- 	c:raise()
+	-- end, { description = "(un)maximize", group = "client" }),
+	-- awful.key({ modkey, "Control" }, "m", function(c)
+	-- 	c.maximized_vertical = not c.maximized_vertical
+	-- 	c:raise()
+	-- end, { description = "(un)maximize vertically", group = "client" }),
+	-- awful.key({ modkey, "Shift" }, "m", function(c)
+	-- 	c.maximized_horizontal = not c.maximized_horizontal
+	-- 	c:raise()
+	-- end, { description = "(un)maximize horizontally", group = "client" })
 )
 
 -- Bind all key numbers to tags.
@@ -447,7 +447,7 @@ for i = 1, 9 do
 	)
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
 	awful.button({}, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 	end),
