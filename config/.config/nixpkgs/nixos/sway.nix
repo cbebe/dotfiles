@@ -1,13 +1,8 @@
 # Stolen from https://github.com/alternateved/nixos-config
 # TODO: Fix keybindings for qwerty
+xkbConfig:
 { pkgs, ... }:
-let
-  theme = import ./colors.nix;
-  xkbConfig = {
-    layout = "us,us";
-    variant = ",dvp";
-    options = "grp:win_space_toggle,ctrl:swapcaps";
-  };
+let theme = import ./colors.nix;
 in {
   imports = [ ./xresources.nix ];
   services.tlp.enable = true;
@@ -39,8 +34,8 @@ in {
 
   services.xserver = {
     layout = xkbConfig.layout;
-    xkbVariant = xkbConfig.variant;
     xkbOptions = xkbConfig.options;
+    extraLayouts.real-prog-dvorak = xkbConfig.realProgDvorak;
   };
 
   home-manager.users.chrlz.wayland.windowManager.sway = let
@@ -81,7 +76,6 @@ in {
         "type:pointer" = { natural_scroll = "enabled"; };
         "type:keyboard" = {
           xkb_layout = xkbConfig.layout;
-          xkb_variant = xkbConfig.variant;
           xkb_options = xkbConfig.options;
         };
       };

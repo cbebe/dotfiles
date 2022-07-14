@@ -21,8 +21,8 @@ in {
   imports = [
     ./hardware-configuration.nix
     (import "${home-manager}/nixos")
-    # ./sway.nix
-    (import ./awesome.nix xkbConfig)
+    (import ./sway.nix xkbConfig)
+    # (import ./awesome.nix xkbConfig)
   ];
 
   home-manager.users.chrlz = home-config;
@@ -133,10 +133,15 @@ in {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    permitRootLogin = "no";
+    ports = [ 8069 ];
+  };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 8069 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

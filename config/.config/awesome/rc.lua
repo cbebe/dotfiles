@@ -18,6 +18,28 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local xrandr = require("xrandr")
+
+local sharedtags = require("sharedtags")
+
+local tags = sharedtags({
+	{ name = "main", layout = awful.layout.layouts[2] },
+	{ name = "www", layout = awful.layout.layouts[10] },
+	{ name = "game", layout = awful.layout.layouts[1] },
+	{ name = "misc", layout = awful.layout.layouts[2] },
+	{ screen = 2, layout = awful.layout.layouts[2] },
+	{ name = "chat", screen = 2, layout = awful.layout.layouts[2] },
+	{ layout = awful.layout.layouts[2] },
+})
+
+awful.screen.connect_for_each_screen(function(s)
+	-- Each screen has its own tag table.
+	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+
+	-- Here is a good place to add tags to a newly connected screen, if desired:
+	-- sharedtags.viewonly(tags[4], s)
+end)
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -271,7 +293,9 @@ local globalkeys = gears.table.join(
 	awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
-
+	awful.key({ modkey, "Shift" }, "x", function()
+		xrandr.xrandr()
+	end),
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
@@ -370,38 +394,38 @@ local clientkeys = gears.table.join(
 	awful.key({ modkey }, "q", function(c)
 		c:kill()
 	end, { description = "close", group = "client" }),
-	-- awful.key(
-	-- 	{ modkey, "Control" },
-	-- 	"space",
-	-- 	awful.client.floating.toggle,
-	-- 	{ description = "toggle floating", group = "client" }
-	-- ),
-	-- awful.key({ modkey, "Control" }, "Return", function(c)
-	-- 	c:swap(awful.client.getmaster())
-	-- end, { description = "move to master", group = "client" }),
-	-- awful.key({ modkey }, "o", function(c)
-	-- 	c:move_to_screen()
-	-- end, { description = "move to screen", group = "client" }),
-	-- awful.key({ modkey }, "t", function(c)
-	-- 	c.ontop = not c.ontop
-	-- end, { description = "toggle keep on top", group = "client" }),
+	awful.key(
+		{ modkey, "Control" },
+		"space",
+		awful.client.floating.toggle,
+		{ description = "toggle floating", group = "client" }
+	),
+	awful.key({ modkey, "Control" }, "Return", function(c)
+		c:swap(awful.client.getmaster())
+	end, { description = "move to master", group = "client" }),
+	awful.key({ modkey }, "o", function(c)
+		c:move_to_screen()
+	end, { description = "move to screen", group = "client" }),
+	awful.key({ modkey }, "t", function(c)
+		c.ontop = not c.ontop
+	end, { description = "toggle keep on top", group = "client" }),
 	awful.key({ modkey }, "n", function(c)
 		-- The client currently has the input focus, so it cannot be
 		-- minimized, since minimized clients can't have the focus.
 		c.minimized = true
-	end, { description = "minimize", group = "client" })
-	-- awful.key({ modkey }, "m", function(c)
-	-- 	c.maximized = not c.maximized
-	-- 	c:raise()
-	-- end, { description = "(un)maximize", group = "client" }),
-	-- awful.key({ modkey, "Control" }, "m", function(c)
-	-- 	c.maximized_vertical = not c.maximized_vertical
-	-- 	c:raise()
-	-- end, { description = "(un)maximize vertically", group = "client" }),
-	-- awful.key({ modkey, "Shift" }, "m", function(c)
-	-- 	c.maximized_horizontal = not c.maximized_horizontal
-	-- 	c:raise()
-	-- end, { description = "(un)maximize horizontally", group = "client" })
+	end, { description = "minimize", group = "client" }),
+	awful.key({ modkey }, "m", function(c)
+		c.maximized = not c.maximized
+		c:raise()
+	end, { description = "(un)maximize", group = "client" }),
+	awful.key({ modkey, "Control" }, "m", function(c)
+		c.maximized_vertical = not c.maximized_vertical
+		c:raise()
+	end, { description = "(un)maximize vertically", group = "client" }),
+	awful.key({ modkey, "Shift" }, "m", function(c)
+		c.maximized_horizontal = not c.maximized_horizontal
+		c:raise()
+	end, { description = "(un)maximize horizontally", group = "client" })
 )
 
 -- Bind all key numbers to tags.
@@ -413,23 +437,23 @@ for i = 1, 9 do
 		-- View tag only.
 		awful.key({ modkey }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
+			local tag = tags[i]
 			if tag then
-				tag:view_only()
+				sharedtags.viewonly(tag, screen)
 			end
 		end, { description = "view tag #" .. i, group = "tag" }),
 		-- Toggle tag display.
 		awful.key({ modkey, "Control" }, "#" .. i + 9, function()
 			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
+			local tag = tags[i]
 			if tag then
-				awful.tag.viewtoggle(tag)
+				sharedtags.viewtoggle(tag, screen)
 			end
 		end, { description = "toggle tag #" .. i, group = "tag" }),
 		-- Move client to tag.
 		awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
 			if client.focus then
-				local tag = client.focus.screen.tags[i]
+				local tag = tags[i]
 				if tag then
 					client.focus:move_to_tag(tag)
 				end
@@ -438,7 +462,7 @@ for i = 1, 9 do
 		-- Toggle tag on focused client.
 		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
 			if client.focus then
-				local tag = client.focus.screen.tags[i]
+				local tag = tags[i]
 				if tag then
 					client.focus:toggle_tag(tag)
 				end
