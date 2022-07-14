@@ -1,4 +1,7 @@
-#!/usr/bin/osascript
-tell application "Finder"
-  shut down
-end tell
+#!/bin/sh
+
+case "$(uname)" in
+  Linux) shutdown now ;;
+  # `shutdown now` doesn't work in Darwin for some reason
+  Darwin) osascript -e 'tell application "Finder" to shut down' ;;
+esac
