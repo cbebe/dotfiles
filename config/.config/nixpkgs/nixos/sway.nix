@@ -23,6 +23,8 @@ in {
       sway-contrib.grimshot
       light
       jq
+      brave
+      gcc
     ];
   };
 

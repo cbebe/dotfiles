@@ -186,6 +186,13 @@ local loveGrp = grp("Love2DDev")
 au("BufWinEnter", { command = "silent! lua MapLuaBindings()", pattern = "*.lua", group = loveGrp })
 -- au("BufWinEnter", { command = "HardTimeOn" })
 
+function MapCExecuteBindings()
+	lset("m", "<cmd>!make $(base %) && ./$(base %)<cr>", desc("Execute C file"))
+end
+
+local CGrp = grp("CExecute")
+au("BufWinEnter", { command = "silent! lua MapCExecuteBindings()", pattern = "*.c", group = CGrp })
+
 lset("s", function()
 	require("harpoon.tmux").gotoTerminal(1)
 end, desc("Go to terminal 1 inside tmux"))

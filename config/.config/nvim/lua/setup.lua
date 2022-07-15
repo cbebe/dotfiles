@@ -34,6 +34,14 @@ local on_attach = function(_, bufnr)
 	set("n", "<space>wl", function()
 		print(vim.inspect(buf.list_workspace_folders()))
 	end, bufopts)
+
+	vim.diagnostic.config({
+		virtual_text = false,
+	})
+
+	-- Show line diagnostics automatically in hover window
+	vim.o.updatetime = 250
+	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 end
 
 require("nvim-treesitter.configs").setup({
