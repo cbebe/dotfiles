@@ -75,4 +75,5 @@ return require("packer").startup(function(use)
 	use("takac/vim-hardtime")
 
 	use("MunifTanjim/eslint.nvim")
+	use("rescript-lang/vim-rescript")
 end)

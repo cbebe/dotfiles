@@ -25,6 +25,7 @@ in {
       jq
       brave
       gcc
+      xdg-utils
     ];
   };
 
