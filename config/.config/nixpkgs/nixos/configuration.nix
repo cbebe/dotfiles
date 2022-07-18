@@ -4,10 +4,6 @@ let
   home-manager = builtins.fetchTarball
     "https://github.com/nix-community/home-manager/archive/release-22.05.tar.gz";
   home-config = import ../home.nix;
-  unstable = import
-    (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/master")
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
   xkbConfig = {
     layout = "us,real-prog-dvorak";
     options = "grp:win_space_toggle,ctrl:swapcaps";
@@ -73,7 +69,6 @@ in {
     packages = with pkgs; [
       qutebrowser
       xclip
-      unstable.pixelorama
       obs-studio
       sxiv
       kitty

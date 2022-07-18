@@ -1,0 +1,5 @@
+#!/usr/bin/env cached-nix-shell
+#! nix-shell -i bash -p pixelorama
+#! nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/tarball/53c202dc53b81d88227ba2c60455c47a24dd24d2
+
+pixelorama

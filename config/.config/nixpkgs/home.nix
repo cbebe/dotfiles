@@ -60,6 +60,7 @@ in {
     deno
     alacritty
     unzip
+    cached-nix-shell # faster nix-shell
   ];
 
   programs.firefox.enable = true;
