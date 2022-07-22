@@ -1,0 +1,3 @@
+#!/bin/sh
+
+${BROWSER:-firefox} https://app.slack.com/client/T01N9NY525V/D01N9PP020P

@@ -69,7 +69,6 @@ in {
     packages = with pkgs; [
       qutebrowser
       xclip
-      obs-studio
       sxiv
       kitty
       signal-desktop
