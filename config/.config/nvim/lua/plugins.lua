@@ -76,4 +76,5 @@ return require("packer").startup(function(use)
 
 	use("MunifTanjim/eslint.nvim")
 	use("rescript-lang/vim-rescript")
+	use("jiangmiao/auto-pairs")
 end)
