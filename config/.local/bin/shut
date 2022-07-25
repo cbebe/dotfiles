@@ -1,7 +1,18 @@
-#!/bin/sh
+#!/usr/bin/env cached-nix-shell
+#! nix-shell -i bash -p pstree
+# vim: ft=bash
+
+is_ssh() {
+  pstree -p $$ | grep sshd | grep -v 'grep sshd' >/dev/null
+}
+
+is_ssh && [ $# -le 1 ] && [ "$1" != "-f" ] && {
+  echo 'WARNING: Shell is an SSH session. To force shutdown, use the -f flag.'
+  exit 1
+}
 
 case "$(uname)" in
-Linux) shutdown now ;;
-# `shutdown now` doesn't work in Darwin for some reason
-Darwin) osascript -e 'tell application "Finder" to shut down' ;;
+  Linux) shutdown now ;;
+  # `shutdown now` doesn't work in Darwin for some reason
+  Darwin) osascript -e 'tell application "Finder" to shut down' ;;
 esac
