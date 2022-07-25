@@ -4,8 +4,7 @@
 
 total_lines=0
 
-for file in $(find .)
-do
+for file in $(find .); do
 	[ -f $file ] && {
 		total_lines=$(($total_lines + $(wc -l $file | cut -f1 -d' ')))
 	}

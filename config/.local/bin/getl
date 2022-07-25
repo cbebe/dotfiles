@@ -4,8 +4,7 @@
 
 lines=${1:-100}
 
-for file in $(find .)
-do
+for file in $(find .); do
 	[ -f $file ] && {
 		file_lines=$(wc -l $file | cut -f1 -d.)
 		[ "$file_lines" -ge $lines ] && echo $file $file_lines

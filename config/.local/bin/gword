@@ -2,8 +2,7 @@
 
 regegegexp='s/([aeiou])/\1g\1/g'
 [ "$1" != "" ] && {
-  echo "$1" | sed -r $regegegexp
+	echo "$1" | sed -r $regegegexp
 } || {
-  sed -r $regegegexp < /dev/stdin
+	sed -r $regegegexp </dev/stdin
 }
-

@@ -2,7 +2,7 @@
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 tmux_sessionizer_onstart() {
-  tmux send-keys -t $1 'vi' Enter
+	tmux send-keys -t $1 'vi' Enter
 }
 
 export -f tmux_sessionizer_onstart

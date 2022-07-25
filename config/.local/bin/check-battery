@@ -4,16 +4,16 @@ battery_dir=/sys/class/power_supply/BAT0
 notify=1
 
 __battery_check() {
-  bat_status=$(cat $battery_dir/status)
-  bat_capacity=$(cat $battery_dir/capacity)
-  if [ $bat_status = "Discharging" ] && [ $bat_capacity -le 20 ] && [ $notify -eq 1 ]; then
-    notify-send "Battery low. Please plug me in or I will die UwU"
-    notify=0
-  elif [ $bat_status = "Charging" ] && [ $notify -eq 0 ]; then
-    notify=1
-  fi
+	bat_status=$(cat $battery_dir/status)
+	bat_capacity=$(cat $battery_dir/capacity)
+	if [ $bat_status = "Discharging" ] && [ $bat_capacity -le 20 ] && [ $notify -eq 1 ]; then
+		notify-send "Battery low. Please plug me in or I will die UwU"
+		notify=0
+	elif [ $bat_status = "Charging" ] && [ $notify -eq 0 ]; then
+		notify=1
+	fi
 }
 
 while :; do
-  __battery_check && sleep 60
+	__battery_check && sleep 60
 done
