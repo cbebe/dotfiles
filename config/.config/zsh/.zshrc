@@ -9,8 +9,14 @@ parse_git_branch() {
   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'
 }
 
+parse_nix_shell() {
+  [ -z $IN_NIX_SHELL ] || {
+    echo "($IN_NIX_SHELL nix-shell) "
+  }
+}
+
 setopt PROMPT_SUBST
-PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[cyan]%}\$(parse_git_branch)%{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
+PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[cyan]%}\$(parse_git_branch)%{$fg[green]%}\$(parse_nix_shell)%{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
 
 # artix style prompt, ugly colours tho
 # PS1="%B%{$fg[cyan]%}%M%{$reset_color%}:%{$fg[red]%}[%{$fg[blue]%}%n%{$fg[red]%}]%{$reset_color%}:%{$fg[magenta]%}%~%{$fg[yellow]%}$%{$reset_color%}%b "
