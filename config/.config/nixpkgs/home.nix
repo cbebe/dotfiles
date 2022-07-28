@@ -61,6 +61,8 @@ in {
     alacritty
     unzip
     cached-nix-shell # faster nix-shell
+    neovide
+    gnumake
   ];
 
   programs.firefox.enable = true;

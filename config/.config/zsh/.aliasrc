@@ -2,7 +2,7 @@
 # Aliases
 # -------
 
-alias vi="nvim"
+alias vi="neovide"
 alias ls="exa --color=always"
 alias ll="ls -alh"
 alias l="ls -alh"
