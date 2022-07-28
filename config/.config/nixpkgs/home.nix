@@ -61,7 +61,6 @@ in {
     alacritty
     unzip
     cached-nix-shell # faster nix-shell
-    neovide
     gnumake
   ];
 

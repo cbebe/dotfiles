@@ -51,7 +51,9 @@ in {
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  fonts.fonts = with pkgs; [ ibm-plex ];
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
+  ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
