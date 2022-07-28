@@ -72,6 +72,7 @@ in {
     packages = with pkgs; [
       qutebrowser
       xclip
+      xsel
       sxiv
       kitty
       signal-desktop
