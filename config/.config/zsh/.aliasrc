@@ -1,3 +1,4 @@
+# vim:ft=zsh
 # -------
 # Aliases
 # -------
@@ -56,3 +57,5 @@ alias sus='doas systemctl suspend'
 alias nix-shell='cached-nix-shell'
 alias nsz='nix-shell --run zsh'
 alias nsp='nix-shell -p'
+
+alias anc='vi ~/.config/nvim/lua/user/init.lua'

@@ -22,7 +22,6 @@ in {
   ];
 
   home-manager.users.chrlz = home-config;
-  home-manager.programs.firefox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -52,9 +51,8 @@ in {
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "IBMPlexMono" ]; })
-  ];
+  fonts.fonts = with pkgs;
+    [ (nerdfonts.override { fonts = [ "IBMPlexMono" ]; }) ];
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 

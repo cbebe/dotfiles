@@ -62,6 +62,7 @@ in {
     unzip
     cached-nix-shell # faster nix-shell
     gnumake
+    luaformatter
   ];
 
   programs.exa.enable = true;
