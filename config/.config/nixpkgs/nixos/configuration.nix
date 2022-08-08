@@ -28,6 +28,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   # networking.hostName = "nixos"; # Define your hostname.
+  networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable =
@@ -68,6 +69,7 @@ in {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
+      zlib
       qutebrowser
       xclip
       xsel
@@ -76,6 +78,7 @@ in {
       signal-desktop
       neovim
       libnotify
+      sshfs
     ];
   };
 

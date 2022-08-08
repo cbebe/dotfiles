@@ -63,6 +63,7 @@ in {
     cached-nix-shell # faster nix-shell
     gnumake
     luaformatter
+    python39Packages.sqlparse
   ];
 
   programs.exa.enable = true;
