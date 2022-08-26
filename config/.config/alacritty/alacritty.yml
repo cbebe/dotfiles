@@ -1,18 +1,18 @@
 font:
   normal:
-    family: IBMPlexMono
+    family: BlexMono Nerd Font
     style: Regular
 
   bold:
-    family: IBMPlexMono
+    family: BlexMono Nerd Font
     style: Bold
 
   italic:
-    family: IBMPlexMono
+    family: BlexMono Nerd Font
     style: Italic
 
   bold_italic:
-    family: IBMPlexMono
+    family: BlexMono Nerd Font
     style: Bold Italic
 
   size: 11

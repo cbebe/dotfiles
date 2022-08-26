@@ -5,7 +5,8 @@ if [[ $# -eq 1 ]]; then
 	selected=$1
 else
 	dox=$(find ~/dox -mindepth 1 -maxdepth 1 -type d)
-	selected=$(find . ~/dox $dox ~/ ~/work ~/repos ~/.dotfiles ~/.dotfiles/config/.config ~/.dotfiles/config/.local -mindepth 0 -maxdepth 1 -type d | xargs readlink -f | sort | uniq | fzf)
+	work=$(find ~/work -mindepth 1 -maxdepth 1 -type d)
+	selected=$(find . ~/dox $dox ~/ ~/work $work ~/repos ~/.dotfiles ~/.dotfiles/config/.config ~/.dotfiles/config/.local -mindepth 0 -maxdepth 1 -type d | xargs readlink -f | sort | uniq | fzf)
 fi
 
 if [[ -z $selected ]]; then

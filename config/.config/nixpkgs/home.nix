@@ -64,6 +64,8 @@ in {
     gnumake
     luaformatter
     python39Packages.sqlparse
+    dotnet-sdk
+    clang-tools
   ];
 
   programs.exa.enable = true;
