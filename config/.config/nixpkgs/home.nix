@@ -55,8 +55,6 @@ in {
     sumneko-lua-language-server
     nixfmt
     shfmt
-    nodejs
-    nodePackages.pnpm
     deno
     alacritty
     unzip
@@ -64,7 +62,6 @@ in {
     gnumake
     luaformatter
     python39Packages.sqlparse
-    dotnet-sdk
     clang-tools
   ];
 
