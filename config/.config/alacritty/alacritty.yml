@@ -15,7 +15,7 @@ font:
     family: BlexMono Nerd Font
     style: Bold Italic
 
-  size: 11
+  size: 14
 
 # Colors (Base16 Default Dark)
 colors:
@@ -52,4 +52,4 @@ colors:
     white:   '#f8f8f8'
 
 window:
-  opacity: 0.95
+  opacity: 0.80
