@@ -14,7 +14,10 @@ local config = {
         "    ██   ████   ████   ██ ██      ██"
     },
     plugins = {
-        init = {{"sbdchd/neoformat"}, {"nkrkv/nvim-treesitter-rescript"}}
+        init = {
+            {"sbdchd/neoformat"}, {"nkrkv/nvim-treesitter-rescript"},
+            {"nvim-treesitter/nvim-treesitter-angular"}
+        }
     },
     polish = function()
         -- Set autocommands

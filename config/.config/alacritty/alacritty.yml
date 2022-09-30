@@ -51,5 +51,7 @@ colors:
     cyan:    '#86c1b9'
     white:   '#f8f8f8'
 
+  transparent_background_colors: true
+
 window:
-  opacity: 0.80
+  opacity: 0.95

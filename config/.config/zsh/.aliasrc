@@ -61,3 +61,13 @@ alias nsp='nix-shell -p'
 alias anc='vi ~/.config/nvim/lua/user/init.lua'
 alias vscode='NIXPKGS_ALLOW_UNFREE=1 \nix-shell -p vscode'
 alias chrome='NIXPKGS_ALLOW_UNFREE=1 \nix-shell -p google-chrome'
+
+# Docker aliases
+alias dcup='docker compose up -d'
+alias dcd='docker compose down'
+alias dcl='docker compose logs'
+alias dcr='docker compose restart'
+
+# .NET aliases
+alias dema='dotnet ef migrations add'
+alias dedu='dotnet ef database update'
