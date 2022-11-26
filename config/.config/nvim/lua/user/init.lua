@@ -44,7 +44,7 @@ local config = {
             {
                 "opdavies/toggle-checkbox.nvim",
                 config = function()
-                    vim.keymap.set("n", "<leader>T", ":lua require('toggle-checkbox').toggle()<CR>")
+                    vim.keymap.set("n", "<leader><leader>", ":lua require('toggle-checkbox').toggle()<CR>")
                 end
             },
             {
@@ -101,6 +101,10 @@ local config = {
         vim.keymap.set("n", "<leader>D", ":pu=execute('lua print(os.date())')<CR>kJ")
         -- Neoformat
         vim.keymap.set("n", "<leader>F", ":Neoformat<CR><CR>")
+
+        -- JQ formatting
+        vim.keymap.set("v", "<leader>jj", ":% !jq .<CR>")
+        vim.keymap.set("v", "<leader>jc", ":% !jq -c .<CR><CR>")
     end
 }
 
