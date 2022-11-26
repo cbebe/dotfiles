@@ -55,7 +55,7 @@ in {
     sumneko-lua-language-server
     nixfmt
     shfmt
-    deno
+    # deno
     # alacritty
     unzip
     cached-nix-shell # faster nix-shell
