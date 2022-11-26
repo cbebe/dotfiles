@@ -558,10 +558,14 @@ def git-author [] {
   git log  | where $it =~ 'github' | get 0 | lines | where $it =~ 'github' | parse -r ".*?<(?<author>[^>]+)>" | get 0.author
 }
 
-def-env lfcd [] {
-  let out = (lfwrapper | complete | get stdout | str trim)
-  if $out == "" {
-    return
+def-env zc [dir: string] {
+  let old = $env.PWD
+  z $dir
+  if $env.PWD != $old {
+    code .
   }
-  cd $out
+}
+
+def-env lfcd [] {
+  cd (lfwrapper | complete | get stdout | str trim)
 }
