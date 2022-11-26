@@ -546,6 +546,7 @@ alias vi = nvim
 
 source ~/.dotfiles/nu/zoxide.nu
 source ~/.dotfiles/nu/starship.nu
+source ~/.dotfiles/nu/coreutils.nu
 
 def comma [] {
   lines | reduce { |it,acc| $acc + ", " + $it }
