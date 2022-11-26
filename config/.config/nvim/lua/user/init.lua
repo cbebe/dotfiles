@@ -11,17 +11,18 @@ local config = {
     },
     diagnostics = {virtual_text = true, underline = true},
     header = {
-        "████████ ██   ██ ██    ██  █████  ██   ██",
-        "   ██    ██   ██  ██  ██  ██   ██ ██  ██",
-        "   ██    ███████   ████   ██      █████",
-        "   ██    ██   ██    ██    ██   ██ ██  ██",
-        "   ██    ██   ██    ██     █████  ██   ██",
-        " ",
-        "    ███    ██ ██    ██ ██ ███    ███",
-        "    ████   ██ ██    ██ ██ ████  ████",
-        "    ██ ██  ██ ██    ██ ██ ██ ████ ██",
-        "    ██  ██ ██  ██  ██  ██ ██  ██  ██",
-        "    ██   ████   ████   ██ ██      ██"
+        "████████╗██╗  ██╗██╗   ██╗ ██████╗██╗  ██╗",
+        "╚══██╔══╝██║  ██║╚██╗ ██╔╝██╔════╝██║ ██╔╝",
+        "   ██║   ███████║ ╚████╔╝ ██║     █████╔╝",
+        "   ██║   ██╔══██║  ╚██╔╝  ██║     ██╔═██╗",
+        "   ██║   ██║  ██║   ██║   ╚██████╗██║  ██╗",
+        "   ╚═╝   ╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝",
+        "      ███╗   ██╗██╗   ██╗██╗███╗   ███╗",
+        "      ████╗  ██║██║   ██║██║████╗ ████║",
+        "      ██╔██╗ ██║██║   ██║██║██╔████╔██║",
+        "      ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+        "      ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║",
+        "      ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝",
     },
     plugins = {
         init = {
@@ -71,6 +72,17 @@ local config = {
         vim.cmd([[
             highlight Normal ctermbg=none
             highlight NonText ctermbg=none
+        ]])
+
+        vim.cmd([[
+            if &buftype!~?'nofile'
+                highlight ExtraWhitespace ctermbg=red guibg=red
+                match ExtraWhitespace /\s\+$/
+            endif
+            autocmd BufWinEnter * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+$/ | endif
+            autocmd InsertEnter * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+\%#\@<!$/ | endif
+            autocmd InsertLeave * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+$/ | endif
+            autocmd BufWinLeave * if &buftype!~?'nofile' | call clearmatches() | endif
         ]])
         -- Use deno for formatting
         vim.g.neoformat_enabled_typescript = {"denofmt"}
