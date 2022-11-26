@@ -1,3 +1,5 @@
+require 'nvim-treesitter.install'.compilers = { "gcc" }
+
 local config = {
     updater = {
       -- get nightly updates

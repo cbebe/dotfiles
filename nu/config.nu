@@ -557,3 +557,11 @@ def comc [] {
 def git-author [] {
   git log  | where $it =~ 'github' | get 0 | lines | where $it =~ 'github' | parse -r ".*?<(?<author>[^>]+)>" | get 0.author
 }
+
+def-env lfcd [] {
+  let out = (lfwrapper | complete | get stdout | str trim)
+  if $out == "" {
+    return
+  }
+  cd $out
+}
