@@ -567,6 +567,11 @@ def-env zc [dir: string] {
   }
 }
 
+def-env zv [dir: string] {
+  z $dir
+  vi .
+}
+
 def-env lfcd [] {
   cd (lfwrapper | complete | get stdout | str trim)
 }
