@@ -26,8 +26,32 @@ local config = {
     },
     plugins = {
         init = {
-            {"sbdchd/neoformat"}, {"nkrkv/nvim-treesitter-rescript"},
-            {"nvim-treesitter/nvim-treesitter-angular"}, {"LhKipp/nvim-nu"},
+            {
+                "sbdchd/neoformat",
+                config = function()
+                    -- Use deno for formatting
+                    vim.g.neoformat_enabled_typescript = {"denofmt"}
+                    vim.g.neoformat_enabled_typescriptreact = {"denofmt"}
+                    vim.g.neoformat_enabled_javascript = {"denofmt"}
+                    vim.g.neoformat_enabled_javascriptreact = {"denofmt"}
+                    vim.g.neoformat_enabled_markdown = {"denofmt"}
+                    vim.g.neoformat_enabled_json = {"denofmt"}
+                end
+            },
+            {"nkrkv/nvim-treesitter-rescript"},
+            {"nvim-treesitter/nvim-treesitter-angular"},
+            {
+                "LhKipp/nvim-nu",
+                config = function ()
+                    require('nu').setup{}
+                end
+            },
+            {
+                "opdavies/toggle-checkbox.nvim",
+                config = function()
+                    vim.keymap.set("n", "<leader><leader>t", ":lua require('toggle-checkbox').toggle()<CR>")
+                end
+            },
             {
                 "lewis6991/hover.nvim",
                 config = function()
@@ -84,15 +108,9 @@ local config = {
             autocmd InsertLeave * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+$/ | endif
             autocmd BufWinLeave * if &buftype!~?'nofile' | call clearmatches() | endif
         ]])
-        -- Use deno for formatting
-        vim.g.neoformat_enabled_typescript = {"denofmt"}
-        vim.g.neoformat_enabled_typescriptreact = {"denofmt"}
-        vim.g.neoformat_enabled_javascript = {"denofmt"}
-        vim.g.neoformat_enabled_javascriptreact = {"denofmt"}
-        vim.g.neoformat_enabled_markdown = {"denofmt"}
-        vim.g.neoformat_enabled_json = {"denofmt"}
 
-        require('nu').setup {}
+        -- Quick config edit
+        vim.keymap.set("n", "<leader><leader>e", ":e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<CR>")
     end
 }
 
