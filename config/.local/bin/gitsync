@@ -1,0 +1,21 @@
+#!/bin/sh
+
+[ "$1" = "" ] && echo "Usage: $0 COMMIT_MSG [FILE]" && exit
+
+if [ "$2" = "" ]; then
+	# commit the whole repo
+	git_root_dir=$(git rev-parse --show-toplevel)
+
+	cd $git_root_dir
+
+	git add .
+	git commit -m "$1"
+	git push
+
+	cd -
+else
+	# commit a single file
+	git add $2
+	git commit -m "$1"
+	git push
+fi

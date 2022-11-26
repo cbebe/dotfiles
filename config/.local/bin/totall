@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Get the total lines from all the files in the current directory
+
+total_lines=0
+
+for file in $(find .); do
+	[ -f $file ] && {
+		total_lines=$(($total_lines + $(wc -l $file | cut -f1 -d' ')))
+	}
+done
+
+echo $total_lines

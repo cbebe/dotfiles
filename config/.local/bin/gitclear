@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git branch -d $(git branch | grep -Ev '(main|master)')
+git remote prune origin

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo $(sxiv -t -o ~/Pictures/Wallpapers) | xargs -I {} cp {} ~/.cache/current.png && swaymsg output '*' bg ~/.cache/current.png fill

@@ -1,0 +1,4 @@
+#!/bin/sh
+editor=${EDITOR:-nvim}
+
+[[ -e TODO.md ]] && $editor TODO.md || $editor ~/.dotfiles/personal/todo.md

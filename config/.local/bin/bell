@@ -1,0 +1,10 @@
+#!/usr/bin/env nu
+
+let os = (sys | get host.long_os_version | split column " " | $in.0.column1)
+
+if $os == "Linux" {
+  # Exposing myself here as a GNOME user
+  paplay /usr/share/sounds/gnome/default/alerts/drip.ogg
+} else {
+  # TODO: Handle Windows and Mac
+}

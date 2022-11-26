@@ -1,0 +1,73 @@
+# vim:ft=zsh
+# -------
+# Aliases
+# -------
+
+alias vi="nvim"
+alias ls="exa --color=always"
+alias ll="ls -alh"
+alias l="ls -alh"
+
+alias sc="stow -d $HOME/.dotfiles config -t $HOME"
+
+alias he="vi +/home\.packages $HOME/.config/nixpkgs/home.nix"
+alias hs="home-manager switch"
+alias nixc="vi $HOME/.config/nixpkgs/nixos/configuration.nix"
+alias nixs="vi $HOME/.config/nixpkgs/nixos/sway.nix"
+alias nixb='doas nixos-rebuild switch'
+alias nixgcb="doas nix-collect-garbage -d && doas nixos-rebuild switch"
+alias drs='darwin-rebuild switch'
+
+alias es="vi $HOME/.config/zsh/.aliasrc"
+alias s="source $HOME/.config/zsh/.zshrc"
+
+# auto options
+alias mkdir="mkdir -pv"
+alias ping="ping -c 5"
+alias wget="wget -c"
+alias g="goto"
+
+# tar
+alias tarx="tar -xzvf"
+alias tarc="tar -czvf"
+
+alias tmuxs="tmux attach-session -t"
+
+# engg vpn
+alias vpn="sh ~/scripts/enggvpn.sh"
+
+# screenshot crop script
+alias crop="sh ~/scripts/crop-dual-monitor.sh"
+
+# get public key
+alias pk="cat ~/.ssh/id_ed25519.pub"
+
+alias setclip="xclip -selection c"
+alias getclip="xclip -selection c -o"
+
+# safe options for mv, cp, and rm
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+
+alias o="xdg-open"
+alias sshx='ssh -o SetEnv="TERM=xterm-256color"'
+alias sus='doas systemctl suspend'
+
+alias nix-shell='cached-nix-shell'
+alias nsz='nix-shell --run zsh'
+alias nsp='nix-shell -p'
+
+alias anc='vi ~/.config/nvim/lua/user/init.lua'
+alias vscode='NIXPKGS_ALLOW_UNFREE=1 \nix-shell -p vscode'
+alias chrome='NIXPKGS_ALLOW_UNFREE=1 \nix-shell -p google-chrome'
+
+# Docker aliases
+alias dcup='docker compose up -d'
+alias dcd='docker compose down'
+alias dcl='docker compose logs'
+alias dcr='docker compose restart'
+
+# .NET aliases
+alias dema='dotnet ef migrations add'
+alias dedu='dotnet ef database update'

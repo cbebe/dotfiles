@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Hacky script to use kitty on GNOME
+# Must precede the actual gnome-terminal in search path
+
+kitty $(echo $@ | sed "s/-- /-e /g")

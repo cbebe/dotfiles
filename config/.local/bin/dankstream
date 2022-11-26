@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Notify every 11 minutes to interact with stream in Dank Memer
+
+while :; do
+	notify-send "Interact with Stream" "11 minutes are up" || exit
+	sleep 630
+done
