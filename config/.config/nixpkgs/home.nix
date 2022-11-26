@@ -32,6 +32,7 @@ in {
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    wget
     gnupg # Git GPG signing
     stow # creating symlinks to .config and .local
     fzf # tmux-sessionizer
@@ -58,11 +59,13 @@ in {
     # deno
     # alacritty
     unzip
-    cached-nix-shell # faster nix-shell
+    # cached-nix-shell # faster nix-shell
     gnumake
     luaformatter
     python39Packages.sqlparse
     clang-tools
+    zathura
+    imagemagick
   ];
 
   programs.exa.enable = true;
