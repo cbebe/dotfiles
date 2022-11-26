@@ -56,7 +56,7 @@ in {
     nixfmt
     shfmt
     deno
-    alacritty
+    # alacritty
     unzip
     cached-nix-shell # faster nix-shell
     gnumake
