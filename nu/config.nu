@@ -479,7 +479,7 @@ let-env config = {
       name: kill-line
       modifier: control
       keycode: char_k
-      mode: [emacs, vi_normal, vi_insert]
+      mode: emacs
       event: {
         until: [
           {edit: cuttolineend}
@@ -520,6 +520,16 @@ let-env config = {
       }
     }
     {
+      name: lfcd
+      modifier: control
+      keycode: char_p
+      mode: [vi_normal, vi_insert]
+      event: {
+        send: executehostcommand
+        cmd: "lfcd"
+      }
+    }
+    {
       name: zellij-session
       modifier: control
       keycode: char_f
@@ -533,3 +543,17 @@ let-env config = {
 }
 
 alias vi = nvim
+
+source ~/.dotfiles/nu/zoxide.nu
+
+def comma [] {
+  lines | reduce { |it,acc| $acc + ", " + $it }
+}
+
+def comc [] {
+  comma | clip
+}
+
+def git-author [] {
+  git log  | where $it =~ 'github' | get 0 | lines | where $it =~ 'github' | parse -r ".*?<(?<author>[^>]+)>" | get 0.author
+}
