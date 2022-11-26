@@ -74,6 +74,10 @@ local config = {
             command = "lua vim.diagnostic.open_float(nil, {focus=false})"
         })
 
+        require("notify").setup({
+          background_colour = "#000000",
+        })
+
         vim.o.updatetime = 250
 
         -- Make background transparent
