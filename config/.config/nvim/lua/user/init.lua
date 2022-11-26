@@ -40,12 +40,7 @@ local config = {
             },
             {"nkrkv/nvim-treesitter-rescript"},
             {"nvim-treesitter/nvim-treesitter-angular"},
-            {
-                "LhKipp/nvim-nu",
-                config = function ()
-                    require('nu').setup{}
-                end
-            },
+            {"LhKipp/nvim-nu", config = function () require('nu').setup{} end},
             {
                 "opdavies/toggle-checkbox.nvim",
                 config = function()
@@ -56,19 +51,8 @@ local config = {
                 "lewis6991/hover.nvim",
                 config = function()
                     require("hover").setup {
-                        init = function()
-                            -- Require providers
-                            require("hover.providers.lsp")
-                            -- require('hover.providers.gh')
-                            -- require('hover.providers.jira')
-                            -- require('hover.providers.man')
-                            -- require('hover.providers.dictionary')
-                        end,
-                        preview_opts = {
-                            border = nil
-                        },
-                        -- Whether the contents of a currently open hover window should be moved
-                        -- to a :h preview-window when pressing the hover keymap.
+                        init = function() require("hover.providers.lsp") end,
+                        preview_opts = { border = nil },
                         preview_window = false,
                         title = true
                     }
@@ -96,6 +80,8 @@ local config = {
         vim.cmd([[
             highlight Normal ctermbg=none
             highlight NonText ctermbg=none
+            highlight Normal guibg=none
+            highlight NonText guibg=none
         ]])
 
         vim.cmd([[
