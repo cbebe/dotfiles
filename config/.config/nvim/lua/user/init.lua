@@ -41,6 +41,7 @@ local config = {
             {"nkrkv/nvim-treesitter-rescript"},
             {"nvim-treesitter/nvim-treesitter-angular"},
             {"LhKipp/nvim-nu", config = function () require('nu').setup{} end},
+            {"dstein64/vim-startuptime"},
             {
                 "opdavies/toggle-checkbox.nvim",
                 config = function()
