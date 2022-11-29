@@ -510,6 +510,16 @@ let-env config = {
     }
     # My Keybindings
     {
+      name: notes
+      modifier: control
+      keycode: char_n
+      mode: [vi_normal, vi_insert]
+      event: {
+        send: executehostcommand
+        cmd: "z notes; nvim TODO.md"
+      }
+    }
+    {
       name: lazygit
       modifier: control
       keycode: char_g
