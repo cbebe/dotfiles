@@ -95,7 +95,16 @@ local config = {
                 end
             },
             {"nvim-treesitter/nvim-treesitter-angular"},
-            {"LhKipp/nvim-nu", config = function () require('nu').setup{} end},
+            {
+                "LhKipp/nvim-nu",
+                config = function()
+                    vim.api.nvim_create_autocmd("BufWinEnter", {
+                        desc = "Do nvim-nu setup",
+                        pattern = "*.nu",
+                        command = "lua require('nu').setup{}"
+                    })
+                end
+            },
             {"dstein64/vim-startuptime"},
             {
                 "opdavies/toggle-checkbox.nvim",
