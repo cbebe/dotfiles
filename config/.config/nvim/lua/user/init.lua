@@ -79,6 +79,21 @@ local config = {
                 end
             },
             {"nkrkv/nvim-treesitter-rescript"},
+            {
+                "hkupty/nvimux", config = function()
+                -- Nvimux configuration
+                local nvimux = require('nvimux')
+                nvimux.setup{
+                    config = {
+                        prefix = '<C-a>',
+                    },
+                    bindings = {
+                        {{'n', 'v', 'i', 't'}, 's', nvimux.commands.horizontal_split},
+                        {{'n', 'v', 'i', 't'}, 'v', nvimux.commands.vertical_split},
+                    }
+                }
+                end
+            },
             {"nvim-treesitter/nvim-treesitter-angular"},
             {"LhKipp/nvim-nu", config = function () require('nu').setup{} end},
             {"dstein64/vim-startuptime"},
