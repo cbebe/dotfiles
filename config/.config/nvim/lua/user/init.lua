@@ -2,9 +2,16 @@
 
 require 'nvim-treesitter.install'.compilers = { "gcc" }
 
+local function FileType()
+    local bt = vim.bo.buftype
+    local ft = vim.bo.filetype
+
+    return bt ~= 'nofile' and ft ~= '' and ft ~= 'neo-tree'
+end
+
 local function CallIfFileType(cmd)
     return function()
-        if vim.bo.buftype ~= 'nofile' and vim.bo.filetype ~= '' then
+        if FileType() then
             vim.cmd(cmd)
         end
     end
@@ -25,8 +32,7 @@ InsertLeaveTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
 BufWinLeaveTrail = CallIfFileType([[ call clearmatches() ]])
 
 local function MatchTrailingWhitespace()
-    local ft = vim.bo.filetype
-    if vim.bo.buftype ~= 'nofile' then
+    if FileType() then
         vim.cmd([[
             highlight ExtraWhitespace ctermbg=red guibg=red
             match ExtraWhitespace /\s\+$/
