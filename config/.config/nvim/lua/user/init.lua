@@ -1,4 +1,44 @@
+-- vim:set ts=4 sw=4 sts=4 et :
+
 require 'nvim-treesitter.install'.compilers = { "gcc" }
+
+local function CallIfFileType(cmd)
+    return function()
+        if vim.bo.buftype ~= 'nofile' and vim.bo.filetype ~= '' then
+            vim.cmd(cmd)
+        end
+    end
+end
+
+local function CreateTrailingCmd(auto, group, cmd)
+    vim.api.nvim_create_autocmd(auto, {
+        desc = "Match extra whitespace",
+        group = "MatchTrailing",
+        pattern = "*",
+        command = "lua " .. cmd .. "()"
+    })
+end
+
+BufWinEnterTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
+InsertEnterTrail = CallIfFileType([[ match ExtraWhitespace /\s\+\%#\@<!$/ ]])
+InsertLeaveTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
+BufWinLeaveTrail = CallIfFileType([[ call clearmatches() ]])
+
+local function MatchTrailingWhitespace()
+    local ft = vim.bo.filetype
+    if vim.bo.buftype ~= 'nofile' then
+        vim.cmd([[
+            highlight ExtraWhitespace ctermbg=red guibg=red
+            match ExtraWhitespace /\s\+$/
+        ]])
+    end
+
+    vim.api.nvim_create_augroup("MatchTrailing", {})
+    CreateTrailingCmd("BufWinEnter", "MatchTrailing", "BufWinEnterTrail")
+    CreateTrailingCmd("InsertEnter", "MatchTrailing", "InsertEnterTrail")
+    CreateTrailingCmd("InsertLeave", "MatchTrailing", "InsertLeaveTrail")
+    CreateTrailingCmd("BufWinLeave", "MatchTrailing", "BufWinLeaveTrail")
+end
 
 local config = {
     updater = {
@@ -89,16 +129,7 @@ local config = {
             highlight NonText guibg=none
         ]])
 
-        vim.cmd([[
-            if &buftype!~?'nofile'
-                highlight ExtraWhitespace ctermbg=red guibg=red
-                match ExtraWhitespace /\s\+$/
-            endif
-            autocmd BufWinEnter * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+$/ | endif
-            autocmd InsertEnter * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+\%#\@<!$/ | endif
-            autocmd InsertLeave * if &buftype!~?'nofile' | match ExtraWhitespace /\s\+$/ | endif
-            autocmd BufWinLeave * if &buftype!~?'nofile' | call clearmatches() | endif
-        ]])
+        MatchTrailingWhitespace()
 
         -- Quick config edit
         vim.keymap.set("n", "<leader>E", ":e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<CR>")
