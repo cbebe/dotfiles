@@ -42,12 +42,12 @@ end
 
 local config = {
     updater = {
-      -- get nightly updates
-      channel = "nightly",
-      -- disable automatically reloading AstroNvim after an update
-      auto_reload = false,
-      -- disable automatically quitting AstroNvim after an update
-      auto_quit = false,
+        -- get nightly updates
+        channel = "nightly",
+        -- disable automatically reloading AstroNvim after an update
+        auto_reload = false,
+        -- disable automatically quitting AstroNvim after an update
+        auto_quit = false,
     },
     diagnostics = {virtual_text = true, underline = true},
     header = {
