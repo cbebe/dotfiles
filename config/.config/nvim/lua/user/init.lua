@@ -168,6 +168,12 @@ local config = {
         -- JQ formatting
         vim.keymap.set("v", "<leader>jj", ":% !jq .<CR>")
         vim.keymap.set("v", "<leader>jc", ":% !jq -c .<CR><CR>")
+
+        if vim.loop.os_uname().sysname == "Windows_NT" then
+            -- Use nushell on Windows
+            -- (hardcoded path >:( what if I decide to use nushell compiled from source)
+            vim.cmd([[ let &shell = '"C:/Program Files/nu/bin/nu.exe"' ]])
+        end
     end
 }
 
