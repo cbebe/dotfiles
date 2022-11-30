@@ -32,12 +32,9 @@ InsertLeaveTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
 BufWinLeaveTrail = CallIfFileType([[ call clearmatches() ]])
 
 local function MatchTrailingWhitespace()
-    if FileType() then
-        vim.cmd([[
-            highlight ExtraWhitespace ctermbg=red guibg=red
-            match ExtraWhitespace /\s\+$/
-        ]])
-    end
+    vim.cmd([[
+        highlight ExtraWhitespace ctermbg=red guibg=red
+    ]])
 
     vim.api.nvim_create_augroup("MatchTrailing", {})
     CreateTrailingCmd("BufWinEnter", "MatchTrailing", "BufWinEnterTrail")
