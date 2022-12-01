@@ -52,6 +52,7 @@ bindkey -s ^f "tmux-sessionizer\n"
 bindkey -s ^r "tmux-sessionizer-nvim\n"
 bindkey -s ^g "lazygit\n"
 bindkey -s ^t "vi ~/.dotfiles/personal/todo.md\n"
+bindkey -s ^n "z notes; vi TODO.md\n"
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {
