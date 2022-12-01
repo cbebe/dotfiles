@@ -170,10 +170,22 @@ local config = {
         vim.keymap.set("v", "<leader>jj", ":% !jq .<CR>")
         vim.keymap.set("v", "<leader>jc", ":% !jq -c .<CR><CR>")
 
+
         if vim.loop.os_uname().sysname == "Windows_NT" then
+            -- nushell
+            vim.keymap.set("n", "<leader>tt", ":terminal<CR>inu<CR>")
             -- Use nushell on Windows
-            -- (hardcoded path >:( what if I decide to use nushell compiled from source)
-            vim.cmd([[ let &shell = '"C:/Program Files/nu/bin/nu.exe"' ]])
+            -- This will break tempfile redirection!!
+            -- TODO: Find alternative ways to create terminal
+
+            -- vim.cmd([[
+            --     let &shell = 'nu'
+            --     let &shellpipe = "| save %s"
+            --     let &shellredir = "| save %s"
+            --     let &shellcmdflag = '-c'
+            --     let &shellquote = ""
+            --     let &shellxquote = ""
+            -- ]])
         end
     end
 }
