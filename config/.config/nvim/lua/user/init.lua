@@ -109,6 +109,7 @@ local config = {
                     })
                 end
             },
+            {'ggandor/leap.nvim'},
             {"dstein64/vim-startuptime"},
             {
                 "opdavies/toggle-checkbox.nvim",
@@ -187,6 +188,8 @@ local config = {
             --     let &shellxquote = ""
             -- ]])
         end
+
+        require('leap').add_default_mappings()
     end
 }
 
