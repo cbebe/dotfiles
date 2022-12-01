@@ -81,6 +81,7 @@ local config = {
                     vim.g.neoformat_enabled_json = {"denofmt"}
                 end
             },
+            {'ThePrimeagen/vim-be-good'},
             {"nkrkv/nvim-treesitter-rescript"},
             {
                 "hkupty/nvimux", config = function()
