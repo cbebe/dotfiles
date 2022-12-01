@@ -1,0 +1,4 @@
+#!/bin/sh
+# Runs wally-cli on the most recently downloaded HEX file
+
+wally-cli $(ls -t ~/Downloads/*.hex | head -n1)
