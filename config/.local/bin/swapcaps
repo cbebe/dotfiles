@@ -1,2 +1,11 @@
 #!/bin/sh
-gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:swapcaps']"
+
+setting="['ctrl:swapcaps']"
+if [ "$(gsettings get org.gnome.desktop.input-sources xkb-options)" = "['ctrl:swapcaps']" ]; then
+  echo "reverting to default behaviour"
+  setting="[]"
+else
+  echo "swapping left ctrl with capslock"
+fi
+
+gsettings set org.gnome.desktop.input-sources xkb-options $setting
