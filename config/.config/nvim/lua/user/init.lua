@@ -69,6 +69,7 @@ local config = {
     },
     plugins = {
         init = {
+            {'lambdalisue/suda.vim', config = function() vim.g.suda_smart_edit = 1 end},
             {
                 "sbdchd/neoformat",
                 config = function()
