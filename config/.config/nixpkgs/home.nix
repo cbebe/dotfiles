@@ -37,7 +37,7 @@ in {
     stow # creating symlinks to .config and .local
     fzf # tmux-sessionizer
     fd # telescope.nvim
-    go_1_18 # go uses 1.17 by default as of 06/22/22
+    # go_1_18 # go uses 1.17 by default as of 06/22/22
     gopls
     # rustup
     ripgrep
