@@ -83,21 +83,6 @@ local config = {
             },
             {'ThePrimeagen/vim-be-good'},
             {"nkrkv/nvim-treesitter-rescript"},
-            {
-                "hkupty/nvimux", config = function()
-                -- Nvimux configuration
-                local nvimux = require('nvimux')
-                nvimux.setup{
-                    config = {
-                        prefix = '<C-a>',
-                    },
-                    bindings = {
-                        {{'n', 'v', 'i', 't'}, 's', nvimux.commands.horizontal_split},
-                        {{'n', 'v', 'i', 't'}, 'v', nvimux.commands.vertical_split},
-                    }
-                }
-                end
-            },
             {"nvim-treesitter/nvim-treesitter-angular"},
             {
                 "LhKipp/nvim-nu",
@@ -170,6 +155,12 @@ local config = {
         -- JQ formatting
         vim.keymap.set("v", "<leader>jj", ":% !jq .<CR>")
         vim.keymap.set("v", "<leader>jc", ":% !jq -c .<CR><CR>")
+
+        -- Run go
+        vim.keymap.set("n", "<leader>G", ":!go run %<CR>")
+
+        -- Clear search
+        vim.keymap.set("n", "<leader>ss", ':let @/ = ""<CR>')
 
 
         if vim.loop.os_uname().sysname == "Windows_NT" then
