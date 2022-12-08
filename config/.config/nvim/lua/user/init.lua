@@ -2,45 +2,19 @@
 
 require 'nvim-treesitter.install'.compilers = { "gcc" }
 
-local function FileType()
-    local bt = vim.bo.buftype
-    local ft = vim.bo.filetype
-
-    return bt ~= 'nofile' and ft ~= '' and ft ~= 'neo-tree'
-end
-
-local function CallIfFileType(cmd)
-    return function()
-        if FileType() then
-            vim.cmd(cmd)
-        end
-    end
-end
-
 local function CreateTrailingCmd(auto, group, cmd)
     vim.api.nvim_create_autocmd(auto, {
         desc = "Match extra whitespace",
         group = "MatchTrailing",
         pattern = "*",
-        command = "lua " .. cmd .. "()"
+        callback = function()
+            local bt = vim.bo.buftype
+            local ft = vim.bo.filetype
+            if bt ~= 'nofile' and ft ~= '' and ft ~= 'neo-tree' then
+                vim.cmd(cmd)
+            end
+        end,
     })
-end
-
-BufWinEnterTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
-InsertEnterTrail = CallIfFileType([[ match ExtraWhitespace /\s\+\%#\@<!$/ ]])
-InsertLeaveTrail = CallIfFileType([[ match ExtraWhitespace /\s\+$/ ]])
-BufWinLeaveTrail = CallIfFileType([[ call clearmatches() ]])
-
-local function MatchTrailingWhitespace()
-    vim.cmd([[
-        highlight ExtraWhitespace ctermbg=red guibg=red
-    ]])
-
-    vim.api.nvim_create_augroup("MatchTrailing", {})
-    CreateTrailingCmd("BufWinEnter", "MatchTrailing", "BufWinEnterTrail")
-    CreateTrailingCmd("InsertEnter", "MatchTrailing", "InsertEnterTrail")
-    CreateTrailingCmd("InsertLeave", "MatchTrailing", "InsertLeaveTrail")
-    CreateTrailingCmd("BufWinLeave", "MatchTrailing", "BufWinLeaveTrail")
 end
 
 local config = {
@@ -91,18 +65,13 @@ local config = {
                     vim.api.nvim_create_autocmd("BufWinEnter", {
                         desc = "Do nvim-nu setup",
                         pattern = "*.nu",
-                        command = "lua require('nu').setup{}"
+                        callback = function () require('nu').setup{} end
                     })
                 end
             },
             {'ggandor/leap.nvim'},
             {"dstein64/vim-startuptime"},
-            {
-                "opdavies/toggle-checkbox.nvim",
-                config = function()
-                    vim.keymap.set("n", "<leader><leader>", ":lua require('toggle-checkbox').toggle()<CR>")
-                end
-            },
+            {"opdavies/toggle-checkbox.nvim"},
             {
                 "lewis6991/hover.nvim",
                 config = function()
@@ -112,13 +81,33 @@ local config = {
                         preview_window = false,
                         title = true
                     }
-
-                    -- Setup keymaps
-                    vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-                    vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
                 end
             }
         }
+    },
+    mappings = {
+        n = {
+            -- hover
+            ["K"] = { require("hover").hover, desc = "hover.nvim" },
+            ["gK"] = { require("hover").hover_select, desc = "hover.nvim (select)" },
+
+            ["<leader>E"] = { "<cmd>e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<cr>", desc = "Edit user configuration" },
+            ["<leader>D"] = { "<cmd>pu=execute('lua print(os.date())')<cr>kJ", desc = "Print date" },
+            ["<leader>F"] = { "<cmd>Neoformat<cr><cr>", desc = "Run Neoformat on current buffer" },
+            ["<leader>ss"] = { '<cmd>let @/ = ""<cr>', desc = "Clear search" },
+            ["<leader><leader>"] = { require('toggle-checkbox').toggle, desc = "Toggle checkbox" },
+            ["<C-d>"] = { "<C-d>zz" },
+            ["<C-u>"] = { "<C-u>zz" },
+        },
+        v = {
+            ["<leader>jj"] = { "<cmd>% !jq .<cr>", desc = "Pretty-print highlighted JSON" },
+            ["<leader>jc"] = { "<cmd>% !jq -c .<cr><cr>", desc = "Minify highlighted JSON" },
+        },
+    },
+    ["which-key"] = {
+        register = {
+            v = { ["<leader>"] = { j = { name = "JSON" } } },
+        },
     },
     polish = function()
         -- Set autocommands
@@ -127,7 +116,7 @@ local config = {
             desc = "Show line diagnostics automatically in hover window",
             group = "ShowDiagnostics",
             pattern = "*",
-            command = "lua vim.diagnostic.open_float(nil, {focus=false})"
+            callback = function() vim.diagnostic.open_float(nil, {focus=false}) end,
         })
 
         require("notify").setup({
@@ -144,27 +133,15 @@ local config = {
             highlight NonText guibg=none
         ]])
 
-        MatchTrailingWhitespace()
-
-        -- Quick config edit
-        vim.keymap.set("n", "<leader>E", ":e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<CR>")
-        -- Print date
-        vim.keymap.set("n", "<leader>D", ":pu=execute('lua print(os.date())')<CR>kJ")
-        -- Neoformat
-        vim.keymap.set("n", "<leader>F", ":Neoformat<CR><CR>")
-
-        -- JQ formatting
-        vim.keymap.set("v", "<leader>jj", ":% !jq .<CR>")
-        vim.keymap.set("v", "<leader>jc", ":% !jq -c .<CR><CR>")
+        vim.cmd([[ highlight ExtraWhitespace ctermbg=red guibg=red ]])
+        vim.api.nvim_create_augroup("MatchTrailing", {})
+        CreateTrailingCmd("BufWinEnter", "MatchTrailing", [[ match ExtraWhitespace /\s\+$/ ]])
+        CreateTrailingCmd("InsertEnter", "MatchTrailing", [[ match ExtraWhitespace /\s\+\%#\@<!$/ ]])
+        CreateTrailingCmd("InsertLeave", "MatchTrailing", [[ match ExtraWhitespace /\s\+$/ ]])
+        CreateTrailingCmd("BufWinLeave", "MatchTrailing", [[ call clearmatches() ]])
 
         -- Run go
         vim.keymap.set("n", "<leader>G", ":!go run %<CR>")
-
-        -- Clear search
-        vim.keymap.set("n", "<leader>ss", ':let @/ = ""<CR>')
-
-        vim.keymap.set("n", "<C-d>", "<C-d>zz")
-        vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
         if vim.loop.os_uname().sysname == "Windows_NT" then
             -- nushell
