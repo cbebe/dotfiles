@@ -2,6 +2,16 @@
 
 require 'nvim-treesitter.install'.compilers = { "gcc" }
 
+local function removeTrailingWhiteSpace()
+	vim.cmd([[
+    let _s=@/
+    %s/\s\+$//e
+    let @/=_s
+    nohl
+    unlet _s
+  ]])
+end
+
 local function CreateTrailingCmd(auto, group, cmd)
     vim.api.nvim_create_autocmd(auto, {
         desc = "Match extra whitespace",
@@ -100,6 +110,7 @@ local config = {
             ["<C-u>"] = { "<C-u>zz" },
 
             ["<leader>fl"] = { "<cmd>cd %:p:h<cr>", desc = "Change current directory to the file in the buffer" },
+            ["<leader>rs"] = { removeTrailingWhiteSpace, desc = "Remove all trailing whitespace" }
         },
         v = {
             ["<leader>jj"] = { "<cmd>% !jq .<cr>", desc = "Pretty-print highlighted JSON" },
