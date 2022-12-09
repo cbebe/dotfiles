@@ -530,6 +530,16 @@ let-env config = {
       }
     }
     {
+      name: jj
+      modifier: control
+      keycode: char_j
+      mode: [vi_normal, vi_insert]
+      event: {
+        send: executehostcommand
+        cmd: "jj | clip"
+      }
+    }
+    {
       name: lfcd
       modifier: control
       keycode: char_p
