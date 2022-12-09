@@ -98,6 +98,8 @@ local config = {
             ["<leader><leader>"] = { require('toggle-checkbox').toggle, desc = "Toggle checkbox" },
             ["<C-d>"] = { "<C-d>zz" },
             ["<C-u>"] = { "<C-u>zz" },
+
+            ["<leader>fl"] = { "<cmd>cd %:p:h<cr>", desc = "Change current directory to the file in the buffer" },
         },
         v = {
             ["<leader>jj"] = { "<cmd>% !jq .<cr>", desc = "Pretty-print highlighted JSON" },
