@@ -11,6 +11,7 @@ alias cp = coreutils cp
 alias csplit = coreutils csplit
 alias cut = coreutils cut
 alias date = coreutils date
+alias head = coreutils head
 alias pr = coreutils pr
 alias printenv = coreutils printenv
 alias printf = coreutils printf
