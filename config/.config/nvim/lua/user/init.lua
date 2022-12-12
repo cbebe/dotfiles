@@ -13,18 +13,15 @@ local function removeTrailingWhiteSpace()
 end
 
 local function CreateTrailingCmd(auto, group, cmd)
-    vim.api.nvim_create_autocmd(auto, {
-        desc = "Match extra whitespace",
-        group = "MatchTrailing",
-        pattern = "*",
-        callback = function()
-            local bt = vim.bo.buftype
-            local ft = vim.bo.filetype
-            if bt ~= 'nofile' and ft ~= '' and ft ~= 'neo-tree' then
-                vim.cmd(cmd)
-            end
-        end,
-    })
+    local function callback()
+        local bt = vim.bo.buftype
+        local ft = vim.bo.filetype
+        if bt ~= 'nofile' and ft ~= '' and ft ~= 'neo-tree' then
+            vim.cmd(cmd)
+        end
+    end
+    local desc = "Match extra whitespace on " .. auto
+    vim.api.nvim_create_autocmd(auto, { desc = desc, group = group, pattern = "*", callback = callback })
 end
 
 local config = {
@@ -69,16 +66,7 @@ local config = {
             {'ThePrimeagen/vim-be-good'},
             {"nkrkv/nvim-treesitter-rescript"},
             {"nvim-treesitter/nvim-treesitter-angular"},
-            {
-                "LhKipp/nvim-nu",
-                config = function()
-                    vim.api.nvim_create_autocmd("BufWinEnter", {
-                        desc = "Do nvim-nu setup",
-                        pattern = "*.nu",
-                        callback = function () require('nu').setup{} end
-                    })
-                end
-            },
+            {"LhKipp/nvim-nu"},
             {'ggandor/leap.nvim'},
             {"dstein64/vim-startuptime"},
             {"opdavies/toggle-checkbox.nvim"},
@@ -133,7 +121,7 @@ local config = {
         })
 
         require("notify").setup({
-          background_colour = "#000000",
+            background_colour = "#000000",
         })
 
         vim.o.updatetime = 250
@@ -147,11 +135,17 @@ local config = {
         ]])
 
         vim.cmd([[ highlight ExtraWhitespace ctermbg=red guibg=red ]])
-        vim.api.nvim_create_augroup("MatchTrailing", {})
-        CreateTrailingCmd("BufWinEnter", "MatchTrailing", [[ match ExtraWhitespace /\s\+$/ ]])
-        CreateTrailingCmd("InsertEnter", "MatchTrailing", [[ match ExtraWhitespace /\s\+\%#\@<!$/ ]])
-        CreateTrailingCmd("InsertLeave", "MatchTrailing", [[ match ExtraWhitespace /\s\+$/ ]])
-        CreateTrailingCmd("BufWinLeave", "MatchTrailing", [[ call clearmatches() ]])
+        local match_group = vim.api.nvim_create_augroup("MatchTrailing", { clear = true  })
+        CreateTrailingCmd("BufWinEnter", match_group, [[ match ExtraWhitespace /\s\+$/ ]])
+        CreateTrailingCmd("InsertEnter", match_group, [[ match ExtraWhitespace /\s\+\%#\@<!$/ ]])
+        CreateTrailingCmd("InsertLeave", match_group, [[ match ExtraWhitespace /\s\+$/ ]])
+        CreateTrailingCmd("BufWinLeave", match_group, [[ call clearmatches() ]])
+
+        vim.api.nvim_create_autocmd("BufWinEnter", {
+            desc = "Do nvim-nu setup",
+            pattern = "*.nu",
+            callback = function () require('nu').setup{} end
+        })
 
         -- Run go
         vim.keymap.set("n", "<leader>G", ":!go run %<CR>")
