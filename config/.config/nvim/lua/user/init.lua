@@ -155,11 +155,15 @@ local config = {
         })
 
         -- Run go
-        vim.keymap.set("n", "<leader>G", ":!go run %<CR>")
+        vim.api.nvim_create_autocmd("BufWinEnter", {
+            desc = "Run go file",
+            pattern = "*.go",
+            callback = function() vim.keymap.set("n", "<leader>G", "<cmd>!go run %<cr>") end
+        })
 
         if vim.loop.os_uname().sysname == "Windows_NT" then
             -- nushell
-            vim.keymap.set("n", "<leader>tt", ":terminal<CR>inu<CR>")
+            vim.keymap.set("n", "<leader>tt", "<cmd>terminal<cr>inu<cr>")
             -- Use nushell on Windows
             -- This will break tempfile redirection!!
             -- TODO: Find alternative ways to create terminal
