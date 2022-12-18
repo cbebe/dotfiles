@@ -67,6 +67,12 @@ local config = {
             {"nkrkv/nvim-treesitter-rescript"},
             {"nvim-treesitter/nvim-treesitter-angular"},
             {"LhKipp/nvim-nu"},
+            {
+                'APZelos/blamer.nvim',
+                config = function()
+                    vim.g.blamer_delay = 500
+                end
+            },
             {'ggandor/leap.nvim'},
             {"dstein64/vim-startuptime"},
             {"opdavies/toggle-checkbox.nvim"},
@@ -88,6 +94,7 @@ local config = {
             -- hover
             ["K"] = { require("hover").hover, desc = "hover.nvim" },
             ["gK"] = { require("hover").hover_select, desc = "hover.nvim (select)" },
+			["<leader>gB"] = { "<cmd>BlamerToggle<cr>", desc = "Toggle Git blame" },
 
             ["<leader>E"] = { "<cmd>e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<cr>", desc = "Edit user configuration" },
             ["<leader>D"] = { "<cmd>pu=execute('lua print(os.date())')<cr>kJ", desc = "Print date" },
