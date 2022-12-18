@@ -92,8 +92,8 @@ local config = {
     mappings = {
         n = {
             -- hover
-            ["K"] = { require("hover").hover, desc = "hover.nvim" },
-            ["gK"] = { require("hover").hover_select, desc = "hover.nvim (select)" },
+            ["gh"] = { require("hover").hover, desc = "hover.nvim" },
+            ["gH"] = { require("hover").hover_select, desc = "hover.nvim (select)" },
 			["<leader>gB"] = { "<cmd>BlamerToggle<cr>", desc = "Toggle Git blame" },
 
             ["<leader>E"] = { "<cmd>e ~/.dotfiles/config/.config/nvim/lua/user/init.lua<cr>", desc = "Edit user configuration" },
