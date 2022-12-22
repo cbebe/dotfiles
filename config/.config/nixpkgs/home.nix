@@ -10,8 +10,6 @@ let
     "/Users/${username}"
   else
     throw "Unknown operating system");
-  nodejs = pkgs.nodejs-16_x;
-  nodePackages = pkgs.nodePackages.override { inherit nodejs; };
 in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -37,15 +35,9 @@ in {
     stow # creating symlinks to .config and .local
     fzf # tmux-sessionizer
     fd # telescope.nvim
-    # go_1_18 # go uses 1.17 by default as of 06/22/22
-    gopls
-    # rustup
     ripgrep
-    zoxide
     tmux
     neofetch
-    lf
-    lazygit
     du-dust
     ani-cli
     mpv
@@ -56,13 +48,8 @@ in {
     sumneko-lua-language-server
     nixfmt
     shfmt
-    # deno
-    # alacritty
     unzip
-    # cached-nix-shell # faster nix-shell
-    gnumake
     luaformatter
-    python39Packages.sqlparse
     clang-tools
     zathura
     imagemagick
