@@ -530,6 +530,16 @@ let-env config = {
       }
     }
     {
+      name: asa
+      modifier: control
+      keycode: char_k
+      mode: [vi_normal, vi_insert]
+      event: {
+        send: executehostcommand
+        cmd: "z fr; asa"
+      }
+    }
+    {
       name: jj
       modifier: control
       keycode: char_j
@@ -540,9 +550,16 @@ let-env config = {
       }
     }
     {
+      name: reedline
+      modifier: control
+      keycode: char_v
+      mode: [vi_normal, vi_insert]
+      event: { send: openeditor }
+    }
+    {
       name: lfcd
       modifier: control
-      keycode: char_p
+      keycode: char_o
       mode: [vi_normal, vi_insert]
       event: {
         send: executehostcommand
