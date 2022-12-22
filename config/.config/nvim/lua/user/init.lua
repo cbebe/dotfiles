@@ -111,6 +111,9 @@ local config = {
             ["<leader>jj"] = { "<cmd>% !jq .<cr>", desc = "Pretty-print highlighted JSON" },
             ["<leader>jc"] = { "<cmd>% !jq -c .<cr><cr>", desc = "Minify highlighted JSON" },
         },
+        t = {
+            ["<esc><esc>"] = { "<C-\\><C-n>"},
+        }
     },
     ["which-key"] = {
         register = {
