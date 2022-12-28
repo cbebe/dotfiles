@@ -18,6 +18,7 @@ local function CreateTrailingCmd(auto, group, cb)
 			cb()
 		end
 	end
+
 	local desc = "Match extra whitespace on " .. auto
 	vim.api.nvim_create_autocmd(auto, { desc = desc, group = group, pattern = "*", callback = callback })
 end
@@ -239,10 +240,6 @@ local config = {
 		end
 
 		require("leap").add_default_mappings()
-
-		if vim.fn.executable("stylua") == 0 then
-			print("stylua is not installed. please run `cargo install stylua`.")
-		end
 	end,
 }
 
