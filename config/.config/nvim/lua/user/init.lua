@@ -1,6 +1,14 @@
--- vim:set ts=4 sw=4 sts=4 et :
+-- vim:set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab:
 
 require("nvim-treesitter.install").compilers = { "gcc" }
+
+local function printDate()
+	local pos = vim.api.nvim_win_get_cursor(0)[2]
+	local line = vim.api.nvim_get_current_line()
+	local date = os.date()
+	local nline = line:sub(0, pos) .. date .. line:sub(pos + 1)
+	vim.api.nvim_set_current_line(nline)
+end
 
 local function CreateTrailingCmd(auto, group, cb)
 	local function callback()
@@ -107,7 +115,7 @@ local config = {
 				desc = "Edit user configuration",
 			},
 			["<leader>D"] = {
-				"<cmd>pu=execute('lua print(os.date())')<cr>kJ",
+				printDate,
 				desc = "Print date",
 			},
 			["<leader>F"] = {
@@ -220,14 +228,12 @@ local config = {
 			-- This will break tempfile redirection!!
 			-- TODO: Find alternative ways to create terminal
 
-			-- vim.cmd([[
-			--     let &shell = 'nu'
-			--     let &shellpipe = "| save %s"
-			--     let &shellredir = "| save %s"
-			--     let &shellcmdflag = '-c'
-			--     let &shellquote = ""
-			--     let &shellxquote = ""
-			-- ]])
+			-- vim.o.shell = "nu"
+			-- vim.o.shellpipe = "| save %s"
+			-- vim.o.shellredir = "| save %s"
+			-- vim.o.shellcmdflag = '-c'
+			-- vim.o.shellquote = ""
+			-- vim.o.shellxquote = ""
 		else
 			vim.keymap.set("n", "<leader>tt", "<cmd>terminal<cr>i")
 		end
