@@ -4,3 +4,6 @@
 [submodule "config/.config/awesome/sharedtags"]
 	path = config/.config/awesome/sharedtags
 	url = git@github.com:Drauthius/awesome-sharedtags.git
+[submodule "config/.config/nvim"]
+	path = config/.config/nvim
+	url = git@github.com:cbebe/nvim
