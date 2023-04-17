@@ -529,7 +529,7 @@ let-env config = {
       mode: [vi_normal, vi_insert]
       event: {
         send: executehostcommand
-        cmd: "z notes; nvim TODO.md"
+        cmd: "z notes; nvim ."
       }
     }
     {
@@ -603,6 +603,8 @@ let-env config = {
 }
 
 alias vi = nvim
+alias pn = pnpm
+alias mp = mprocs
 
 source ~/.dotfiles/nu/zoxide.nu
 source ~/.dotfiles/nu/starship.nu
@@ -619,7 +621,7 @@ def comc [] {
 
 def-env make_meeting_notes [] {
   z notes
-  nvim $"meeting-(date now | date format '%Y-%m-%d-%H-%M').md"
+  nvim $"meeting-(date now | date format '%Y-%m-%d-%H-%M').norg"
 }
 
 
