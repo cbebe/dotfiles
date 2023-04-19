@@ -73,3 +73,4 @@ alias dema='dotnet ef migrations add'
 alias dedu='dotnet ef database update'
 
 alias mp="mprocs"
+alias pn="pnpm"
