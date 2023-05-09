@@ -645,3 +645,7 @@ def-env zv [dir: string] {
 def-env lfcd [] {
   cd (lfwrapper | complete | get stdout | str trim)
 }
+
+def iconf [] {
+  echo (realpath Web.ConnectionStrings.config)  (realpath Web.Subscribers.config) "" | str join "\n" | clip
+}
