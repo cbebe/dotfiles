@@ -40,7 +40,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 # bindsym $mod+space exec "/home/theprimeagen/dotfiles/awesome-streamerrc/ThePrimeagen/tmux2"
@@ -51,6 +51,8 @@ bindsym $mod+q kill
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+b exec firefox
+
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
