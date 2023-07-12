@@ -52,7 +52,7 @@ bindkey '^r' history-incremental-search-backward
 
 # bindkey -s ^f "tmux-sessionizer\n"
 # bindkey -s ^r "tmux-sessionizer-nvim\n"
-bindkey -s ^g "lazygit\n"
+bindkey -s ^g "lg\n"
 # bindkey -s ^t "vi ~/.dotfiles/personal/todo.md\n"
 bindkey -s ^n "z notes; vi .\n"
 
@@ -98,9 +98,24 @@ for file in $ZDOTDIR/{.shortcutrc,.envrc,.aliasrc}; do
   [ -f "$file" ] && source "$file"
 done
 
+if type pyenv &>/dev/null; then
+  eval "$(pyenv init -)"
+fi
+
 if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
+
+lg() {
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
