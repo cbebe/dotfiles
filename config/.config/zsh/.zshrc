@@ -50,8 +50,8 @@ bindkey -v '^?' backward-delete-char
 
 bindkey '^r' history-incremental-search-backward
 
-# bindkey -s ^f "tmux-sessionizer\n"
-# bindkey -s ^r "tmux-sessionizer-nvim\n"
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^r "tmux-sessionizer-nvim\n"
 bindkey -s ^g "lg\n"
 # bindkey -s ^t "vi ~/.dotfiles/personal/todo.md\n"
 bindkey -s ^n "z notes; vi .\n"
