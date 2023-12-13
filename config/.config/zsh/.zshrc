@@ -106,6 +106,10 @@ if type zoxide &>/dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+if type obs &>/dev/null; then
+  eval "$(obs completion zsh)"
+fi
+
 lg() {
     export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
 
