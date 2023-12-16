@@ -4,8 +4,8 @@
 # -------
 
 alias vi="nvim"
-# Fennel Neovim
-alias fvi="nvim -u $HOME/.dotfiles/fnvim/init.lua"
+# Large file Neovim
+alias lvi="nvim -u $HOME/.config/nvim/large-file.vim"
 alias ls="exa --color=always"
 alias ll="ls -alh"
 alias l="ls -alh"
