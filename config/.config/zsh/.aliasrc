@@ -6,7 +6,7 @@
 alias vi="nvim"
 # Large file Neovim
 alias lvi="nvim -u $HOME/.config/nvim/large-file.vim"
-alias ls="exa --color=always"
+alias ls="eza --color=always"
 alias ll="ls -alh"
 alias l="ls -alh"
 
