@@ -2,7 +2,11 @@
 # https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/bin/tmux-sessionizer
 
 if [[ $# -eq 1 ]]; then
-	selected=$1
+	if [[ $1 = "." ]]; then
+		selected=$(basename "$(pwd)" | tr . _)
+	else
+		selected=$1
+	fi
 else
 	dox=$(fd -H --min-depth 1 --max-depth 1 --type d . ~/dox)
 	work=$(fd -H --min-depth 1 --max-depth 1 --type d . ~/work)
