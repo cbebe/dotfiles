@@ -111,14 +111,14 @@ fi
 #fi
 
 lg() {
-    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+    # export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
 
     lazygit "$@"
 
-    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-    fi
+    # if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+    #         cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+    #         rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    # fi
 }
 
 # Load zsh-syntax-highlighting; should be last.
