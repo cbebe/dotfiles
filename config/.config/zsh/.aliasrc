@@ -86,3 +86,5 @@ alias ma='z monkey-typo && ./append.py'
 alias el='z startup && vi links.txt'
 
 alias ts='tree-sitter'
+
+alias menv='python -m venv .venv'
