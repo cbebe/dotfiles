@@ -88,3 +88,6 @@ alias el='z startup && vi links.txt'
 alias ts='tree-sitter'
 
 alias menv='python -m venv .venv'
+
+alias rl='rg-fzf'
+alias ji='jira-issue'

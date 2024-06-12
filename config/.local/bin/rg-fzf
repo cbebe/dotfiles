@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# TODO: Use an actual programming language for this maybe
+file=$(rg -l "$@" | fzf --preview "rg --heading -n --color=always -C5 $@ {}")
+
+if [ -z "$file" ]; then
+	exit 0
+fi
+
+line_number=$(rg -n $@ "$file" | cut -f1 -d: | head -n1)
+exec nvim +${line_number} "$file"
