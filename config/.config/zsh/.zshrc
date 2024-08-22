@@ -15,8 +15,29 @@ parse_nix_shell() {
   }
 }
 
+check_fysh() {
+  string=$(pwd)
+  word="fysh"
+  lb="["
+  name="%n"
+  host="%M"
+  eye=""
+  rb="]"
+  # Check if the directory has fysh
+  test "${string#*"$word"}" != "$string" && {
+    lb="><"
+    name="charles"
+    host="fysh-fyve"
+    eye="%{$reset_color%}°"
+    rb=">"
+  }
+  echo "%B%{$fg[red]%}$lb%{$fg[yellow]%}$name%{$fg[green]%}@%{$fg[blue]%}$host %{$fg[cyan]%}$(parse_git_branch)%{$fg[green]%}$(parse_nix_shell)%{$fg[magenta]%}%c$eye%{$fg[red]%}$rb%{$reset_color%}$%b "
+}
+
+
 setopt PROMPT_SUBST
-PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[cyan]%}\$(parse_git_branch)%{$fg[green]%}\$(parse_nix_shell)%{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
+# PROMPT="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[cyan]%}\$(parse_git_branch)%{$fg[green]%}\$(parse_nix_shell)%{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$%b "
+PROMPT="\$(check_fysh)"
 
 # artix style prompt, ugly colours tho
 # PS1="%B%{$fg[cyan]%}%M%{$reset_color%}:%{$fg[red]%}[%{$fg[blue]%}%n%{$fg[red]%}]%{$reset_color%}:%{$fg[magenta]%}%~%{$fg[yellow]%}$%{$reset_color%}%b "
