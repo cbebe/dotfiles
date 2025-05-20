@@ -1,0 +1,8 @@
+#!/bin/sh
+
+text="$1"
+name="$2"
+
+say -v Sinji "$text" -o ${name}.m4a
+ffmpeg -i ${name}.m4a -c:v copy -c:a libmp3lame -q:a 4 ${name}.mp3
+rm ${name}.m4a
