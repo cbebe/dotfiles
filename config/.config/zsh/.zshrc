@@ -51,6 +51,10 @@ HISTFILE=~/.cache/zsh/history
   touch $HISTFILE
 }
 
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/chrlz/.docker/completions $fpath)
+# End of Docker CLI completions
+
 # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
@@ -153,3 +157,11 @@ dz() {
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+
+# pnpm
+export PNPM_HOME="/Users/chrlz/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
