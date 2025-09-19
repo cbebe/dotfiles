@@ -8,9 +8,10 @@ if [[ $# -eq 1 ]]; then
 		selected=$1
 	fi
 else
-	dox=$(fd -H -I --min-depth 1 --max-depth 1 --type d . ~/dox)
-	work=$(fd -H -I --min-depth 1 --max-depth 1 --type d . ~/work)
-	selected=$(fd -I -H . . ~/dox $dox ~/ ~/work $work ~/repos ~/.dotfiles ~/.dotfiles/config/.config ~/.dotfiles/config/.local --min-depth 0 --max-depth 1 --type d | xargs readlink -f | sort | uniq | fzf)
+	dox=$(fd -u --min-depth 1 --max-depth 1 -t d . ~/dox)
+	work=$(fd -u --min-depth 1 --max-depth 1 -t d . ~/work)
+	stuff=$(fd -H -I . ~/dox $dox ~/ ~/work $work ~/repos ~/.dotfiles ~/.dotfiles/config/.config ~/.dotfiles/config/.local --min-depth 0 --max-depth 1 --type d)
+	selected=$(echo . $stuff | xargs readlink -f | sort | uniq | fzf)
 fi
 
 if [[ -z $selected ]]; then
