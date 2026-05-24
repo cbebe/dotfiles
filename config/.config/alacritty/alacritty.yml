@@ -1,18 +1,18 @@
 font:
   normal:
-    family: BlexMono Nerd Font
+    family: Inconsolata LGC Nerd Font Propo
     style: Regular
 
   bold:
-    family: BlexMono Nerd Font
+    family: Inconsolata LGC Nerd Font Propo
     style: Bold
 
   italic:
-    family: BlexMono Nerd Font
+    family: Inconsolata LGC Nerd Font Propo
     style: Italic
 
   bold_italic:
-    family: BlexMono Nerd Font
+    family: Inconsolata LGC Nerd Font Propo
     style: Bold Italic
 
   size: 14

@@ -51,7 +51,7 @@ in {
     unzip
     luaformatter
     clang-tools
-    zathura
+    # zathura
     imagemagick
   ];
 
@@ -65,7 +65,7 @@ in {
     config = { italic-text = "always"; };
   };
   programs.git = {
-    enable = true;
+    enable = false;
     userName = "Charles Ancheta";
     userEmail = "55412395+cbebe@users.noreply.github.com";
     extraConfig = {
